@@ -13,7 +13,10 @@ public class KitchenDoor : MonoBehaviour {
     void Update()
     {
         RaycastHit hit;
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        Vector3 fwd = transform.TransformDirection(Vector3.left);
+
+        //Debug.DrawRay(transform.position, fwd * rayLenght, Color.red);
+        //Debug.Log(fwd + "-" + transform.position);
 
         if (Physics.Raycast(transform.position, fwd, out hit, rayLenght))
         {
