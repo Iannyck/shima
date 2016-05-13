@@ -6,49 +6,27 @@ public class PickUpObject : MonoBehaviour {
     private bool guiShow = false;
     private bool isPick = false;
 
-    public GameObject pickUp;
-    // public Animation anim;
-    public int rayLenght = 10;
-
+    public int rayLenght;
 
     void Update()
     {
         RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.left);
 
-        //Debug.DrawRay(transform.position, fwd * rayLenght, Color.red);
+        Debug.DrawRay(transform.position, fwd * rayLenght, Color.green);
         //Debug.Log(fwd + "-" + transform.position);
 
         if (Physics.Raycast(transform.position, fwd, out hit, rayLenght))
         {
             if (hit.collider.gameObject.tag == "PickUp")
-            {
                 guiShow = true;
-
-                if (Input.GetKeyDown("e") && isPick == false)
-                {
-                    // anim.Play("");
-                    
-
-
-                    isPick = true;
-                    guiShow = false;
-                }
-
-                else if (Input.GetKeyDown("e") && isPick == true)
-                {
-                    // anim.Play("");
-                    isPick = false;
-                    guiShow = true;
-                }
-            }
         }
 
         else
             guiShow = false;
     }
 
-    void OnGUI()
+        void OnGUI()
     {
         if (guiShow == true && isPick == false)
         {
