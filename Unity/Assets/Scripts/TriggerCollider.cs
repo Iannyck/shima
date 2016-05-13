@@ -3,46 +3,11 @@ using System.Collections;
 
 public class TriggerCollider : MonoBehaviour
 {
-
-    //    Transform playerH;
-    //    Rigidbody rgbd;
-
-    //    private bool isPick = false;
-
-    //    void Start ()
-    //    {
-    //        rgbd = GetComponent<Rigidbody>();
-    //	}
-
-    //    void Update()
-    //    {
-
-    //    }
-
-    //    void OnTriggerEnter(Collider other)
-    //    {
-    //        Debug.Log("Collision detecte");
-
-    //        if (other.gameObject.tag == "Player")
-    //        {
-    //            if (Input.GetKeyDown("e"))
-    //            {
-    //                Debug.Log("Touche E appuye");
-    //                transform.parent = playerH.transform;
-    //                transform.localPosition = new Vector3(0, 0, 0);
-    //                rgbd.isKinematic = true;
-
-    //                isPick = true;
-    //            }
-    //        }
-    //    }
-
-    //}
-
     RaycastHit hit;
     GameObject pickedUpObject;
     Transform characterTransform;
-    Transform objectTransform;
+
+    bool isPick = false;
 
     void Start()
     {
@@ -51,25 +16,74 @@ public class TriggerCollider : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("e"))
+        Vector3 fwd = transform.TransformDirection(Vector3.left);
+
+        if (isPick == false)
         {
 
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
+            if (Input.GetKeyDown("e"))
             {
-               
-                if (hit.collider.gameObject.tag == "PickUp")
-                {
-                    pickedUpObject = hit.collider.gameObject;
-                    pickedUpObject.transform.position = new Vector3(characterTransform.position.x, characterTransform.position.y, characterTransform.position.z);
 
-                    Debug.Log(pickedUpObject.transform.position);
+                if (Physics.Raycast(transform.position, fwd, out hit, 5))
+                {
+                    Debug.Log(characterTransform.rotation.y);
+                    if (hit.collider.gameObject.tag == "PickUp")
+                    {
+                        //Debug.Log(hit.distance);
+
+                        if (hit.distance >= 2)
+                        {
+                            PickUp();
+                        }
+
+                        else
+                        {
+                           // Debug.Log(characterTransform.rotation.y);
+                            if (characterTransform.rotation.y >= 0f && characterTransform.rotation.y < 20f)
+                            {
+                                characterTransform.position = new Vector3(characterTransform.position.x +2f, characterTransform.position.y, characterTransform.position.z);
+                            }
+
+                            else if (characterTransform.rotation.y >= 80f && characterTransform.rotation.y < 100f)
+                            {
+                                characterTransform.position = new Vector3(characterTransform.position.x, characterTransform.position.y, characterTransform.position.z-2f);
+                            }
+
+                            else if (characterTransform.rotation.y >= 170f && characterTransform.rotation.y < 190f)
+                            {
+                                characterTransform.position = new Vector3(characterTransform.position.x - 2f, characterTransform.position.y, characterTransform.position.z);
+                            }
+
+                            else if (characterTransform.rotation.y >= 260f && characterTransform.rotation.y < 280f)
+                            {
+                                characterTransform.position = new Vector3(characterTransform.position.x, characterTransform.position.y, characterTransform.position.z -2f);
+                            }
+
+                            PickUp();
+                        }
+                    }
                 }
+
             }
         }
 
-        else
-        { 
-            pickedUpObject = null;
+        else if (isPick == true)
+        {
+
+            if (Input.GetKeyDown("e"))
+            {
+                pickedUpObject.transform.parent = null;
+                pickedUpObject = null;
+                isPick = false;
+            }
         }
+    }
+
+    void PickUp()
+    {
+       pickedUpObject = hit.collider.gameObject;
+       pickedUpObject.transform.parent = characterTransform;
+
+       isPick = true;
     }
 }
