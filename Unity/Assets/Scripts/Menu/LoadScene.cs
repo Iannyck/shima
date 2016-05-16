@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SwitchScene : MonoBehaviour {
+public class LoadScene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -12,4 +12,11 @@ public class SwitchScene : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void LoadingScreen(string name)
+    {
+        Application.LoadLevel(name);
+    }
+
+
 }
