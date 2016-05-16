@@ -12,4 +12,8 @@ public class SmartElectronicMeter : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public bool RequestForEnergy(int phase, int power) {
+		return true;
+	}
 }
