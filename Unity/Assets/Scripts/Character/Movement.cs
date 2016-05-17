@@ -41,7 +41,7 @@ public class Movement : MonoBehaviour
         float faceDirection = Input.GetAxisRaw("Horizontal") * -1;
         float faceOrientation = Input.GetAxisRaw("Vertical");
         transform.forward = new Vector3(faceOrientation, 0, faceDirection);
-        
+
     }
 }
 

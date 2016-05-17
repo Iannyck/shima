@@ -22,13 +22,13 @@ public class OpeningClosingDoor : MonoBehaviour {
         if (isOpen)
         {
             isOpen = false;
-            anim.Play("CloseDoor");
+            anim.Play("DoorClosing");
         }
 
         else
         {
             isOpen = true;
-            anim.Play("OpenDoor");
+            anim.Play("DoorOpening");
         }
     }
 

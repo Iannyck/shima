@@ -12,18 +12,32 @@ public class WalkedOver : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (pickUpScript != null)
+        if (other.gameObject.tag != "Floor" && other.gameObject.tag != "Fixed")
         {
-            pickUpScript.AddWalkedOverObject(other.gameObject, other.tag);
-        }
+            if (walkedOver == null)
+            {
+                if (pickUpScript != null)
+                {
+                    pickUpScript.AddWalkedOverObject(other.gameObject, other.tag);
+                    walkedOver = other.gameObject;
+                }
 
-        else
-            initPickUpScript();
+                else
+                    initPickUpScript();
+            }
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        pickUpScript.AddWalkedOverObject(null,null);
+        Debug.Log("TriggerExit with" + other.gameObject);
+
+        if (other.gameObject == walkedOver)
+        {
+            Debug.Log("TriggerExit effectue");
+            pickUpScript.AddWalkedOverObject(null, null);
+            walkedOver = null;
+        }
     }
 
     void initPickUpScript() {

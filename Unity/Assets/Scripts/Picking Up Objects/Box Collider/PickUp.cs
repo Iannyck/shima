@@ -25,6 +25,8 @@ public class PickUp : MonoBehaviour {
     {
         if (Input.GetKeyDown("e"))
         {
+            // Debug.Log("WalkedObject = " + walkedOverObject);             
+
             if (walkedOverObject != null)
             {
                 switch (walkedOverObject.tag)
@@ -36,6 +38,7 @@ public class PickUp : MonoBehaviour {
                                 walkedOverObject.transform.parent = null;
                                 AddWalkedOverObject(null, null);
                                 rb.useGravity = true;
+                                rb.isKinematic = false;
                                 rb = null;
                                 isPick = false;
                             }
@@ -45,6 +48,7 @@ public class PickUp : MonoBehaviour {
                                 walkedOverObject.transform.parent = characterTransform;
                                 rb = walkedOverObject.GetComponent<Rigidbody>();
                                 rb.useGravity = false;
+                                rb.isKinematic = true;
                                 isPick = true;
                                 guiShow = false;
 
@@ -66,23 +70,23 @@ public class PickUp : MonoBehaviour {
         }
     }
 
-    public void AddWalkedOverObject(GameObject walkedOverObject, string tag)
+    public void AddWalkedOverObject(GameObject walkedOverObjectFx, string tag)
     {
-        if (walkedOverObject != null)
+        if (walkedOverObjectFx != null)
         {
             guiShow = true;
 
-            switch (walkedOverObject.tag)
+            switch (walkedOverObjectFx.tag)
             {
                 case "PickUp":
                     {
-                        this.walkedOverObject = walkedOverObject;
+                        this.walkedOverObject = walkedOverObjectFx;
                         break;
                     }
 
                 case "Door":
                     {
-                        this.walkedOverObject = walkedOverObject;
+                        this.walkedOverObject = walkedOverObjectFx;
                         doorInteraction = walkedOverObject.GetComponent<OpeningClosingDoor>();
                         break;
                     }
@@ -91,8 +95,7 @@ public class PickUp : MonoBehaviour {
 
         else
         {
-            Debug.Log("Detachement effectue");
-
+            isPick = false;
             guiShow = false;
             walkedOverObject = null;
         }
