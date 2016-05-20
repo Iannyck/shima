@@ -15,8 +15,6 @@ public class BreakingGlass : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Glass colided with" + other.gameObject);
-
         if (other.tag == "Floor")
         {
             Destroy(gameObject);
