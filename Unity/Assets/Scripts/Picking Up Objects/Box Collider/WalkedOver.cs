@@ -30,7 +30,7 @@ public class WalkedOver : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("TriggerExit with" + other.gameObject);
+        // Debug.Log("TriggerExit with" + other.gameObject);
 
         if (other.gameObject == walkedOver)
         {
