@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TriggerRFID : MonoBehaviour {
 
-    public int taille;                                                                 // Correspond a la taille maximale du tableau du capteur RFID 
+    public int taille;                                                                 // Correspond a la taille maximale du tableau du capteur RFID
 
     public GameObject zone1;                                                           // Correspond aux différentes zones du capteur RFID
     public GameObject zone2;
