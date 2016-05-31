@@ -3,8 +3,20 @@ using System.Collections;
 
 public class ElectronicDevice : MonoBehaviour {
 
-	public int phase;
-	public int power;
+	public int delta_active_power_phase1 = 0;
+	public int delta_reactive_power_phase1 = 0;
+	public int delta_spike_active_power_phase1 = 0;
+	public int time_spike_active_power_phase1 = 0;
+
+	public int delta_active_power_phase2 = 0;
+	public int delta_reactive_power_phase2 = 0;
+	public int delta_spike_active_power_phase2 = 0;
+	public int time_spike_active_power_phase2 = 0;
+
+	public int delta_active_power_phase3 = 0;
+	public int delta_reactive_power_phase3 = 0;
+	public int delta_spike_active_power_phase3 = 0;
+	public int time_spike_active_power_phase3 = 0;
 
 	private GameObject smartElectronicMeter;
 
@@ -20,7 +32,8 @@ public class ElectronicDevice : MonoBehaviour {
 
 	public void RequestPower() {
 		SmartElectronicMeter smartElectronicMeterScript = smartElectronicMeter.GetComponent<SmartElectronicMeter> ();
-		if (smartElectronicMeterScript.RequestForEnergy (phase, power))
+		if (smartElectronicMeterScript.RequestForEnergy(delta_active_power_phase1, delta_reactive_power_phase1
+			,delta_active_power_phase2, delta_reactive_power_phase2, delta_active_power_phase3, delta_reactive_power_phase3) != null)
 			Debug.Log ("Do on action");
 	}
 }
