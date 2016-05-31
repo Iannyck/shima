@@ -10,7 +10,7 @@ public class ZoneRFID : MonoBehaviour {
 
     void Start ()
     {
-        script = GetComponentInParent<TriggerRFID>(); 
+        script = GetComponentInParent<TriggerRFID>();
 	}
 	
 	void Update () {
