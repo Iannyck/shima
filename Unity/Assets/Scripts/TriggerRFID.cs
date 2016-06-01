@@ -162,7 +162,7 @@ public class TriggerRFID : MonoBehaviour {
 
         Physics.Linecast(capteurPosition.position, collider.transform.position, out hitInfo);
         {
-            if (hitInfo.collider.CompareTag("Fixed"))                                   // Si le collider est un objet de type Fixed, la puissance doit etre diminue
+            if (hitInfo.collider.CompareTag("Fixed") || hitInfo.collider.CompareTag("Door"))                                   // Si le collider est un objet de type Fixed, la puissance doit etre diminue
                 return true;
 
             else
