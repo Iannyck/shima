@@ -4,6 +4,7 @@ using System.Collections;
 public class TriggerRFID : MonoBehaviour {
 
     public int taille;                                                                 // Correspond a la taille maximale du tableau du capteur RFID
+    public float noise;
 
     public GameObject zone1;                                                           // Correspond aux différentes zones du capteur RFID
     public GameObject zone2;
@@ -90,6 +91,8 @@ public class TriggerRFID : MonoBehaviour {
                                                                                        // Taille peut etre modifie directement sur Unity (Public Watch)
         for (int i = 0; i < taille; i++)
             tableau[i] = new HitPoint();
+
+        noise = 0;
 	}
 	
 	void Update (){
@@ -118,7 +121,7 @@ public class TriggerRFID : MonoBehaviour {
             }
          }
 
-          else if (state == true)                                                       // Si le parametre state est vrai, cela indique que l'on rentre dans la zone en question
+          else if (state == true && collider.layer == LayerMask.NameToLayer("RFID"))    // Si le parametre state est vrai, cela indique que l'on rentre dans la zone en question
             {
                 for (i = 0; i < tableau.Length; i++)                                    // On parcourt le tableau afin de déterminer si l'objet en collision occupe déjè une case du tableau
                 {
@@ -150,6 +153,19 @@ public class TriggerRFID : MonoBehaviour {
                     }
                 }  
             }
+
+            else if (state == true && collider.tag == "Noise") // Indique que le collider produit du bruit
+        {
+            float noisePuissance = collider.GetComponent<ZoneRFID>().GetPuissanceZone();
+            noise = noise + noisePuissance * 1;                                                         // Remplacer 1 par une equation
+
+                // Permet de calculer la distance entre deux sources de bruits
+            // Vector3 noisePosition = collider.gameObject.GetComponent<Transform>().position;
+            // float noiseDistance = Vector3.Distance(noisePosition, GetComponent<Transform>().position);
+            //noise = noise + (noiseDistance * 1);                                                            
+
+        }
+
             return;
         }
 
