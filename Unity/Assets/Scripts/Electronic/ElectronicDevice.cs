@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ElectronicDevice : MonoBehaviour {
+public abstract class ElectronicDevice : MonoBehaviour {
 
 	public int delta_active_power_phase1 = 0;
 	public int delta_reactive_power_phase1 = 0;
