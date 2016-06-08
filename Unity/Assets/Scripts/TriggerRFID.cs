@@ -159,7 +159,7 @@ public class TriggerRFID : MonoBehaviour {
             float noisePuissance = collider.GetComponent<ZoneRFID>().GetPuissanceZone();
             noise = noise + noisePuissance * 1;                                                         // Remplacer 1 par une equation
 
-                // Permet de calculer la distance entre deux sources de bruits
+            // Permet de calculer la distance entre deux sources de bruits
             // Vector3 noisePosition = collider.gameObject.GetComponent<Transform>().position;
             // float noiseDistance = Vector3.Distance(noisePosition, GetComponent<Transform>().position);
             //noise = noise + (noiseDistance * 1);                                                            
