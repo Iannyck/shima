@@ -8,6 +8,8 @@ public class ElectronicDevice : MonoBehaviour {
 	private bool OnOffButtonPressed;
 	private State deviceState;
 
+	public string keyTopress = "e";
+
 	public int delta_active_power_phase1 = 0;
 	public int delta_reactive_power_phase1 = 0;
 	public int delta_spike_active_power_phase1 = 0;
@@ -42,7 +44,7 @@ public class ElectronicDevice : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (smartElectronicMeterScript != null) {
-			if (Input.GetKeyDown ("e")) {
+			if (Input.GetKeyDown (keyTopress)) {
 				OnOffButtonPressed = !OnOffButtonPressed;
 			}
 			if (OnOffButtonPressed) {
