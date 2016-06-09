@@ -24,6 +24,8 @@ public class SmartElectronicMeter : MonoBehaviour {
 
 	private ArrayList requestPool;
 
+	private ElectricityLogger logger;
+
 	// Use this for initialization
 	void Start () {
 		phase1 = new Phase (0, 0);
@@ -31,6 +33,9 @@ public class SmartElectronicMeter : MonoBehaviour {
 		phase3 = new Phase (0, 0);
 
 		requestPool = new ArrayList ();
+
+		logger = GetComponent<ElectricityLogger> ();
+		logger.PhasesStates (phase1.ToString (), phase2.ToString (), phase3.ToString ());
 	}
 	
 	// Update is called once per frame
@@ -42,10 +47,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 			}
 		}
 		requestPool.Clear();
-		Debug.Log ("Phase 1: "+phase1.ToString());
-		Debug.Log ("Phase 2: "+phase1.ToString());
-		Debug.Log ("Phase 3: "+phase1.ToString());
-		Debug.Log (" --- ");
+		logger.PhasesStates (phase1.ToString (), phase2.ToString (), phase3.ToString ());
 	}
 
 	public Request RequestForEnergy(int delta_active_power_phase1, int delta_reactive_power_phase1, int delta_active_power_phase2, 
@@ -55,6 +57,26 @@ public class SmartElectronicMeter : MonoBehaviour {
 			delta_reactive_power_phase2, delta_active_power_phase3, delta_reactive_power_phase3);
 		requestPool.Add (request);
 		return request;
+	}
+
+
+
+	public Phase Phase1 {
+		get {
+			return this.phase1;
+		}
+	}
+
+	public Phase Phase2 {
+		get {
+			return this.phase2;
+		}
+	}
+
+	public Phase Phase3 {
+		get {
+			return this.phase3;
+		}
 	}
 
 }

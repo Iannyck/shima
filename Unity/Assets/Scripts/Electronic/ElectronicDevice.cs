@@ -60,7 +60,6 @@ public class ElectronicDevice : MonoBehaviour {
 					OnOffButtonPressed = false;
 				}
 			}
-			Debug.Log (deviceState);
 		}
 	}
 
