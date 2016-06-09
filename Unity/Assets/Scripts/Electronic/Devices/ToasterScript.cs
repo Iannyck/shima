@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ToasterScript : MonoBehaviour {
+public class ToasterScript : ElectronicDevice {
 
 	// Use this for initialization
 	void Start () {

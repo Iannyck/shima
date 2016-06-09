@@ -3,6 +3,10 @@ using System.Collections;
 
 public class SmartElectronicMeter : MonoBehaviour {
 
+	public enum NoiseFunctionType : byte {Random, Gaussian}
+
+	public NoiseFunctionType noiseFunctionType;
+
 	/// <summary>
 	/// The phase1.
 	/// </summary>
@@ -34,9 +38,14 @@ public class SmartElectronicMeter : MonoBehaviour {
 		if(requestPool.Count > 0) {
 			foreach(Request request in requestPool) {
 				request.Execute (phase1, phase2, phase3);
+				request.State = Request.RequestState.DeltaGiven;
 			}
 		}
 		requestPool.Clear();
+		Debug.Log ("Phase 1: "+phase1.ToString());
+		Debug.Log ("Phase 2: "+phase1.ToString());
+		Debug.Log ("Phase 3: "+phase1.ToString());
+		Debug.Log (" --- ");
 	}
 
 	public Request RequestForEnergy(int delta_active_power_phase1, int delta_reactive_power_phase1, int delta_active_power_phase2, 

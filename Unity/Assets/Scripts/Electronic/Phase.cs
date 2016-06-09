@@ -33,4 +33,10 @@ public class Phase {
 		reactive_power += delta;
 	}
 
+	public override string ToString ()
+	{
+		return string.Format ("[Phase: Active_power={0}, Reactive_power={1}]", active_power, reactive_power);
+	}
+	
+	
 }
