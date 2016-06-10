@@ -10,20 +10,28 @@ public class ElectronicDevice : MonoBehaviour {
 
 	public string keyTopress = "e";
 
+	public int noise_range_percent = 5;
+
 	public int delta_active_power_phase1 = 0;
 	public int delta_reactive_power_phase1 = 0;
-	public int delta_spike_active_power_phase1 = 0;
-	public int time_spike_active_power_phase1 = 0;
+	private int effective_delta_active_power_phase1 = 0;
+	private int effective_delta_reactive_power_phase1 = 0;
+//	public int delta_spike_active_power_phase1 = 0;
+//	public int time_spike_active_power_phase1 = 0;
 
 	public int delta_active_power_phase2 = 0;
 	public int delta_reactive_power_phase2 = 0;
-	public int delta_spike_active_power_phase2 = 0;
-	public int time_spike_active_power_phase2 = 0;
+	private int effective_delta_active_power_phase2 = 0;
+	private int effective_delta_reactive_power_phase2 = 0;
+//	public int delta_spike_active_power_phase2 = 0;
+//	public int time_spike_active_power_phase2 = 0;
 
 	public int delta_active_power_phase3 = 0;
 	public int delta_reactive_power_phase3 = 0;
-	public int delta_spike_active_power_phase3 = 0;
-	public int time_spike_active_power_phase3 = 0;
+	private int effective_delta_active_power_phase3 = 0;
+	private int effective_delta_reactive_power_phase3 = 0;
+//	public int delta_spike_active_power_phase3 = 0;
+//	public int time_spike_active_power_phase3 = 0;
 
 	private SmartElectronicMeter smartElectronicMeterScript;
 
@@ -64,14 +72,26 @@ public class ElectronicDevice : MonoBehaviour {
 	}
 
 	protected void OnOn() {
-		powerRequest = smartElectronicMeterScript.RequestForEnergy (delta_active_power_phase1, delta_reactive_power_phase1
-			, delta_active_power_phase2, delta_reactive_power_phase2, delta_active_power_phase3, delta_reactive_power_phase3);
+		int noise_range = (int)(delta_active_power_phase1 * ((float)noise_range_percent / 100.0));
+		effective_delta_active_power_phase1 = delta_active_power_phase1 + Random.Range(-noise_range, noise_range);
+		noise_range = (int)(delta_reactive_power_phase1 * ((float)noise_range_percent / 100.0));
+		effective_delta_reactive_power_phase1 = delta_reactive_power_phase1 + Random.Range(-noise_range, noise_range);
+		noise_range = (int)(delta_active_power_phase2 * ((float)noise_range_percent / 100.0));
+		effective_delta_active_power_phase2 = delta_active_power_phase2 + Random.Range(-noise_range, noise_range);
+		noise_range = (int)(delta_reactive_power_phase2 * ((float)noise_range_percent / 100.0));
+		effective_delta_reactive_power_phase2 = delta_reactive_power_phase2 + Random.Range(-noise_range, noise_range);
+		noise_range = (int)(delta_active_power_phase3 * ((float)noise_range_percent / 100.0));
+		effective_delta_active_power_phase3 = delta_active_power_phase3 + Random.Range(-noise_range, noise_range);
+		noise_range = (int)(delta_reactive_power_phase3 * ((float)noise_range_percent / 100.0));
+		effective_delta_reactive_power_phase3 = delta_reactive_power_phase3 + Random.Range(-noise_range, noise_range);
+		powerRequest = smartElectronicMeterScript.RequestForEnergy (effective_delta_active_power_phase1, effective_delta_reactive_power_phase1
+			, effective_delta_active_power_phase2, effective_delta_reactive_power_phase2, effective_delta_active_power_phase3, effective_delta_reactive_power_phase3);
 		deviceState = State.Opening;
 	}
 
 	protected void OnClose() {
-		powerRequest = smartElectronicMeterScript.RequestForEnergy (-delta_active_power_phase1, -delta_reactive_power_phase1
-			, -delta_active_power_phase2, -delta_reactive_power_phase2, -delta_active_power_phase3, -delta_reactive_power_phase3);
+		powerRequest = smartElectronicMeterScript.RequestForEnergy (-effective_delta_active_power_phase1, -effective_delta_reactive_power_phase1
+			, -effective_delta_active_power_phase2, -effective_delta_reactive_power_phase2, -effective_delta_active_power_phase3, -effective_delta_reactive_power_phase3);
 		deviceState = State.Closing;
 	}
 
