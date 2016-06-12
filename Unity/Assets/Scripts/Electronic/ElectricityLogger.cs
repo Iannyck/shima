@@ -4,6 +4,9 @@ using System.Collections;
 public class ElectricityLogger : MonoBehaviour {
 
 	public int window = 20;
+	public float frequency = 1;
+
+	private float currentTime = 0;
 
 	private Phase phase1;
 	private Phase phase2;
@@ -15,7 +18,7 @@ public class ElectricityLogger : MonoBehaviour {
 
 	void OnGUI() {
 		ShowElectronicData(10, 10);
-		ShowElectronicChart(300, 10, 300, 200, phases1);
+		ShowElectronicChart(300, 10, 300, 200, phases1, "Phase 1");
 	}
 
 	// Use this for initialization
@@ -27,11 +30,18 @@ public class ElectricityLogger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		Debug.Log ("---");
-//		foreach (Phase phase in phases1) {
-//			Debug.Log (phase.ToString());
-//		}
-//		Debug.Log ("---");
+		currentTime += Time.deltaTime;
+		if(currentTime >= frequency) {
+			RefreshFlowchart (phases1);
+			currentTime = 0;
+		}
+	}
+
+	private void RefreshFlowchart(ArrayList phases) {
+		if(phases.Count > 0)
+			AddToQueue (phases, ((Phase)phases [phases.Count - 1]).Clone());
+		else
+			AddToQueue (phases, new Phase(0,0));
 	}
 
 	public void PhasesStates(Phase phase1, Phase phase2, Phase phase3) {
@@ -43,8 +53,8 @@ public class ElectricityLogger : MonoBehaviour {
 		this.phase3 = phase3;
 	}
 
-	private void ShowElectronicChart(int x, int y, int width, int height, ArrayList phases) {
-		GUI.Box(new Rect(x, y, width, height) , "Electricity");
+	private void ShowElectronicChart(int x, int y, int width, int height, ArrayList phases, string label) {
+		GUI.Box(new Rect(x, y, width, height) , label);
 		int currentX = x + 5;
 		int startY = y + height - 5;
 		Vector2 point1 = new Vector2 (currentX, startY);
@@ -53,19 +63,15 @@ public class ElectricityLogger : MonoBehaviour {
 		point1 = new Vector2 (currentX, startY);
 		point2 = new Vector2 (currentX + width - 25, startY);
 		Drawing.DrawLine(point1, point2, Color.white, 3);
-		Debug.Log ("count: "+phases.Count);
+		currentX = currentX + 1;
 		if (phases.Count > 2) {
 			for(int index = 1; index < phases.Count; index++) {
-				point1 = new Vector2 (currentX, startY - ((int)phases[index-1]) / 10);
-				point2 = new Vector2 (currentX + 10, startY - ((int)phases[index]) / 10);
-					Debug.Log ("p1:" + point1);
-					Debug.Log ("p2:" + point2);
+				point1 = new Vector2 (currentX, startY - ((Phase)phases[index-1]).Active_power / 10);
+				point2 = new Vector2 (currentX + 10, startY - ((Phase)phases[index]).Active_power / 10);
 					Drawing.DrawLine(point1, point2, Color.red, 2);
-//					Drawing.DrawLine(point2, new Vector2 (500, 7), Color.red, 2);
 					currentX = currentX + 10;
 			}
 		}
-		Debug.Log ("count: end");
 	}
 
 	private void ShowElectronicData(int x, int y) {
@@ -79,7 +85,7 @@ public class ElectricityLogger : MonoBehaviour {
 		if (phases.Count >= window) {
 			phases.RemoveAt (0);
 		}
-		phases.Add (phase.Active_power);
+		phases.Add (phase.Clone());
 	}
 
 	class Drawing {
