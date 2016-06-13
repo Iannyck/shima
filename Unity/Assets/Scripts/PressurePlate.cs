@@ -18,9 +18,6 @@ public class PressurePlate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        Debug.Log(massTotale);
-        Debug.Log(pressureOn);
 	}
 
     void OnCollisionEnter(Collision other)
@@ -33,6 +30,7 @@ public class PressurePlate : MonoBehaviour {
         if (massTotale != 0)
         {
             pressureOn = true;
+            Debug.Log(massTotale);
         }
     }
 
@@ -44,6 +42,7 @@ public class PressurePlate : MonoBehaviour {
         if (massTotale == 0)
         {
             pressureOn = false;
+            Debug.Log(massTotale);
         }
 
     }
