@@ -5,7 +5,7 @@
 /// </summary>
 public class Request {
 
-	enum RequestState : byte {NotStarted, DeltaGiven}
+	public enum RequestState : byte {NotStarted, DeltaGiven}
 
 	private Action actionOnPhase1;
 	private Action actionOnPhase2;
@@ -26,6 +26,15 @@ public class Request {
 		actionOnPhase1.Execute (phase1);
 		actionOnPhase2.Execute (phase2);
 		actionOnPhase3.Execute (phase3);
+	}
+
+	public RequestState State {
+		get {
+			return this.state;
+		}
+		set {
+			state = value;
+		}
 	}
 
 	/// <summary>
@@ -57,5 +66,7 @@ public class Request {
 			phase.AddActive_power (delta_active_power);
 			phase.AddReactive_power (delta_reactive_power);
 		}
+
+
 	}
 }
