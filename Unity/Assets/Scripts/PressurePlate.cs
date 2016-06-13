@@ -23,9 +23,9 @@ public class PressurePlate : MonoBehaviour {
         Debug.Log(pressureOn);
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        rgbd = other.GetComponent<Rigidbody>();
+        rgbd = other.gameObject.GetComponent<Rigidbody>();
         massColliderEnter = rgbd.mass;
 
         massTotale = massTotale + massColliderEnter;
@@ -36,9 +36,9 @@ public class PressurePlate : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnCollisionExit(Collision other)
     {
-        massColliderExit = other.GetComponent<Rigidbody>().mass;
+        massColliderExit = other.gameObject.GetComponent<Rigidbody>().mass;
         massTotale = massTotale - massColliderExit;
 
         if (massTotale == 0)
