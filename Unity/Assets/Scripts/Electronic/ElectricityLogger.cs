@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ElectricityLogger : MonoBehaviour {
 
-	public int window = 20;
+	public int window = 30;
 	public float frequency = 1;
 
 	private float currentTime = 0;
