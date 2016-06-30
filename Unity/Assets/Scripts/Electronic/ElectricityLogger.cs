@@ -7,6 +7,7 @@ public class ElectricityLogger : MonoBehaviour {
 	public float frequency = 1;
 
 	private float currentTime = 0;
+	private readonly int deltaX = 10;
 
 	private Phase phase1;
 	private Phase phase2;
@@ -26,6 +27,9 @@ public class ElectricityLogger : MonoBehaviour {
 		phases1 = new ArrayList ();
 		phases2 = new ArrayList ();
 		phases3 = new ArrayList ();
+		phase1 = new Phase (0, 0);
+		phase2 = new Phase (0, 0);
+		phase3 = new Phase (0, 0);
 	}
 	
 	// Update is called once per frame
@@ -64,12 +68,19 @@ public class ElectricityLogger : MonoBehaviour {
 		point2 = new Vector2 (currentX + width - 25, startY);
 		Drawing.DrawLine(point1, point2, Color.white, 3);
 		currentX = currentX + 1;
+		Vector2 pointReactive1;
+		Vector2 pointReactive2;
 		if (phases.Count > 2) {
 			for(int index = 1; index < phases.Count; index++) {
+				/// Draws Active power dots
 				point1 = new Vector2 (currentX, startY - ((Phase)phases[index-1]).Active_power / 10);
-				point2 = new Vector2 (currentX + 10, startY - ((Phase)phases[index]).Active_power / 10);
-					Drawing.DrawLine(point1, point2, Color.red, 2);
-					currentX = currentX + 10;
+				point2 = new Vector2 (currentX + deltaX, startY - ((Phase)phases[index]).Active_power / 10);
+				Drawing.DrawLine(point1, point2, Color.red, 2);
+				/// Draws Reactive power dots
+				pointReactive1 = new Vector2 (currentX, startY - ((Phase)phases[index-1]).Reactive_power / 10);
+				pointReactive2 = new Vector2 (currentX + deltaX, startY - ((Phase)phases[index]).Reactive_power / 10);
+				Drawing.DrawLine(pointReactive1, pointReactive2, Color.green, 2);
+				currentX = currentX + deltaX ;
 			}
 		}
 	}
