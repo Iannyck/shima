@@ -6,6 +6,11 @@ public class CameraFollow : MonoBehaviour {
     public Transform target;
     public float smoothing = 5f;
 
+    public float mouseSpeed;
+
+    private float x;
+    private float y;
+
     Vector3 offset;
 
     void Start()
@@ -18,4 +23,4 @@ public class CameraFollow : MonoBehaviour {
         Vector3 targetCamPos = target.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
     }
-}
+ }

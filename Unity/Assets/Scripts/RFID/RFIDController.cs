@@ -3,7 +3,6 @@ using System.Collections;
 
 public class RFIDController : MonoBehaviour
 {
-
     public GameObject capteur1;
     public GameObject capteur2;
     public GameObject capteur3;
@@ -14,10 +13,21 @@ public class RFIDController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // capteur1.SetActive(true);
-        // capteur2.SetActive(false);
-        // capteur3.SetActive(false);
-        // capteur4.SetActive(false);
+        capteur1.transform.GetChild(0).gameObject.SetActive(false);
+        capteur1.transform.GetChild(1).gameObject.SetActive(false);
+        capteur1.transform.GetChild(2).gameObject.SetActive(false);
+
+        capteur2.transform.GetChild(0).gameObject.SetActive(false);
+        capteur2.transform.GetChild(1).gameObject.SetActive(false);
+        capteur2.transform.GetChild(2).gameObject.SetActive(false);
+
+        capteur3.transform.GetChild(0).gameObject.SetActive(false);
+        capteur3.transform.GetChild(1).gameObject.SetActive(false);
+        capteur3.transform.GetChild(2).gameObject.SetActive(false);
+
+        capteur4.transform.GetChild(0).gameObject.SetActive(false);
+        capteur4.transform.GetChild(1).gameObject.SetActive(false);
+        capteur4.transform.GetChild(2).gameObject.SetActive(false);
 
         countTokenRing = 0;
         InvokeRepeating("TokenRing", 1f, 1f);
