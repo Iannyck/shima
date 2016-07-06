@@ -11,12 +11,13 @@ public class PickUpObject : MonoBehaviour {
     void Update()
     {
         RaycastHit hit;
-        Vector3 fwd = transform.TransformDirection(Vector3.left);
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        Vector3 position = new Vector3(transform.position.x, 12, transform.position.z);
 
-        Debug.DrawRay(transform.position, fwd * rayLenght, Color.green);
+        Debug.DrawRay(position, fwd * rayLenght, Color.green);
         //Debug.Log(fwd + "-" + transform.position);
 
-        if (Physics.Raycast(transform.position, fwd, out hit, rayLenght))
+        if (Physics.Raycast(position, fwd, out hit, rayLenght))
         {
             if (hit.collider.gameObject.tag == "PickUp")
                 guiShow = true;

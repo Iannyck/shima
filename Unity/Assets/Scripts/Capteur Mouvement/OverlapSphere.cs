@@ -92,7 +92,6 @@ public class OverlapSphere : MonoBehaviour
 
                     case "PickUp":
                         {
-                            Debug.Log("Le capteur a detecte un objet de type PickUp");
                             break;
                         }
                 }

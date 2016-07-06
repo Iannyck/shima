@@ -7,26 +7,25 @@ public class UltraSoundMaster : MonoBehaviour {
     public GameObject capteur2;
     public GameObject capteur3;
 
-    float temps1;
-    float temps2;
-    float temps3;
+    static public int nombreCapteur = 3;
 
-    float vitesse1;
-    float vitesse2;
-    float vitesse3;
-
-    float vitesseMoyenne;
+    private TableauResultat[] unTableau = new TableauResultat[nombreCapteur];
 
     bool detection1;
     bool detection2;
     bool detection3;
 
+    struct TableauResultat
+    {
+        public int numeroCapteur;
+        public float distanceCapteur;
+        public float tempsCapteur;
+    }
+
     // Use this for initialization
     void Start()
     {
-        detection1 = true;
-        detection2 = true;
-        detection3 = true;
+        ResetDetection();
     }
 
     // Update is called once per frame
@@ -41,7 +40,10 @@ public class UltraSoundMaster : MonoBehaviour {
         {
             if (capteur1.GetComponent<UltrasoundCaptor>().detection == false)
             {
-                temps1 = capteur1.GetComponent<UltrasoundCaptor>().GetTemps();
+                unTableau[0].numeroCapteur = capteur1.GetComponent<UltrasoundCaptor>().numeroCapteur;
+                unTableau[0].distanceCapteur = capteur1.GetComponent<UltrasoundCaptor>().GetDistance();
+                unTableau[0].tempsCapteur = capteur1.GetComponent<UltrasoundCaptor>().GetTemps();
+
                 detection1 = false;
             }
 
@@ -49,12 +51,15 @@ public class UltraSoundMaster : MonoBehaviour {
 
         if (detection2 == true)
         {
-
             if (capteur2.GetComponent<UltrasoundCaptor>().detection == false)
             {
-                temps2 = capteur2.GetComponent<UltrasoundCaptor>().GetTemps();
+                unTableau[1].numeroCapteur = capteur2.GetComponent<UltrasoundCaptor>().numeroCapteur;
+                unTableau[1].distanceCapteur = capteur2.GetComponent<UltrasoundCaptor>().GetDistance();
+                unTableau[1].tempsCapteur = capteur2.GetComponent<UltrasoundCaptor>().GetTemps();
+
                 detection2 = false;
             }
+
         }
 
         if (detection3 == true)
@@ -62,49 +67,45 @@ public class UltraSoundMaster : MonoBehaviour {
 
             if (capteur3.GetComponent<UltrasoundCaptor>().detection == false)
             {
-                temps3 = capteur3.GetComponent<UltrasoundCaptor>().GetTemps();
+                unTableau[2].numeroCapteur = capteur3.GetComponent<UltrasoundCaptor>().numeroCapteur;
+                unTableau[2].distanceCapteur = capteur3.GetComponent<UltrasoundCaptor>().GetDistance();
+                unTableau[2].tempsCapteur = capteur3.GetComponent<UltrasoundCaptor>().GetTemps();
+
                 detection3 = false;
             }
         }
 
         if (detection1 == false && detection2 == false && detection3 == false)
         {
-            CalculTemps();
             DisplayResult();
             ResetAll();
         }
 
     }
 
-    void CalculTemps()
-    {
-        vitesse1 = 20 / (temps2 - temps1);
-        vitesse2 = 20 / (temps3 - temps2);
-        vitesse3 = 40 / (temps3 - temps1);
-
-        vitesseMoyenne = (vitesse1 + vitesse2 + vitesse3) / 3;
-    }
-
     void ResetAll()
     {
-        capteur1.GetComponent<UltrasoundCaptor>().detection = true;
-        capteur2.GetComponent<UltrasoundCaptor>().detection = true;
-        capteur3.GetComponent<UltrasoundCaptor>().detection = true;
+        ResetTableau();
 
-        capteur1.GetComponent<UltrasoundCaptor>().SetTemps(0);
-        capteur2.GetComponent<UltrasoundCaptor>().SetTemps(0);
-        capteur3.GetComponent<UltrasoundCaptor>().SetTemps(0);
+        capteur1.GetComponent<UltrasoundCaptor>().Reset();
+        capteur2.GetComponent<UltrasoundCaptor>().Reset();
+        capteur3.GetComponent<UltrasoundCaptor>().Reset();
 
-        temps1 = 0;
-        temps2 = 0;
-        temps3 = 0;
+        ResetDetection();
+    }
 
-        vitesse1 = 0;
-        vitesse2 = 0;
-        vitesse3 = 0;
+    void ResetTableau()
+    {
+        for (int i=0; i < nombreCapteur; i++)
+        {
+            unTableau[i].numeroCapteur = 0;
+            unTableau[i].distanceCapteur= 0;
+            unTableau[i].tempsCapteur = 0;
+        }
+    }
 
-        vitesseMoyenne = 0;
-
+    void ResetDetection()
+    {
         detection1 = true;
         detection2 = true;
         detection3 = true;
@@ -112,10 +113,8 @@ public class UltraSoundMaster : MonoBehaviour {
 
     void DisplayResult()
     {
-        Debug.Log(vitesse1);
-        Debug.Log(vitesse2);
-        Debug.Log(vitesse3);
-        Debug.Log(vitesseMoyenne);
+        Debug.Log("Affichage des resultats");
+
         // Affichage des resultats
     }
 
