@@ -2,17 +2,20 @@
 using System.Collections;
 
 public class WalkedOver : MonoBehaviour {
-    
+
     public PickUp pickUpScript = null;
     private GameObject walkedOver;
 
-	void Start () {
+    void Start() {
         initPickUpScript();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Floor" && other.gameObject.tag != "Fixed")
+        if (other.gameObject.tag == "Door")
+            Debug.Log("TriggeEnter with" + other.gameObject);
+
+        if (other.gameObject.tag == "Door" || other.gameObject.tag == "Pick Up" || other.gameObject.tag == "Interaction")
         {
             if (walkedOver == null)
             {
@@ -30,7 +33,8 @@ public class WalkedOver : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        // Debug.Log("TriggerExit with" + other.gameObject);
+        if (other.gameObject.tag == "Door")
+            Debug.Log("TriggerExit with" + other.gameObject);
 
         if (other.gameObject == walkedOver)
         {

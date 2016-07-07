@@ -25,7 +25,7 @@ public class PickUp : MonoBehaviour {
     {
         if (Input.GetKeyDown("e"))
         {
-            // Debug.Log("WalkedObject = " + walkedOverObject);             
+            Debug.Log("WalkedObject = " + walkedOverObject);             
 
             if (walkedOverObject != null)
             {

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class OpeningClosingDoor : MonoBehaviour {
 
-    private bool isOpen;
+    public bool isOpen;
     public Animation anim;
 
 	// Use this for initialization
