@@ -51,7 +51,6 @@ public class PickUp : MonoBehaviour {
                                 rb.isKinematic = true;
                                 isPick = true;
                                 guiShow = false;
-
                             }
 
                             break;

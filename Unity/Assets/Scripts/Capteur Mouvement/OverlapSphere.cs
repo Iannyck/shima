@@ -92,6 +92,17 @@ public class OverlapSphere : MonoBehaviour
 
                     case "PickUp":
                         {
+                            Debug.Log("Le capteur a detecte un objet");
+
+                            int position = CompareCollider(hitColliders[i].gameObject);
+                            float newDistance = Vector3.Distance(hitColliders[i].transform.position, capteurTransform.position);
+
+                            movement = CompareDistance(position, newDistance);
+                            tableau[position].SetDistance(newDistance);
+
+                            if (movement == true)
+                                Debug.Log("L'objet est en mouvement");
+
                             break;
                         }
                 }

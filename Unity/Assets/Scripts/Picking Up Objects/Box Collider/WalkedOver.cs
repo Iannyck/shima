@@ -15,7 +15,10 @@ public class WalkedOver : MonoBehaviour {
         if (other.gameObject.tag == "Door")
             Debug.Log("TriggeEnter with" + other.gameObject);
 
-        if (other.gameObject.tag == "Door" || other.gameObject.tag == "Pick Up" || other.gameObject.tag == "Interaction")
+        if (other.gameObject.tag == "PickUp")
+            Debug.Log("TriggeEnter with" + other.gameObject);
+
+        if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Interaction")
         {
             if (walkedOver == null)
             {
