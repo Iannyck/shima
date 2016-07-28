@@ -4,31 +4,17 @@ using System.IO;
 
 public class SaveSensors : MonoBehaviour {
 
+    public GameObject prefabRFID;
+    public GameObject prefabUltrasound;
+    public GameObject prefabPression;
+    public GameObject prefabMouvement;
+
     string winDir = System.Environment.GetEnvironmentVariable("windir");
     
-
     GameObject sensorParent;
     Transform sensorChild;
 
-    struct RFIDCapteur
-    {
-        public Vector3 position;
-        public Quaternion rotation;
-    }
-
-    struct UltrasonsCapteur
-    {
-        public Vector3 position;
-        public Quaternion rotation;
-    }
-
-    struct PressionCapteur
-    {
-        public Vector3 position;
-        public Quaternion rotation;
-    }
-
-    struct MouvementCapteur
+    struct SomeCapteur
     {
         public Vector3 position;
         public Quaternion rotation;
@@ -38,6 +24,7 @@ public class SaveSensors : MonoBehaviour {
     void Awake()
     {
         Save();
+        Load();
     }
 
     // Update is called once per frame
@@ -46,158 +33,141 @@ public class SaveSensors : MonoBehaviour {
     void Save()
     {
         StreamWriter writer = new StreamWriter("SaveSensors.txt");
-
         int numberChildren = transform.childCount;
 
         for (int j = 0; j < numberChildren; j++)
         {
             sensorChild = transform.GetChild(j);
+            writer.WriteLine(sensorChild.tag);                                              // Ecrit le tag du sensor (RFID,Mouvement,Ultrasons ou Pression)
 
-            switch (sensorChild.tag)
+            writer.WriteLine(sensorChild.transform.position.x);
+            writer.WriteLine(sensorChild.transform.position.y);
+            writer.WriteLine(sensorChild.transform.position.z);
+
+            writer.WriteLine(sensorChild.transform.rotation.w);
+            writer.WriteLine(sensorChild.transform.rotation.x);
+            writer.WriteLine(sensorChild.transform.rotation.y);
+            writer.WriteLine(sensorChild.transform.rotation.z);
+
+            int numberChildrenCapteur = sensorChild.transform.childCount;
+            SomeCapteur[] tableauCapteur = new SomeCapteur[numberChildrenCapteur];
+
+            for (int i = 0; i < numberChildrenCapteur; i++)
             {
-                default: break;
+                tableauCapteur[i].position = sensorChild.transform.GetChild(i).position;
+                tableauCapteur[i].rotation = sensorChild.transform.GetChild(i).rotation;
 
-                case "RFID":
-                    {
-                        int numberChildrenRFID = sensorChild.transform.childCount;
-                        RFIDCapteur[] tableauRFID = new RFIDCapteur[numberChildrenRFID];
+                writer.WriteLine(tableauCapteur[i].position.x);
+                writer.WriteLine(tableauCapteur[i].position.y);
+                writer.WriteLine(tableauCapteur[i].position.z);
 
-                        writer.WriteLine("RFID");
+                writer.WriteLine(tableauCapteur[i].rotation.w);
+                writer.WriteLine(tableauCapteur[i].rotation.x);
+                writer.WriteLine(tableauCapteur[i].rotation.y);
+                writer.WriteLine(tableauCapteur[i].rotation.z);
 
-                        for (int i = 0; i < numberChildrenRFID; i++)
-                        {
-                            tableauRFID[i].position = sensorChild.transform.GetChild(i).position;
-                            tableauRFID[i].rotation = sensorChild.transform.GetChild(i).rotation;
+                /* 
 
-                            writer.Write("Position =");
-                            writer.Write(tableauRFID[i].position.x);
-                            writer.Write(";");
-                            writer.Write(tableauRFID[i].position.y);
-                            writer.Write(";");
-                            writer.Write(tableauRFID[i].position.z);
-                            writer.WriteLine();
+                writer.Write("Position=");
+                writer.Write(tableauCapteur[i].position.x);
+                writer.Write(";");
+                writer.Write(tableauCapteur[i].position.y);
+                writer.Write(";");
+                writer.Write(tableauCapteur[i].position.z);
+                writer.WriteLine();
 
-                            writer.Write("Rotation =");
-                            writer.Write(tableauRFID[i].rotation.x);
-                            writer.Write(";");
-                            writer.Write(tableauRFID[i].rotation.y);
-                            writer.Write(";");
-                            writer.Write(tableauRFID[i].rotation.z);
-                            writer.Write(";");
-                            writer.WriteLine();
-                        }
+                writer.Write("Rotation=");
+                writer.Write(tableauCapteur[i].rotation.w);
+                writer.Write(";");
+                writer.Write(tableauCapteur[i].rotation.x);
+                writer.Write(";");
+                writer.Write(tableauCapteur[i].rotation.y);
+                writer.Write(";");
+                writer.Write(tableauCapteur[i].rotation.z);
+                writer.Write(";");
+                writer.WriteLine();
 
-                        writer.WriteLine();
-                        break;
-                    }
+                */
+            }
 
-                case "Ultrasons":
-                    {
-                        int numberChildrenUltrasons = sensorChild.transform.childCount;
-                        UltrasonsCapteur[] tableauUltrasons = new UltrasonsCapteur[numberChildrenUltrasons];
-
-                        writer.WriteLine("Ultrasons");
-
-                        for (int i = 0; i < numberChildrenUltrasons; i++)
-                        {   
-                            tableauUltrasons[i].position = sensorChild.transform.GetChild(i).position;
-                            tableauUltrasons[i].rotation = sensorChild.transform.GetChild(i).rotation;
-
-                            writer.Write("Position =");
-                            writer.Write(tableauUltrasons[i].position.x);
-                            writer.Write(";");
-                            writer.Write(tableauUltrasons[i].position.y);
-                            writer.Write(";");
-                            writer.Write(tableauUltrasons[i].position.z);
-                            writer.WriteLine();
-
-                            writer.Write("Rotation =");
-                            writer.Write(tableauUltrasons[i].rotation.x);
-                            writer.Write(";");
-                            writer.Write(tableauUltrasons[i].rotation.y);
-                            writer.Write(";");
-                            writer.Write(tableauUltrasons[i].rotation.z);
-                            writer.Write(";");
-                            writer.WriteLine();
-                        }
-
-                        writer.WriteLine();
-                        break;
-                    }
-
-                case "Pression":
-                    {
-                        int numberChildrenPression = sensorChild.transform.childCount;
-                        PressionCapteur[] tableauPression = new PressionCapteur[numberChildrenPression];
-
-                        writer.WriteLine("Pression");
-
-                        for (int i = 0; i < numberChildrenPression; i++)
-                        {
-                            tableauPression[i].position = sensorChild.transform.GetChild(i).position;
-                            tableauPression[i].rotation = sensorChild.transform.GetChild(i).rotation;
-
-                            writer.Write("Position =");
-                            writer.Write(tableauPression[i].position.x);
-                            writer.Write(";");
-                            writer.Write(tableauPression[i].position.y);
-                            writer.Write(";");
-                            writer.Write(tableauPression[i].position.z);
-                            writer.WriteLine();
-
-                            writer.Write("Rotation =");
-                            writer.Write(tableauPression[i].rotation.x);
-                            writer.Write(";");
-                            writer.Write(tableauPression[i].rotation.y);
-                            writer.Write(";");
-                            writer.Write(tableauPression[i].rotation.z);
-                            writer.Write(";");
-                            writer.WriteLine();
-
-                        }
-
-                        writer.WriteLine();
-                        break;
-                    }
-
-                case "Mouvement":
-                    {
-                        int numberChildrenMouvement = sensorChild.transform.childCount;
-                        MouvementCapteur[] tableauMouvement = new MouvementCapteur[numberChildrenMouvement];
-
-                        writer.WriteLine("Mouvement");
-
-                        for (int i = 0; i < numberChildrenMouvement; i++)
-                        {
-                            tableauMouvement[i].position = sensorChild.transform.GetChild(i).position;
-                            tableauMouvement[i].rotation= sensorChild.transform.GetChild(i).rotation;
-
-                            writer.Write("Position =");
-                            writer.Write(tableauMouvement[i].position.x);
-                            writer.Write(";");
-                            writer.Write(tableauMouvement[i].position.y);
-                            writer.Write(";");
-                            writer.Write(tableauMouvement[i].position.z);
-                            writer.WriteLine();
-
-                            writer.Write("Rotation =");
-                            writer.Write(tableauMouvement[i].rotation.x);
-                            writer.Write(";");
-                            writer.Write(tableauMouvement[i].rotation.y);
-                            writer.Write(";");
-                            writer.Write(tableauMouvement[i].rotation.z);
-                            writer.Write(";");
-                            writer.WriteLine();
-
-                        }
-
-                        writer.WriteLine();
-                        break;
-                    }
-            }  
+            writer.WriteLine(";");
         }
 
-    writer.Close();
+        writer.Close();
+    }
 
-    } 
+    void Load()
+    {
+        string buffer;
+
+        StreamReader reader = new StreamReader("SaveSensors.txt");
+        buffer = reader.ReadLine();
+
+        switch(buffer)
+        {
+            case "RFID":
+                   {
+                    buffer = reader.ReadLine();
+                    float xPosition = System.Convert.ToSingle(buffer);
+
+                    buffer = reader.ReadLine();
+                    float yPosition = System.Convert.ToSingle(buffer);
+
+                    buffer = reader.ReadLine();
+                    float zPosition = System.Convert.ToSingle(buffer);
+
+                    buffer = reader.ReadLine();
+                    float wRotation= System.Convert.ToSingle(buffer);
+
+                    buffer = reader.ReadLine();
+                    float xRotation = System.Convert.ToSingle(buffer);
+
+                    buffer = reader.ReadLine();
+                    float yRotation = System.Convert.ToSingle(buffer);
+
+                    buffer = reader.ReadLine();
+                    float zRotation = System.Convert.ToSingle(buffer);
+
+                    Vector3 finalPosition = new Vector3(xPosition, yPosition, zPosition);
+                    Quaternion finalRotation = new Quaternion(wRotation, xRotation, yRotation, zRotation);
+                    GameObject readRFID = (GameObject)Instantiate(prefabRFID,finalPosition,finalRotation);
+
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        buffer = reader.ReadLine();
+                        xPosition = System.Convert.ToSingle(buffer);
+
+                        buffer = reader.ReadLine();
+                        yPosition = System.Convert.ToSingle(buffer);
+
+                        buffer = reader.ReadLine();
+                        zPosition = System.Convert.ToSingle(buffer);
+
+                        buffer = reader.ReadLine();
+                        wRotation = System.Convert.ToSingle(buffer);
+
+                        buffer = reader.ReadLine();
+                        xRotation = System.Convert.ToSingle(buffer);
+
+                        buffer = reader.ReadLine();
+                        yRotation = System.Convert.ToSingle(buffer);
+
+                        buffer = reader.ReadLine();
+                        zRotation = System.Convert.ToSingle(buffer);
+
+                        finalPosition = new Vector3(xPosition, yPosition, zPosition);
+                        finalRotation = new Quaternion(wRotation, xRotation, yRotation, zRotation);
+
+                        readRFID.transform.GetChild(i).position = finalPosition;
+                        readRFID.transform.GetChild(i).rotation = finalRotation;
+                    }
+
+                    break;
+                   }
+
+        }
+
+
+    }
 }
