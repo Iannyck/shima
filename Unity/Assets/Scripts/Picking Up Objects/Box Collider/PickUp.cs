@@ -62,6 +62,17 @@ public class PickUp : MonoBehaviour {
                             break;
                         }
 
+                    case "Light":
+                        {
+                            if (walkedOverObject.transform.GetChild(0).GetComponent<Light>().enabled == false)
+                                walkedOverObject.transform.GetChild(0).GetComponent<Light>().enabled = true;
+
+                            else
+                                walkedOverObject.transform.GetChild(0).GetComponent<Light>().enabled = false;
+
+                            break;
+                        }
+
                     default:
                         break;
                 }
@@ -89,7 +100,15 @@ public class PickUp : MonoBehaviour {
                         doorInteraction = walkedOverObject.GetComponent<OpeningClosingDoor>();
                         break;
                     }
+
+                case "Light":
+                    {
+                        this.walkedOverObject = walkedOverObjectFx;
+                        break;
+                    }
             }
+
+
         }
 
         else
@@ -129,6 +148,18 @@ public class PickUp : MonoBehaviour {
 
                         break;
                     }
+
+                case "Light":
+                    {
+                        if (walkedOverObject.transform.GetChild(0).GetComponent<Light>().enabled == false && guiShow == true)
+                            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Open Light");
+
+                        if (walkedOverObject.transform.GetChild(0).GetComponent<Light>().enabled && guiShow == true)
+                            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Close Light");
+
+                        break;
+                    }
+
 
                 default:
                     break;

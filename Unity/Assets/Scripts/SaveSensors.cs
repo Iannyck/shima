@@ -5,7 +5,7 @@ using System.IO;
 public class SaveSensors : MonoBehaviour {
 
     public GameObject prefabRFID;
-    public GameObject prefabUltrasound;
+    public GameObject prefabUltrasons;
     public GameObject prefabPression;
     public GameObject prefabMouvement;
 
@@ -65,32 +65,9 @@ public class SaveSensors : MonoBehaviour {
                 writer.WriteLine(tableauCapteur[i].rotation.x);
                 writer.WriteLine(tableauCapteur[i].rotation.y);
                 writer.WriteLine(tableauCapteur[i].rotation.z);
-
-                /* 
-
-                writer.Write("Position=");
-                writer.Write(tableauCapteur[i].position.x);
-                writer.Write(";");
-                writer.Write(tableauCapteur[i].position.y);
-                writer.Write(";");
-                writer.Write(tableauCapteur[i].position.z);
-                writer.WriteLine();
-
-                writer.Write("Rotation=");
-                writer.Write(tableauCapteur[i].rotation.w);
-                writer.Write(";");
-                writer.Write(tableauCapteur[i].rotation.x);
-                writer.Write(";");
-                writer.Write(tableauCapteur[i].rotation.y);
-                writer.Write(";");
-                writer.Write(tableauCapteur[i].rotation.z);
-                writer.Write(";");
-                writer.WriteLine();
-
-                */
             }
 
-            writer.WriteLine(";");
+            // writer.WriteLine(";");
         }
 
         writer.Close();
@@ -99,75 +76,105 @@ public class SaveSensors : MonoBehaviour {
     void Load()
     {
         string buffer;
+        GameObject prefab;
 
         StreamReader reader = new StreamReader("SaveSensors.txt");
         buffer = reader.ReadLine();
 
-        switch(buffer)
+        while (buffer != null)
         {
-            case "RFID":
-                   {
-                    buffer = reader.ReadLine();
-                    float xPosition = System.Convert.ToSingle(buffer);
-
-                    buffer = reader.ReadLine();
-                    float yPosition = System.Convert.ToSingle(buffer);
-
-                    buffer = reader.ReadLine();
-                    float zPosition = System.Convert.ToSingle(buffer);
-
-                    buffer = reader.ReadLine();
-                    float wRotation= System.Convert.ToSingle(buffer);
-
-                    buffer = reader.ReadLine();
-                    float xRotation = System.Convert.ToSingle(buffer);
-
-                    buffer = reader.ReadLine();
-                    float yRotation = System.Convert.ToSingle(buffer);
-
-                    buffer = reader.ReadLine();
-                    float zRotation = System.Convert.ToSingle(buffer);
-
-                    Vector3 finalPosition = new Vector3(xPosition, yPosition, zPosition);
-                    Quaternion finalRotation = new Quaternion(wRotation, xRotation, yRotation, zRotation);
-                    GameObject readRFID = (GameObject)Instantiate(prefabRFID,finalPosition,finalRotation);
-
-
-                    for (int i = 0; i < 4; i++)
+            switch (buffer)
+            {
+                case "RFID":
                     {
-                        buffer = reader.ReadLine();
-                        xPosition = System.Convert.ToSingle(buffer);
-
-                        buffer = reader.ReadLine();
-                        yPosition = System.Convert.ToSingle(buffer);
-
-                        buffer = reader.ReadLine();
-                        zPosition = System.Convert.ToSingle(buffer);
-
-                        buffer = reader.ReadLine();
-                        wRotation = System.Convert.ToSingle(buffer);
-
-                        buffer = reader.ReadLine();
-                        xRotation = System.Convert.ToSingle(buffer);
-
-                        buffer = reader.ReadLine();
-                        yRotation = System.Convert.ToSingle(buffer);
-
-                        buffer = reader.ReadLine();
-                        zRotation = System.Convert.ToSingle(buffer);
-
-                        finalPosition = new Vector3(xPosition, yPosition, zPosition);
-                        finalRotation = new Quaternion(wRotation, xRotation, yRotation, zRotation);
-
-                        readRFID.transform.GetChild(i).position = finalPosition;
-                        readRFID.transform.GetChild(i).rotation = finalRotation;
+                        prefab = prefabRFID;
+                        LoadSensor(buffer, reader, prefab,4);
+                        break;
                     }
 
-                    break;
-                   }
 
+                case "Ultrasons":
+                    {
+                        prefab = prefabUltrasons;
+                        LoadSensor(buffer, reader, prefab,3);
+                        break;
+                    }
+
+                case "Mouvement":
+                    {
+                        prefab = prefabMouvement;
+                        LoadSensor(buffer, reader, prefab, 1);
+                        break;
+                    }
+
+                case "Pression":
+                    {
+                        prefab = prefabPression;
+                        LoadSensor(buffer, reader, prefab,1);
+                        break;
+                    }
+            }
+
+            buffer = reader.ReadLine();
         }
+    }
+
+    void LoadSensor(string buffer, StreamReader reader, GameObject prefab,int nbChildren)
+    {
+        buffer = reader.ReadLine();
+        float xPosition = System.Convert.ToSingle(buffer);
+
+        buffer = reader.ReadLine();
+        float yPosition = System.Convert.ToSingle(buffer);
+
+        buffer = reader.ReadLine();
+        float zPosition = System.Convert.ToSingle(buffer);
+
+        buffer = reader.ReadLine();
+        float wRotation = System.Convert.ToSingle(buffer);
+
+        buffer = reader.ReadLine();
+        float xRotation = System.Convert.ToSingle(buffer);
+
+        buffer = reader.ReadLine();
+        float yRotation = System.Convert.ToSingle(buffer);
+
+        buffer = reader.ReadLine();
+        float zRotation = System.Convert.ToSingle(buffer);
+
+        Vector3 finalPosition = new Vector3(xPosition, yPosition, zPosition);
+        Quaternion finalRotation = new Quaternion(wRotation, xRotation, yRotation, zRotation);
+        GameObject readRFID = (GameObject)Instantiate(prefab, finalPosition, finalRotation);
 
 
+        for (int i = 0; i < nbChildren; i++)
+        {
+            buffer = reader.ReadLine();
+            xPosition = System.Convert.ToSingle(buffer);
+
+            buffer = reader.ReadLine();
+            yPosition = System.Convert.ToSingle(buffer);
+
+            buffer = reader.ReadLine();
+            zPosition = System.Convert.ToSingle(buffer);
+
+            buffer = reader.ReadLine();
+            wRotation = System.Convert.ToSingle(buffer);
+
+            buffer = reader.ReadLine();
+            xRotation = System.Convert.ToSingle(buffer);
+
+            buffer = reader.ReadLine();
+            yRotation = System.Convert.ToSingle(buffer);
+
+            buffer = reader.ReadLine();
+            zRotation = System.Convert.ToSingle(buffer);
+
+            finalPosition = new Vector3(xPosition, yPosition, zPosition);
+            finalRotation = new Quaternion(wRotation, xRotation, yRotation, zRotation);
+
+            readRFID.transform.GetChild(i).position = finalPosition;
+            readRFID.transform.GetChild(i).rotation = finalRotation;
+        }
     }
 }

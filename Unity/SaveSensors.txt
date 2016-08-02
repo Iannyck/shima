@@ -34,7 +34,6 @@ RFID
 -0.5000001
 -0.5
 0.5
-;
 Ultrasons
 -98
 15.57
@@ -64,7 +63,6 @@ Ultrasons
 0
 0
 0
-;
 Pression
 -1.273918
 0
@@ -80,7 +78,6 @@ Pression
 0
 0
 0
-;
 Mouvement
 44.9
 27.3
@@ -96,4 +93,3 @@ Mouvement
 0
 0
 0.7071068
-;
