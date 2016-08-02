@@ -42,10 +42,12 @@ public class ElectricityLogger : MonoBehaviour {
 	}
 
 	private void RefreshFlowchart(ArrayList phases) {
-		if(phases.Count > 0)
-			AddToQueue (phases, ((Phase)phases [phases.Count - 1]).Clone());
-		else
-			AddToQueue (phases, new Phase(0,0));
+		if (phases != null) {
+			if (phases.Count > 0)
+				AddToQueue (phases, ((Phase)phases [phases.Count - 1]).Clone ());
+			else
+				AddToQueue (phases, new Phase (0, 0));
+		}
 	}
 
 	public void PhasesStates(Phase phase1, Phase phase2, Phase phase3) {
