@@ -14,6 +14,8 @@ public class SensorsGUI : MonoBehaviour {
 
 	private float deltaTime = 0.0f;
 
+	private bool showFPS;
+
 	// Use this for initialization
 	void Start () {
 		showHelp = false;
@@ -23,6 +25,7 @@ public class SensorsGUI : MonoBehaviour {
 		showElectricityChartPhase3 = false;
 		showDebugText = false;
 		debugText = new string[10];
+		showFPS = true;
 		deltaTime = 0.0f;
 	}
 	
@@ -33,6 +36,9 @@ public class SensorsGUI : MonoBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.F3)) {
 			showDebugText = !showDebugText;
+		}
+		if (Input.GetKeyDown (KeyCode.F4)) {
+			showFPS = !showFPS;
 		}
 		deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
 	}
@@ -46,8 +52,10 @@ public class SensorsGUI : MonoBehaviour {
 			ShowDebug (300, 30, 300, 300);
 		float msec = deltaTime * 1000.0f;
 		float fps = 1.0f / deltaTime;
-		string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
-		GUI.Label (new Rect (400, 16, 128, 24), text);
+		if (showFPS) {
+			string text = string.Format ("{0:0.0} ms ({1:0.} fps)", msec, fps);
+			GUI.Label (new Rect (400, 16, 128, 24), text);
+		}
 	}
 
 	private bool IsAllFalse() {
@@ -66,6 +74,7 @@ public class SensorsGUI : MonoBehaviour {
 		GUI.Box (new Rect (x, y, witdh, heigth), "Help Box");
 		GUI.Label (new Rect (x + 8, y + 16, witdh - 32, 24), "Press F1 to show charts");
 		GUI.Label (new Rect (x + 8, y + 40, witdh - 32, 24), "Press F3 to show debug");
+		GUI.Label (new Rect (x + 8, y + 40, witdh - 32, 24), "Press F4 to show FPS");
 	}
 
 	public void ShowDebug(int x, int y, int witdh, int heigth) {
