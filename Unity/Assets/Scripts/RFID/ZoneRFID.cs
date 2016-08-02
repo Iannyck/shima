@@ -19,13 +19,15 @@ public class ZoneRFID : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         GameObject collider = other.gameObject;
-        script.GotTrigger(numberZone, collider, true);
+		if(script != null)
+        	script.GotTrigger(numberZone, collider, true);
     }
 
     void OnTriggerExit(Collider other)
     {
         GameObject collider = other.gameObject;
-        script.GotTrigger(numberZone, collider, false);
+		if(script != null)
+        	script.GotTrigger(numberZone, collider, false);
     }
 
     public float GetPuissanceZone()

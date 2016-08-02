@@ -3,14 +3,23 @@
 public class RFIDData {
 
 	[PrimaryKey]
-	public long Timestamp { get; set; }
-	public string AntenaId { get; set; }
-	public int SignalStrength { get; set; }
-	public string ItemId { get; set; }
+	public long timestamp { get; set; }
+	public string antenaId { get; set; }
+	public int signalStrength { get; set; }
+	public string tagId { get; set; }
+
+	public RFIDData (long timestamp, string antenaId, int signalStrength, string tagId)
+	{
+		this.timestamp = timestamp;
+		this.antenaId = antenaId;
+		this.signalStrength = signalStrength;
+		this.tagId = tagId;
+	}
+	
 
 	public override string ToString ()
 	{
-		return string.Format ("[RFIDData: Timestamp={0}, AntenaId={1},  SignalStrength={2}, ItemId={3}]", Timestamp, AntenaId, SignalStrength, ItemId);
+		return string.Format ("[RFIDData: Timestamp={0}, AntenaId={1},  SignalStrength={2}, TagId={3}]", timestamp, antenaId, signalStrength, tagId);
 	}
 
 }

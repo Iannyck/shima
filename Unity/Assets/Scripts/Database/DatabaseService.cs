@@ -10,9 +10,9 @@ public class DatabaseService : MonoBehaviour {
 
 	private SQLiteConnection sqliteConnection;
 
-	public DatabaseService(string DatabaseName){
+	public DatabaseService(string databaseName){
 		#if UNITY_EDITOR
-		var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
+		var dbPath = string.Format(@"Assets/StreamingAssets/{0}", databaseName);
 		#endif
 		sqliteConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
 		Debug.Log("Final PATH: " + dbPath); 
@@ -23,6 +23,14 @@ public class DatabaseService : MonoBehaviour {
 		sqliteConnection.CreateTable<RFIDData> ();
 		sqliteConnection.DropTable<ElectricityData> ();
 		sqliteConnection.CreateTable<ElectricityData> ();
+	}
+
+	public void InsertRFIDData(long timestamp, string antenaId, int signalStrength, string tagId) {
+		sqliteConnection.Insert (new RFIDData(timestamp, antenaId, signalStrength, tagId));
+	}
+
+	public void Insert(long timestamp, short phaseId, int activePower, int reactivePower) {
+		sqliteConnection.Insert (new ElectricityData(timestamp, phaseId, activePower, reactivePower));
 	}
 
 

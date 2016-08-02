@@ -35,7 +35,8 @@ public class SmartElectronicMeter : MonoBehaviour {
 		requestPool = new ArrayList ();
 
 		logger = GetComponent<ElectricityLogger> ();
-		logger.PhasesStates (phase1, phase2, phase3);
+		if(logger != null)
+			logger.PhasesStates (phase1, phase2, phase3);
 	}
 	
 	// Update is called once per frame
