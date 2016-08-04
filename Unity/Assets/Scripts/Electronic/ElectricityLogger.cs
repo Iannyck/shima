@@ -18,8 +18,8 @@ public class ElectricityLogger : MonoBehaviour {
 	private ArrayList phases3;
 
 	void OnGUI() {
-//		ShowElectronicData(10, 10);
-//		ShowElectronicChart(300, 10, 300, 200, phases1, "Phase 1");
+		ShowElectronicData(10, 10);
+		ShowElectronicChart(300, 10, 300, 200, phases1, "Phase 1");
 	}
 
 	// Use this for initialization

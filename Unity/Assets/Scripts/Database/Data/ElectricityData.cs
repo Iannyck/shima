@@ -3,12 +3,12 @@
 public class ElectricityData {
 
 	[PrimaryKey]
-	public long timestamp { get; set; }
+	public string timestamp { get; set; }
 	public short phaseId { get; set; }
 	public int activePower { get; set; }
 	public int reactivePower { get; set; }
 
-	public ElectricityData (long timestamp, short phaseId, int activePower, int reactivePower)
+	public ElectricityData (string timestamp, short phaseId, int activePower, int reactivePower)
 	{
 		this.timestamp = timestamp;
 		this.phaseId = phaseId;

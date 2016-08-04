@@ -25,11 +25,25 @@ public class DatabaseService : MonoBehaviour {
 		sqliteConnection.CreateTable<ElectricityData> ();
 	}
 
-	public void InsertRFIDData(long timestamp, string antenaId, int signalStrength, string tagId) {
+	/// <summary>
+	/// Inserts the RFID data.
+	/// </summary>
+	/// <param name="timestamp">Timestamp.</param>
+	/// <param name="antenaId">Antena identifier.</param>
+	/// <param name="signalStrength">Signal strength.</param>
+	/// <param name="tagId">Tag identifier.</param>
+	public void InsertRFIDData(string timestamp, string antenaId, int signalStrength, string tagId) {
 		sqliteConnection.Insert (new RFIDData(timestamp, antenaId, signalStrength, tagId));
 	}
 
-	public void Insert(long timestamp, short phaseId, int activePower, int reactivePower) {
+	/// <summary>
+	/// Insert the specified timestamp, phaseId, activePower and reactivePower.
+	/// </summary>
+	/// <param name="timestamp">Timestamp.</param>
+	/// <param name="phaseId">Phase identifier.</param>
+	/// <param name="activePower">Active power.</param>
+	/// <param name="reactivePower">Reactive power.</param>
+	public void InsertElectricityData(string timestamp, short phaseId, int activePower, int reactivePower) {
 		sqliteConnection.Insert (new ElectricityData(timestamp, phaseId, activePower, reactivePower));
 	}
 

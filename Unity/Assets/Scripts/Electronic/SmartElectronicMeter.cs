@@ -26,6 +26,8 @@ public class SmartElectronicMeter : MonoBehaviour {
 
 	private ElectricityLogger logger;
 
+	private DatabaseService database;
+
 	// Use this for initialization
 	void Start () {
 		phase1 = new Phase (0, 0);
@@ -33,6 +35,9 @@ public class SmartElectronicMeter : MonoBehaviour {
 		phase3 = new Phase (0, 0);
 
 		requestPool = new ArrayList ();
+
+		database = new DatabaseService ("SHData.db");
+		database.CreateDatabase ();
 
 		logger = GetComponent<ElectricityLogger> ();
 		if(logger != null)
@@ -42,15 +47,29 @@ public class SmartElectronicMeter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(requestPool.Count > 0) {
+			string timestamp = System.DateTime.Now.ToLongTimeString();
 			foreach(Request request in requestPool) {
 				request.Execute (phase1, phase2, phase3);
 				request.State = Request.RequestState.DeltaGiven;
+				database.InsertElectricityData (timestamp, 1, phase1.Active_power, phase2.Reactive_power);
+				database.InsertElectricityData (timestamp, 2, phase1.Active_power, phase2.Reactive_power);
+				database.InsertElectricityData (timestamp, 3, phase1.Active_power, phase2.Reactive_power);
 				logger.PhasesStates (phase1, phase2, phase3);
 			}
 		}
 		requestPool.Clear();
 	}
 
+	/// <summary>
+	/// Requests for energy.
+	/// </summary>
+	/// <returns>The for energy.</returns>
+	/// <param name="delta_active_power_phase1">Delta active power phase1.</param>
+	/// <param name="delta_reactive_power_phase1">Delta reactive power phase1.</param>
+	/// <param name="delta_active_power_phase2">Delta active power phase2.</param>
+	/// <param name="delta_reactive_power_phase2">Delta reactive power phase2.</param>
+	/// <param name="delta_active_power_phase3">Delta active power phase3.</param>
+	/// <param name="delta_reactive_power_phase3">Delta reactive power phase3.</param>
 	public Request RequestForEnergy(int delta_active_power_phase1, int delta_reactive_power_phase1, int delta_active_power_phase2, 
 		int delta_reactive_power_phase2, int delta_active_power_phase3, int delta_reactive_power_phase3) {
 
@@ -61,22 +80,43 @@ public class SmartElectronicMeter : MonoBehaviour {
 	}
 
 
-
+	/// <summary>
+	/// Gets the phase1.
+	/// </summary>
+	/// <value>The phase1.</value>
 	public Phase Phase1 {
 		get {
 			return this.phase1;
 		}
 	}
 
+	/// <summary>
+	/// Gets the phase2.
+	/// </summary>
+	/// <value>The phase2.</value>
 	public Phase Phase2 {
 		get {
 			return this.phase2;
 		}
 	}
 
+	/// <summary>
+	/// Gets the phase3.
+	/// </summary>
+	/// <value>The phase3.</value>
 	public Phase Phase3 {
 		get {
 			return this.phase3;
+		}
+	}
+
+	/// <summary>
+	/// Gets the database.
+	/// </summary>
+	/// <value>The database.</value>
+	public DatabaseService Database {
+		get {
+			return this.database;
 		}
 	}
 
