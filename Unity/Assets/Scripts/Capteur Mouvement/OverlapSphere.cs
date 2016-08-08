@@ -76,7 +76,7 @@ public class OverlapSphere : MonoBehaviour
 
                     case "Player":
                         {
-                            Debug.Log("Le capteur a detecte le personnage");
+                            // Debug.Log("Le capteur a detecte le personnage");
 
                             int position = CompareCollider(hitColliders[i].gameObject);
                             float newDistance = Vector3.Distance(hitColliders[i].transform.position, capteurTransform.position);
@@ -84,15 +84,15 @@ public class OverlapSphere : MonoBehaviour
                             movement = CompareDistance(position, newDistance);
                             tableau[position].SetDistance(newDistance);
 
-                            if (movement == true)
-                                Debug.Log("Le personnage est en mouvement");
+                            // if (movement == true)
+                                // Debug.Log("Le personnage est en mouvement");
 
                             break;
                         }
 
                     case "PickUp":
                         {
-                            Debug.Log("Le capteur a detecte un objet");
+                            // Debug.Log("Le capteur a detecte un objet");
 
                             int position = CompareCollider(hitColliders[i].gameObject);
                             float newDistance = Vector3.Distance(hitColliders[i].transform.position, capteurTransform.position);
@@ -100,8 +100,8 @@ public class OverlapSphere : MonoBehaviour
                             movement = CompareDistance(position, newDistance);
                             tableau[position].SetDistance(newDistance);
 
-                            if (movement == true)
-                                Debug.Log("L'objet est en mouvement");
+                            // if (movement == true)
+                                // Debug.Log("L'objet est en mouvement");
 
                             break;
                         }

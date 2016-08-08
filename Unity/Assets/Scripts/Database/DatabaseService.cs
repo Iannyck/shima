@@ -32,7 +32,7 @@ public class DatabaseService : MonoBehaviour {
 	/// <param name="antenaId">Antena identifier.</param>
 	/// <param name="signalStrength">Signal strength.</param>
 	/// <param name="tagId">Tag identifier.</param>
-	public void InsertRFIDData(string timestamp, string antenaId, int signalStrength, string tagId) {
+	public void InsertRFIDData(string timestamp, string antenaId, float signalStrength, string tagId) {
 		sqliteConnection.Insert (new RFIDData(timestamp, antenaId, signalStrength, tagId));
 	}
 

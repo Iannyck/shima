@@ -5,10 +5,10 @@ public class RFIDData {
 	[PrimaryKey]
 	public string timestamp { get; set; }
 	public string antenaId { get; set; }
-	public int signalStrength { get; set; }
+	public float signalStrength { get; set; }
 	public string tagId { get; set; }
 
-	public RFIDData (string timestamp, string antenaId, int signalStrength, string tagId)
+	public RFIDData (string timestamp, string antenaId, float signalStrength, string tagId)
 	{
 		this.timestamp = timestamp;
 		this.antenaId = antenaId;

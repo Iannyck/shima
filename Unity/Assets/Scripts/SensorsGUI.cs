@@ -23,7 +23,7 @@ public class SensorsGUI : MonoBehaviour {
 		showElectricityChartPhase1 = false;
 		showElectricityChartPhase2 = false;
 		showElectricityChartPhase3 = false;
-		showDebugText = false;
+		showDebugText = true;
 		debugText = new string[10];
 		showFPS = true;
 		deltaTime = 0.0f;

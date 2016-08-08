@@ -13,6 +13,8 @@ public class TriggerRFID : MonoBehaviour {
     private HitPoint[] tableau;                                                        // Correspond au tableau contenant les objets de classe HitPoint
     private Transform capteurPosition;
 
+    private DatabaseService database;
+
     public class HitPoint
     {
         private GameObject colliderHit;                                 // Correspond a l'objet qui est dans le champs de détection du capteur RFID
@@ -93,10 +95,18 @@ public class TriggerRFID : MonoBehaviour {
             tableau[i] = new HitPoint();
 
         noise = 0;
-	}
+
+        database = GetComponentInParent<RFIDController>().database;
+    }
 	
-	void Update (){
-	}
+	void Update ()
+    {
+        string timestamp = System.DateTime.Now.ToLongTimeString();
+
+        for (int i = 0; i < 10; i++)
+            if (tableau[i].GetPuissance() != -1)
+                database.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), tableau[i].GetCollider().name);
+    }
 
     public void GotTrigger(int zoneNumber, GameObject collider, bool state)             // Fonction qui est utilisee par les differentes zones du capteur RFID
     {

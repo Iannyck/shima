@@ -30,7 +30,7 @@ public class PressurePlate : MonoBehaviour {
         if (massTotale != 0)
         {
             pressureOn = true;
-            Debug.Log(massTotale);
+            // Debug.Log(massTotale);
         }
     }
 
