@@ -60,7 +60,6 @@ public class ElectronicDevice : MonoBehaviour {
             //if (Input.GetKeyDown (keyTopress)) {
             //	OnOffButtonPressed = !OnOffButtonPressed;
             //}
-            Debug.Log(deviceState + " " + OnOffButtonPressed);
 			if (OnOffButtonPressed) {
 				if (DeviceState == State.Off) {
 					OnOn ();
