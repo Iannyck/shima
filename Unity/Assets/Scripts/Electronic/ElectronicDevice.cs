@@ -52,9 +52,9 @@ public class ElectronicDevice : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (smartElectronicMeterScript != null) {
-			if (Input.GetKeyDown (keyTopress)) {
-				OnOffButtonPressed = !OnOffButtonPressed;
-			}
+			//if (Input.GetKeyDown (keyTopress)) {
+			//	OnOffButtonPressed = !OnOffButtonPressed;
+			//}
 			if (OnOffButtonPressed) {
 				if (deviceState == State.Off) {
 					OnOn ();
@@ -70,6 +70,8 @@ public class ElectronicDevice : MonoBehaviour {
 			}
 		}
 	}
+
+    public void ActOn(){ OnOffButtonPressed = !OnOffButtonPressed; }
 
 	protected void OnOn() {
 		int noise_range = (int)(delta_active_power_phase1 * ((float)noise_range_percent / 100.0));
