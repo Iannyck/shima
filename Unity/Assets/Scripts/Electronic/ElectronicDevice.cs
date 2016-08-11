@@ -3,12 +3,10 @@ using System.Collections;
 
 public class ElectronicDevice : MonoBehaviour {
 
-	private enum State : byte {Off, On, Opening, Closing}
+	public enum State : byte {Off, On, Opening, Closing}
 
-	private bool OnOffButtonPressed;
+    public bool OnOffButtonPressed = false;
 	private State deviceState;
-
-	public string keyTopress = "e";
 
 	public int noise_range_percent = 5;
 
@@ -37,14 +35,21 @@ public class ElectronicDevice : MonoBehaviour {
 
 	private Request powerRequest;
 
-	// Use this for initialization
-	void Start () {
+    public State DeviceState
+    {
+        get
+        {
+            return deviceState;
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
 		smartElectronicMeterScript = null;
 		GameObject smartElectronicMeter = GameObject.Find ("SmartPanel");
 		if(smartElectronicMeter == null)
 			Debug.Log("Not Loaded");
 		smartElectronicMeterScript = smartElectronicMeter.GetComponent<SmartElectronicMeter> ();
-		OnOffButtonPressed = false;
 		deviceState = State.Off;
 		powerRequest = null;
 	}
@@ -52,18 +57,19 @@ public class ElectronicDevice : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (smartElectronicMeterScript != null) {
-			//if (Input.GetKeyDown (keyTopress)) {
-			//	OnOffButtonPressed = !OnOffButtonPressed;
-			//}
+            //if (Input.GetKeyDown (keyTopress)) {
+            //	OnOffButtonPressed = !OnOffButtonPressed;
+            //}
+            Debug.Log(deviceState + " " + OnOffButtonPressed);
 			if (OnOffButtonPressed) {
-				if (deviceState == State.Off) {
+				if (DeviceState == State.Off) {
 					OnOn ();
-				} else if (deviceState == State.On) {
+				} else if (DeviceState == State.On) {
 					OnClose ();
-				} else if (deviceState == State.Opening) {
+				} else if (DeviceState == State.Opening) {
 					OnOpening ();
 					OnOffButtonPressed = false;
-				} else if (deviceState == State.Closing) {
+				} else if (DeviceState == State.Closing) {
 					OnClosing ();
 					OnOffButtonPressed = false;
 				}

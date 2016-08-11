@@ -21,7 +21,7 @@ public class SaveSensors : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         Save();
         Load();

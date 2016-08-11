@@ -70,6 +70,14 @@ public class PickUp : MonoBehaviour {
                             else
                                 walkedOverObject.transform.GetChild(0).GetComponent<Light>().enabled = false;
 
+                            walkedOverObject.GetComponent<ElectronicDevice>().ActOn();
+
+                            break;
+                        }
+
+                    case "Electronic":
+                        {
+                            walkedOverObject.GetComponent<ElectronicDevice>().ActOn();
                             break;
                         }
 
@@ -102,6 +110,12 @@ public class PickUp : MonoBehaviour {
                     }
 
                 case "Light":
+                    {
+                        this.walkedOverObject = walkedOverObjectFx;
+                        break;
+                    }
+
+                case "Electronic":
                     {
                         this.walkedOverObject = walkedOverObjectFx;
                         break;
@@ -153,6 +167,7 @@ public class PickUp : MonoBehaviour {
                     {
                         if (walkedOverObject.transform.GetChild(0).GetComponent<Light>().enabled == false && guiShow == true)
                             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Open Light");
+                            
 
                         if (walkedOverObject.transform.GetChild(0).GetComponent<Light>().enabled && guiShow == true)
                             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Close Light");
@@ -160,6 +175,17 @@ public class PickUp : MonoBehaviour {
                         break;
                     }
 
+                case "Electronic":
+                    {
+                        if (walkedOverObject.GetComponent<ElectronicDevice>().DeviceState == ElectronicDevice.State.Off)
+                            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Open Device");
+
+                        if (walkedOverObject.GetComponent<ElectronicDevice>().DeviceState == ElectronicDevice.State.On)
+                            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Close Device");
+
+                        break;
+
+                    }
 
                 default:
                     break;

@@ -2,9 +2,9 @@
 
 public class ElectricityData {
 
-	[PrimaryKey]
+	//[PrimaryKey]
 	public string timestamp { get; set; }
-	public short phaseId { get; set; }
+    public short phaseId { get; set; }
 	public int activePower { get; set; }
 	public int reactivePower { get; set; }
 
