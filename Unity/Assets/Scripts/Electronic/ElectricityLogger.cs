@@ -17,9 +17,17 @@ public class ElectricityLogger : MonoBehaviour {
 	private ArrayList phases2;
 	private ArrayList phases3;
 
+	private bool showElectricityData;
+	private bool showElectronicCharts;
+
 	void OnGUI() {
-		ShowElectronicData(10, 10);
-		ShowElectronicChart(300, 10, 300, 200, phases1, "Phase 1");
+		if(showElectricityData)
+			ShowElectronicData(2, 400);
+		if (showElectronicCharts) {
+			ShowElectronicChart (700, 32, 300, 200, phases1, "Phase 1");
+			ShowElectronicChart (700, 264, 300, 200, phases2, "Phase 2");
+			ShowElectronicChart (700, 496, 300, 200, phases3, "Phase 3");
+		}
 	}
 
 	// Use this for initialization
@@ -30,6 +38,9 @@ public class ElectricityLogger : MonoBehaviour {
 		phase1 = new Phase (0, 0);
 		phase2 = new Phase (0, 0);
 		phase3 = new Phase (0, 0);
+
+		showElectricityData = false;
+		showElectronicCharts = false;
 	}
 	
 	// Update is called once per frame
@@ -37,6 +48,8 @@ public class ElectricityLogger : MonoBehaviour {
 		currentTime += Time.deltaTime;
 		if(currentTime >= frequency) {
 			RefreshFlowchart (phases1);
+			RefreshFlowchart (phases2);
+			RefreshFlowchart (phases3);
 			currentTime = 0;
 		}
 	}
@@ -57,6 +70,24 @@ public class ElectricityLogger : MonoBehaviour {
 		this.phase1 = phase1;
 		this.phase2 = phase2;
 		this.phase3 = phase3;
+	}
+		
+	public bool ShowElectricityData {
+		get {
+			return this.showElectricityData;
+		}
+		set {
+			showElectricityData = value;
+		}
+	}
+
+	public bool ShowElectronicCharts {
+		get {
+			return this.showElectronicCharts;
+		}
+		set {
+			showElectronicCharts = value;
+		}
 	}
 
 	private void ShowElectronicChart(int x, int y, int width, int height, ArrayList phases, string label) {

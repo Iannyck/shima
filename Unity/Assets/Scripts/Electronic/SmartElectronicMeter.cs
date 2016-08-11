@@ -39,7 +39,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 		database = new DatabaseService ("SHData.db");
 		database.CreateDatabase ();
 
-		logger = GetComponent<ElectricityLogger> ();
+		InitLogger ();
 		if(logger != null)
 			logger.PhasesStates (phase1, phase2, phase3);
 	}
@@ -54,10 +54,22 @@ public class SmartElectronicMeter : MonoBehaviour {
 				database.InsertElectricityData (timestamp, 1, phase1.Active_power, phase2.Reactive_power);
 				database.InsertElectricityData (timestamp, 2, phase1.Active_power, phase2.Reactive_power);
 				database.InsertElectricityData (timestamp, 3, phase1.Active_power, phase2.Reactive_power);
-				logger.PhasesStates (phase1, phase2, phase3);
+				if (logger != null)
+					logger.PhasesStates (phase1, phase2, phase3);
+				else {
+					InitLogger ();
+				}
 			}
 		}
 		requestPool.Clear();
+	}
+
+	private void InitLogger() {
+		GameObject smartHomeServer = GameObject.Find ("smarthomeserver");
+		if(smartHomeServer == null)
+			Debug.Log("SmartHomeServer Not Loaded");
+
+		logger = smartHomeServer.GetComponent<ElectricityLogger> ();
 	}
 
 	/// <summary>

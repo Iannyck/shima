@@ -16,6 +16,8 @@ public class SensorsGUI : MonoBehaviour {
 
 	private bool showFPS;
 
+	private ElectricityLogger electricityLogger;
+
 	// Use this for initialization
 	void Start () {
 		showHelp = false;
@@ -23,22 +25,32 @@ public class SensorsGUI : MonoBehaviour {
 		showElectricityChartPhase1 = false;
 		showElectricityChartPhase2 = false;
 		showElectricityChartPhase3 = false;
-		showDebugText = true;
+		showDebugText = false;
 		debugText = new string[10];
-		showFPS = true;
+		showFPS = false;
 		deltaTime = 0.0f;
+
+		electricityLogger = GetComponent<ElectricityLogger> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.F1)) {
+		if (Input.GetKeyDown (KeyCode.LeftControl) || Input.GetKeyDown (KeyCode.RightControl)) {
 			showHelp = !showHelp;
 		}
-		if (Input.GetKeyDown (KeyCode.F3)) {
-			showDebugText = !showDebugText;
-		}
-		if (Input.GetKeyDown (KeyCode.F4)) {
-			showFPS = !showFPS;
+		if (showHelp) {
+			if (Input.GetKeyDown (KeyCode.B)) {
+				showDebugText = !showDebugText;
+			}
+			if (Input.GetKeyDown (KeyCode.F)) {
+				showFPS = !showFPS;
+			}
+			if (Input.GetKeyDown (KeyCode.R)) {
+				electricityLogger.ShowElectricityData = !electricityLogger.ShowElectricityData;
+			}
+			if (Input.GetKeyDown (KeyCode.C)) {
+				electricityLogger.ShowElectronicCharts = !electricityLogger.ShowElectronicCharts;
+			}
 		}
 		deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
 	}
@@ -47,7 +59,7 @@ public class SensorsGUI : MonoBehaviour {
 		if (IsAllFalse ())
 			ShowSimpleGUI (2, 2, 80, 20);
 		if (showHelp)
-			ShowHelp (20, 300, 200, 200);
+			ShowHelp (2, 24, 200, 200);
 		if(showDebugText)
 			ShowDebug (300, 30, 300, 300);
 		float msec = deltaTime * 1000.0f;
@@ -67,14 +79,15 @@ public class SensorsGUI : MonoBehaviour {
 	}
 
 	public void ShowSimpleGUI(int x, int y, int witdh, int heigth){
-		GUI.Box (new Rect (x, y, witdh, heigth), "Help 'F1'");
+		GUI.Box (new Rect (x, y, witdh, heigth), "Menu 'Ctrl'");
 	}
 
 	public void ShowHelp(int x, int y, int witdh, int heigth) {
 		GUI.Box (new Rect (x, y, witdh, heigth), "Help Box");
-		GUI.Label (new Rect (x + 8, y + 16, witdh - 32, 24), "Press F1 to show charts");
-		GUI.Label (new Rect (x + 8, y + 40, witdh - 32, 24), "Press F3 to show debug");
-		GUI.Label (new Rect (x + 8, y + 40, witdh - 32, 24), "Press F4 to show FPS");
+		GUI.Label (new Rect (x + 8, y + 16, witdh - 32, 24), "Press 'c' to show charts");
+		GUI.Label (new Rect (x + 8, y + 32, witdh - 32, 24), "Press 'b' to show debug");
+		GUI.Label (new Rect (x + 8, y + 48, witdh - 32, 24), "Press 'f' to show FPS");
+		GUI.Label (new Rect (x + 8, y + 64, witdh - 32, 24), "Press 'r' to show data");
 	}
 
 	public void ShowDebug(int x, int y, int witdh, int heigth) {
