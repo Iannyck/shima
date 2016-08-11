@@ -3,7 +3,7 @@ using System.Collections;
 
 public abstract class BehaviourOperator : AbstractBehaviour {
 
-	private AbstractBehaviour[] behaviours;
+	protected AbstractBehaviour[] behaviours;
 
 	public AbstractBehaviour[] Behaviours {
 		get {
