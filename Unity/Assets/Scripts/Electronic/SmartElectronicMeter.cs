@@ -38,8 +38,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 
 		database = new DatabaseService ("SHData.db");
 		database.CreateDatabase ();
-
-		InitLogger ();
+        InitLogger ();
 		if(logger != null)
 			logger.PhasesStates (phase1, phase2, phase3);
 	}
