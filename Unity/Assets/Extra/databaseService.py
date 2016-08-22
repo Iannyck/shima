@@ -10,7 +10,15 @@ def index(name):
 @route('/test/electricity', method='POST')
 def index():
     postdata = request.body.read()
-    print postdata #this goes to log file only, not to client
+    print(postdata) #this goes to log file only, not to client
+    timestamp = request.forms.get("timestamp")
+    phaseId = request.forms.get("phaseId")
+    return "Hi {timestamp} {phaseId}".format(timestamp=timestamp, phaseId=phaseId)
+
+@route('/test/rfid', method='POST')
+def index():
+    postdata = request.body.read()
+    print(postdata) #this goes to log file only, not to client
     timestamp = request.forms.get("timestamp")
     phaseId = request.forms.get("phaseId")
     return "Hi {timestamp} {phaseId}".format(timestamp=timestamp, phaseId=phaseId)

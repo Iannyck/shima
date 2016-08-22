@@ -13,7 +13,7 @@ public class TriggerRFID : MonoBehaviour {
     private HitPoint[] tableau;                                                        // Correspond au tableau contenant les objets de classe HitPoint
     private Transform capteurPosition;
 
-    private DatabaseService database;
+    private DatabaseService databaseService;
 
     public class HitPoint
     {
@@ -96,7 +96,7 @@ public class TriggerRFID : MonoBehaviour {
 
         noise = 0;
 
-        database = GetComponentInParent<RFIDController>().Database;
+        databaseService = GetComponentInParent<RFIDController>().DatabaseService;
     }
 	
 	void Update ()
@@ -106,19 +106,19 @@ public class TriggerRFID : MonoBehaviour {
         for (int i = 0; i < 10; i++)
             if (tableau[i].GetPuissance() != -1)
                 {
-                Debug.Log("Test :" + tableau[i].GetCollider().name);
 
-                if (database == null)
+                if (databaseService == null)
                 {
                     Debug.Log("Erreur Database");
-                    if (GetComponentInParent<RFIDController>().Database == null)
+
+                    if (GetComponentInParent<RFIDController>().DatabaseService == null)
                         Debug.Log("Erreur Database 2");
 
-                    database = GetComponentInParent<RFIDController>().Database;
+                    databaseService = GetComponentInParent<RFIDController>().DatabaseService;
                 }
 
                 else
-                    database.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), tableau[i].GetCollider().name);
+                    StartCoroutine(databaseService.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), tableau[i].GetCollider().name));
             }
     }
 
