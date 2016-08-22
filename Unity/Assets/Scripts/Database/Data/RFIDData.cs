@@ -2,7 +2,6 @@
 
 public class RFIDData {
 
-	[PrimaryKey]
 	public string timestamp { get; set; }
 	public string antenaId { get; set; }
 	public float signalStrength { get; set; }

@@ -19,21 +19,22 @@ public class DatabaseService : MonoBehaviour {
 		Debug.Log("Final PATH: " + dbPath); 
 	}
 
-	public void CreateDatabase(){
-		sqliteConnection.DropTable<RFIDData> ();
-		sqliteConnection.CreateTable<RFIDData> ();
-		sqliteConnection.DropTable<ElectricityData> ();
-		sqliteConnection.CreateTable<ElectricityData> ();
-	}
+    public void CreateDatabase()
+    {
+        sqliteConnection.DropTable<RFIDData>();
+        sqliteConnection.CreateTable<RFIDData>();
+        sqliteConnection.DropTable<ElectricityData>();
+        sqliteConnection.CreateTable<ElectricityData>();
+    }
 
-	/// <summary>
-	/// Inserts the RFID data.
-	/// </summary>
-	/// <param name="timestamp">Timestamp.</param>
-	/// <param name="antenaId">Antena identifier.</param>
-	/// <param name="signalStrength">Signal strength.</param>
-	/// <param name="tagId">Tag identifier.</param>
-	public void InsertRFIDData(string timestamp, string antenaId, float signalStrength, string tagId) {
+    /// <summary>
+    /// Inserts the RFID data.
+    /// </summary>
+    /// <param name="timestamp">Timestamp.</param>
+    /// <param name="antenaId">Antena identifier.</param>
+    /// <param name="signalStrength">Signal strength.</param>
+    /// <param name="tagId">Tag identifier.</param>
+    public void InsertRFIDData(string timestamp, string antenaId, float signalStrength, string tagId) {
 		sqliteConnection.Insert (new RFIDData(timestamp, antenaId, signalStrength, tagId));
 	}
 

@@ -87,7 +87,7 @@ public class TriggerRFID : MonoBehaviour {
 
     }                                                           // Classe HitPoint contenant un GameObject, un numero de zone et une puissance
 
-	void Start ()
+	void Awake ()
     {    
         tableau = new HitPoint[taille];                                                // Initialise le tableau par default selon le parametre taille
                                                                                        // Taille peut etre modifie directement sur Unity (Public Watch)
@@ -96,7 +96,7 @@ public class TriggerRFID : MonoBehaviour {
 
         noise = 0;
 
-        database = GetComponentInParent<RFIDController>().database;
+        database = GetComponentInParent<RFIDController>().Database;
     }
 	
 	void Update ()
@@ -105,7 +105,21 @@ public class TriggerRFID : MonoBehaviour {
 
         for (int i = 0; i < 10; i++)
             if (tableau[i].GetPuissance() != -1)
-                database.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), tableau[i].GetCollider().name);
+                {
+                Debug.Log("Test :" + tableau[i].GetCollider().name);
+
+                if (database == null)
+                {
+                    Debug.Log("Erreur Database");
+                    if (GetComponentInParent<RFIDController>().Database == null)
+                        Debug.Log("Erreur Database 2");
+
+                    database = GetComponentInParent<RFIDController>().Database;
+                }
+
+                else
+                    database.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), tableau[i].GetCollider().name);
+            }
     }
 
     public void GotTrigger(int zoneNumber, GameObject collider, bool state)             // Fonction qui est utilisee par les differentes zones du capteur RFID
