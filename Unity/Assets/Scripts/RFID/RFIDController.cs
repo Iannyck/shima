@@ -16,10 +16,6 @@ public class RFIDController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        database = new DatabaseService("SensorsData.db");
-        database.CreateDatabase();
-        
-
         capteur1.transform.GetChild(0).gameObject.SetActive(false);
         capteur1.transform.GetChild(1).gameObject.SetActive(false);
         capteur1.transform.GetChild(2).gameObject.SetActive(false);

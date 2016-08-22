@@ -1,8 +1,5 @@
-﻿using SQLite4Unity3d;
+﻿public class ElectricityData {
 
-public class ElectricityData {
-
-	//[PrimaryKey]
 	public string timestamp { get; set; }
     public short phaseId { get; set; }
 	public int activePower { get; set; }

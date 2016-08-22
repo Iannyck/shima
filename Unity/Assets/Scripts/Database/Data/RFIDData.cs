@@ -1,6 +1,4 @@
-﻿using SQLite4Unity3d;
-
-public class RFIDData {
+﻿public class RFIDData {
 
 	public string timestamp { get; set; }
 	public string antenaId { get; set; }

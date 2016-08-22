@@ -36,11 +36,24 @@ public class SmartElectronicMeter : MonoBehaviour {
 
 		requestPool = new ArrayList ();
 
-		database = new DatabaseService ("SHData.db");
-		database.CreateDatabase ();
+//		database = new DatabaseService ("SHDatab.db");
+//		database.CreateDatabase ();
+		test("");
         InitLogger ();
 		if(logger != null)
 			logger.PhasesStates (phase1, phase2, phase3);
+	}
+
+	private void test(string databaseName){
+		//		var dbPath = string.Format(@"Assets/StreamingAssets/{0}", databaseName);
+		//		#if UNITY_EDITOR
+		//		dbPath = string.Format(@"Assets/StreamingAssets/{0}", databaseName);
+		//		#endif
+		//		sqliteConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+		//		Debug.Log("Final PATH: " + dbPath); 
+		string url = "http://localhost:8080/test/electricity";
+		DatabaseService databaseService = new DatabaseService (url);
+		StartCoroutine(databaseService.InsertElectricityData("test",1,1,1));
 	}
 	
 	// Update is called once per frame
@@ -50,9 +63,9 @@ public class SmartElectronicMeter : MonoBehaviour {
 			foreach(Request request in requestPool) {
 				request.Execute (phase1, phase2, phase3);
 				request.State = Request.RequestState.DeltaGiven;
-				database.InsertElectricityData (timestamp, 1, phase1.Active_power, phase2.Reactive_power);
-				database.InsertElectricityData (timestamp, 2, phase1.Active_power, phase2.Reactive_power);
-				database.InsertElectricityData (timestamp, 3, phase1.Active_power, phase2.Reactive_power);
+//				database.InsertElectricityData (timestamp, 1, phase1.Active_power, phase2.Reactive_power);
+//				database.InsertElectricityData (timestamp, 2, phase1.Active_power, phase2.Reactive_power);
+//				database.InsertElectricityData (timestamp, 3, phase1.Active_power, phase2.Reactive_power);
 				if (logger != null)
 					logger.PhasesStates (phase1, phase2, phase3);
 				else {
