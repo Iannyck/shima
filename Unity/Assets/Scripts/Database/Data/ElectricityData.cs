@@ -1,11 +1,11 @@
 ﻿public class ElectricityData {
 
 	public string timestamp { get; set; }
-    public short phaseId { get; set; }
+    public string phaseId { get; set; }
 	public int activePower { get; set; }
 	public int reactivePower { get; set; }
 
-	public ElectricityData (string timestamp, short phaseId, int activePower, int reactivePower)
+	public ElectricityData (string timestamp, string phaseId, int activePower, int reactivePower)
 	{
 		this.timestamp = timestamp;
 		this.phaseId = phaseId;

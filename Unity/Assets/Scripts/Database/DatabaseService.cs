@@ -12,7 +12,7 @@ public class DatabaseService {
 	IEnumerator WaitForRequest(WWW www) {
 		yield return www;
 		if (www.error == null) {
-			Debug.Log ("WWW Ok:" + www.data);
+			Debug.Log ("WWW Ok:" + www.text);
 		} else {
 			Debug.Log ("WWW Error:"+www.error);
 		}
@@ -48,7 +48,7 @@ public class DatabaseService {
 	/// <param name="phaseId">Phase identifier.</param>
 	/// <param name="activePower">Active power.</param>
 	/// <param name="reactivePower">Reactive power.</param>
-	public IEnumerator InsertElectricityData(string timestamp, short phaseId, int activePower, int reactivePower) {
+	public IEnumerator InsertElectricityData(string timestamp, string phaseId, int activePower, int reactivePower) {
 		WWWForm wWWform = new WWWForm ();
 		wWWform.AddField ("timestamp",""+timestamp);
 		wWWform.AddField ("phaseId",""+phaseId);

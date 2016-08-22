@@ -46,14 +46,13 @@ public class SmartElectronicMeter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		string timestamp = System.DateTime.Now.ToLongTimeString();
 		if(requestPool.Count > 0) {
-			string timestamp = System.DateTime.Now.ToLongTimeString();
+			
 			foreach(Request request in requestPool) {
 				request.Execute (phase1, phase2, phase3);
 				request.State = Request.RequestState.DeltaGiven;
-				StartCoroutine(database.InsertElectricityData(timestamp, 1, phase1.Active_power, phase2.Reactive_power));
-				StartCoroutine(database.InsertElectricityData(timestamp, 2, phase1.Active_power, phase2.Reactive_power));
-				StartCoroutine(database.InsertElectricityData(timestamp, 3, phase1.Active_power, phase2.Reactive_power));
+
 				if (logger != null)
 					logger.PhasesStates (phase1, phase2, phase3);
 				else {
@@ -61,6 +60,9 @@ public class SmartElectronicMeter : MonoBehaviour {
 				}
 			}
 		}
+		StartCoroutine(database.InsertElectricityData(timestamp, "1", phase1.Active_power, phase2.Reactive_power));
+		StartCoroutine(database.InsertElectricityData(timestamp, "2", phase1.Active_power, phase2.Reactive_power));
+		StartCoroutine(database.InsertElectricityData(timestamp, "3", phase1.Active_power, phase2.Reactive_power));
 		requestPool.Clear();
 	}
 
