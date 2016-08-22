@@ -11,8 +11,9 @@ public class DatabaseService : MonoBehaviour {
 	private SQLiteConnection sqliteConnection;
 
 	public DatabaseService(string databaseName){
-		#if UNITY_EDITOR
 		var dbPath = string.Format(@"Assets/StreamingAssets/{0}", databaseName);
+		#if UNITY_EDITOR
+		dbPath = string.Format(@"Assets/StreamingAssets/{0}", databaseName);
 		#endif
 		sqliteConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
 		Debug.Log("Final PATH: " + dbPath); 
