@@ -28,7 +28,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 
 	private ElectricityLogger logger;
 
-	private DatabaseService databaseService;
+	private DatabaseService database;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +38,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 
 		requestPool = new ArrayList ();
 
-		databaseService = new DatabaseService (url);
+		database = new DatabaseService (url);
         InitLogger ();
 		if(logger != null)
 			logger.PhasesStates (phase1, phase2, phase3);
@@ -51,9 +51,9 @@ public class SmartElectronicMeter : MonoBehaviour {
 			foreach(Request request in requestPool) {
 				request.Execute (phase1, phase2, phase3);
 				request.State = Request.RequestState.DeltaGiven;
-				StartCoroutine(databaseService.InsertElectricityData(timestamp, 1, phase1.Active_power, phase2.Reactive_power));
-				StartCoroutine(databaseService.InsertElectricityData(timestamp, 2, phase1.Active_power, phase2.Reactive_power));
-				StartCoroutine(databaseService.InsertElectricityData(timestamp, 3, phase1.Active_power, phase2.Reactive_power));
+				StartCoroutine(database.InsertElectricityData(timestamp, 1, phase1.Active_power, phase2.Reactive_power));
+				StartCoroutine(database.InsertElectricityData(timestamp, 2, phase1.Active_power, phase2.Reactive_power));
+				StartCoroutine(database.InsertElectricityData(timestamp, 3, phase1.Active_power, phase2.Reactive_power));
 				if (logger != null)
 					logger.PhasesStates (phase1, phase2, phase3);
 				else {
