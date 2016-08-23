@@ -26,9 +26,16 @@ def index():
 def index():
     postdata = request.body.read()
     print postdata #this goes to log file only, not to client
+    # timestamp = request.forms.get("timestamp")
+    # phaseId = request.forms.get("phaseId")
+    # return "Hi {timestamp} {phaseId}".format(timestamp=timestamp, phaseId=phaseId)
     timestamp = request.forms.get("timestamp")
-    phaseId = request.forms.get("phaseId")
-    return "Hi {timestamp} {phaseId}".format(timestamp=timestamp, phaseId=phaseId)
+    antenaId = request.forms.get("antenaId")
+    signalStrenght = request.forms.get("signalStrenght")
+    tagId = request.forms.get("tagId")
+    cursor.execute("insert into Electricity (timestamp, antenaId, signalStrenght, tagId) values (?,?,?,?)", (timestamp, antenaId, signalStrenght, tagId)
+    connection.commit()
+    return "200"
 
 
 connection = sqlite3.connect("smarthome.db")
