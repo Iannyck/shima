@@ -37,7 +37,7 @@ public class RFIDController : MonoBehaviour
         capteur4.transform.GetChild(2).gameObject.SetActive(false);
 
         countTokenRing = 0;
-        InvokeRepeating("TokenRing", 1f, 3f);
+        InvokeRepeating("TokenRing", 1f, 0.25f);
     }
 
     void TokenRing()

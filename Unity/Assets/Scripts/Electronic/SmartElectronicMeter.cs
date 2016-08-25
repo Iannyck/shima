@@ -60,9 +60,9 @@ public class SmartElectronicMeter : MonoBehaviour {
 				}
 			}
 		}
-		StartCoroutine(database.InsertElectricityData(timestamp, "1", phase1.Active_power, phase2.Reactive_power));
-		StartCoroutine(database.InsertElectricityData(timestamp, "2", phase1.Active_power, phase2.Reactive_power));
-		StartCoroutine(database.InsertElectricityData(timestamp, "3", phase1.Active_power, phase2.Reactive_power));
+		// StartCoroutine(database.InsertElectricityData(timestamp, "1", phase1.Active_power, phase2.Reactive_power));
+		// StartCoroutine(database.InsertElectricityData(timestamp, "2", phase1.Active_power, phase2.Reactive_power));
+		// StartCoroutine(database.InsertElectricityData(timestamp, "3", phase1.Active_power, phase2.Reactive_power));
 		requestPool.Clear();
 	}
 

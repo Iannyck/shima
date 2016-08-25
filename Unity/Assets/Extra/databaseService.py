@@ -13,7 +13,7 @@ def index(name):
 @route('/test/electricity', method='POST')
 def index():
     postdata = request.body.read()
-    print (postdata) #this goes to log file only, not to client
+    # print (postdata) #this goes to log file only, not to client
     timestamp = request.forms.get("timestamp")
     phaseId = request.forms.get("phaseId")
     activePower = request.forms.get("activePower")

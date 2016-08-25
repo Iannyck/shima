@@ -136,7 +136,7 @@ public class TriggerRFID : MonoBehaviour {
         }
     }
 
-    public void GotTrigger(int zoneNumber, GameObject collider, int numTag, bool state)             // Fonction qui est utilisee par les differentes zones du capteur RFID
+    public int GotTrigger(int zoneNumber, GameObject collider, int numTag, bool state)             // Fonction qui est utilisee par les differentes zones du capteur RFID
     {
         int i;
         bool obstacle;
@@ -154,7 +154,7 @@ public class TriggerRFID : MonoBehaviour {
 
                     Debug.Log(tableau[i].GetPuissance(), tableau[i].GetCollider());
 
-                    return; 
+                    return 0; 
                 }
             }
          }
@@ -172,10 +172,11 @@ public class TriggerRFID : MonoBehaviour {
                             obstacle = CheckObstacle(collider);
                             tableau[i].ModifyPuissance(zoneNumber, obstacle);
 
-                            Debug.Log(tableau[i].GetPuissance(), tableau[i].GetCollider());
-
-                            return;
+                            Debug.Log(tableau[i].GetPuissance(), tableau[i].GetCollider());             
                         }
+
+                    return 0;
+
                     }
 
                     else if (tableau[i].GetPuissance() == -1)                           // Si la puissance correspond à -1, la case est vide
@@ -187,7 +188,7 @@ public class TriggerRFID : MonoBehaviour {
 
                         Debug.Log(tableau[i].GetPuissance(), tableau[i].GetCollider());
 
-                        return;
+                        return 0;
                     }
                 }  
             }
@@ -204,7 +205,7 @@ public class TriggerRFID : MonoBehaviour {
 
         }
 
-            return;
+            return 0;
         }
 
     public bool CheckObstacle(GameObject collider)                                      // Fonction qui permet de determiner si un mur ou un autre collider se trouve entre le capteur et l'objet détecté
