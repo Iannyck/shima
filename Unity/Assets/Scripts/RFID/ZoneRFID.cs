@@ -19,15 +19,21 @@ public class ZoneRFID : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         GameObject collider = other.gameObject;
-		if(script != null)
-        	script.GotTrigger(numberZone, collider, true);
+        if (script != null)
+        {
+            if (collider.layer == LayerMask.NameToLayer("RFID"))
+                script.GotTrigger(numberZone, collider, collider.GetComponentInChildren<TagRFID>().nomTag,true);
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
         GameObject collider = other.gameObject;
-		if(script != null)
-        	script.GotTrigger(numberZone, collider, false);
+        if (script != null)
+        {
+            if (collider.layer == LayerMask.NameToLayer("RFID"))
+                script.GotTrigger(numberZone, collider, collider.GetComponentInChildren<TagRFID>().nomTag,false);
+        }
     }
 
     public float GetPuissanceZone()

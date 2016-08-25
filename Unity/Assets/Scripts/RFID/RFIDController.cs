@@ -11,7 +11,7 @@ public class RFIDController : MonoBehaviour
     private int countTokenRing;
     private DatabaseService databaseService;
 
-    public string url = "http://localhost:8080/test/RFID";
+    public string url = "http://localhost:8080/test/rfid";
 
     public DatabaseService DatabaseService { get { return this.databaseService; } }
     
@@ -37,7 +37,7 @@ public class RFIDController : MonoBehaviour
         capteur4.transform.GetChild(2).gameObject.SetActive(false);
 
         countTokenRing = 0;
-        InvokeRepeating("TokenRing", 1f, 1f);
+        InvokeRepeating("TokenRing", 1f, 3f);
     }
 
     void TokenRing()
@@ -45,6 +45,8 @@ public class RFIDController : MonoBehaviour
         // if (capteur1.activeSelf == true)
         if (countTokenRing == 0)
         {
+            capteur1.GetComponent<TriggerRFID>().SetInactive();
+
             capteur1.transform.GetChild(0).gameObject.SetActive(false);
             capteur1.transform.GetChild(1).gameObject.SetActive(false);
             capteur1.transform.GetChild(2).gameObject.SetActive(false);
@@ -62,6 +64,8 @@ public class RFIDController : MonoBehaviour
         // else if (capteur2.activeSelf == true)
         else if (countTokenRing == 1)
         {
+            capteur2.GetComponent<TriggerRFID>().SetInactive();
+
             capteur2.transform.GetChild(0).gameObject.SetActive(false);
             capteur2.transform.GetChild(1).gameObject.SetActive(false);
             capteur2.transform.GetChild(2).gameObject.SetActive(false);
@@ -79,6 +83,8 @@ public class RFIDController : MonoBehaviour
         // else if (capteur3.activeSelf == true)
         else if (countTokenRing == 2)
         {
+            capteur3.GetComponent<TriggerRFID>().SetInactive();
+
             capteur3.transform.GetChild(0).gameObject.SetActive(false);
             capteur3.transform.GetChild(1).gameObject.SetActive(false);
             capteur3.transform.GetChild(2).gameObject.SetActive(false);
@@ -96,6 +102,8 @@ public class RFIDController : MonoBehaviour
         // else if (capteur4.activeSelf == true)
         else if (countTokenRing == 3)
         {
+            capteur4.GetComponent<TriggerRFID>().SetInactive();
+
             capteur4.transform.GetChild(0).gameObject.SetActive(false);
             capteur4.transform.GetChild(1).gameObject.SetActive(false);
             capteur4.transform.GetChild(2).gameObject.SetActive(false);

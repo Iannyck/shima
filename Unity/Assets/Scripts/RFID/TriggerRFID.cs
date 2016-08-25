@@ -21,11 +21,13 @@ public class TriggerRFID : MonoBehaviour {
 
         private int zoneHit;                                            // Correspond au numero de la zone du capteur RFID
         private float puissanceZone;                                    // Correspond à la puissance relative à la zone en question
+        private int colliderTag;
 
-        public HitPoint(int number, GameObject collision)               // Constructeur qui prend la zone et l'objet en collision en arguments
+        public HitPoint(int number, GameObject collision, int numTag)               // Constructeur qui prend la zone et l'objet en collision en arguments
         {
             zoneHit = number;
             colliderHit = collision;
+            colliderTag = numTag;
             puissanceZone = -1;                                          // Prendre note que la puissance est toujours initialisé a -1
         }
 
@@ -33,12 +35,18 @@ public class TriggerRFID : MonoBehaviour {
         {
             zoneHit = 0;
             colliderHit = null;
+            colliderTag = -1;
             puissanceZone = -1;                                          // Prendre note que la puissance est également initialisé à -1
         }
 
         public GameObject GetCollider()                                 // Retourne le GameObject de l'objet
         {
             return colliderHit;
+        }
+
+        public int GetTag()
+        {
+            return colliderTag;
         }
 
         public int GetZone()                                            // Retourne le numero de la zone de l'objet
@@ -99,30 +107,36 @@ public class TriggerRFID : MonoBehaviour {
         databaseService = GetComponentInParent<RFIDController>().DatabaseService;
     }
 	
-	void Update ()
+	void Update (){}
+
+    public void SetInactive()
     {
         string timestamp = System.DateTime.Now.ToLongTimeString();
 
-        for (int i = 0; i < 10; i++)
-            if (tableau[i].GetPuissance() != -1)
-                {
+        if (databaseService == null)
+        {
+            Debug.Log("Erreur DataBase");
 
-                if (databaseService == null)
-                {
-                    Debug.Log("Erreur Database");
+            if (GetComponentInParent<RFIDController>().DatabaseService == null)
+                Debug.Log("Erreur Database 2");
 
-                    if (GetComponentInParent<RFIDController>().DatabaseService == null)
-                        Debug.Log("Erreur Database 2");
+            databaseService = GetComponentInParent<RFIDController>().DatabaseService;
+        }
 
-                    databaseService = GetComponentInParent<RFIDController>().DatabaseService;
-                }
-
-                else
-                    StartCoroutine(databaseService.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), tableau[i].GetCollider().name));
+        else
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (tableau[i].GetPuissance() != -1)
+                    StartCoroutine(databaseService.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), ""+tableau[i].GetTag()));
             }
+
+            // for (int i = 0; i < taille; i++)
+               // tableau[i] = new HitPoint();
+        }
     }
 
-    public void GotTrigger(int zoneNumber, GameObject collider, bool state)             // Fonction qui est utilisee par les differentes zones du capteur RFID
+    public void GotTrigger(int zoneNumber, GameObject collider, int numTag, bool state)             // Fonction qui est utilisee par les differentes zones du capteur RFID
     {
         int i;
         bool obstacle;
@@ -131,7 +145,7 @@ public class TriggerRFID : MonoBehaviour {
         {
             for (i = 0; i < tableau.Length; i++)                                        // On compare le tableau de HitPoint afin de trouver la position du collider
             { 
-                if (tableau[i].GetCollider() == collider)
+                if (tableau[i].GetTag() == numTag)
                 {
                     tableau[i].ModifyZone(zoneNumber + 1);                              // On ajoute 1 au numero de zone afin d'indiquer que l'on se trouve maintenant dans une zone plus loin du capteur
 
@@ -149,7 +163,7 @@ public class TriggerRFID : MonoBehaviour {
             {
                 for (i = 0; i < tableau.Length; i++)                                    // On parcourt le tableau afin de déterminer si l'objet en collision occupe déjè une case du tableau
                 {
-                    if (tableau[i].GetCollider() == collider)                           
+                    if (tableau[i].GetTag() == numTag)                           
                     {
                         if (tableau[i].CompareZone(zoneNumber))                         // Si oui, on compare le numéro de la zone afin de déterminer si le nouvelle zone est plus proche du capteur
                         {
@@ -166,7 +180,7 @@ public class TriggerRFID : MonoBehaviour {
 
                     else if (tableau[i].GetPuissance() == -1)                           // Si la puissance correspond à -1, la case est vide
                     {
-                        tableau[i] = new HitPoint(zoneNumber, collider);                // On occupe alors la case avec l'objet qui vient d'entrer en collision
+                        tableau[i] = new HitPoint(zoneNumber, collider, numTag);                // On occupe alors la case avec l'objet qui vient d'entrer en collision
 
                         obstacle = CheckObstacle(collider);
                         tableau[i].ModifyPuissance(zoneNumber, obstacle);

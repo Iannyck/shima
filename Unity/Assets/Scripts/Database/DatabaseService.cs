@@ -23,13 +23,13 @@ public class DatabaseService {
     /// </summary>
     /// <param name="timestamp">Timestamp.</param>
     /// <param name="antenaId">Antena identifier.</param>
-    /// <param name="signalStrength">Signal strength.</param>
+    /// <param name="signalStrenght">Signal strength.</param>
     /// <param name="tagId">Tag identifier.</param>
-	public IEnumerator InsertRFIDData(string timestamp, string antenaId, float signalStrength, string tagId) {
+	public IEnumerator InsertRFIDData(string timestamp, string antenaId, float signalStrenght, string tagId) {
 		WWWForm wWWform = new WWWForm ();
 		wWWform.AddField ("timestamp",""+timestamp);
 		wWWform.AddField ("antenaId",""+antenaId);
-		wWWform.AddField ("signalStrength",""+signalStrength);
+		wWWform.AddField ("signalStrenght",""+signalStrenght);
 		wWWform.AddField ("tagId",""+tagId);
 		WWW www = new WWW (url, wWWform);
 
