@@ -12,14 +12,14 @@ public class WalkedOver : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Door")
-            Debug.Log("TriggeEnter with" + other.gameObject);
-
-        if (other.gameObject.tag == "PickUp")
-            Debug.Log("TriggeEnter with" + other.gameObject);
-
-        if (other.gameObject.tag == "Light")
-            Debug.Log("TriggeEnter with" + other.gameObject);
+//        if (other.gameObject.tag == "Door")
+//            Debug.Log("TriggeEnter with" + other.gameObject);
+//
+//        if (other.gameObject.tag == "PickUp")
+//            Debug.Log("TriggeEnter with" + other.gameObject);
+//
+//        if (other.gameObject.tag == "Light")
+//            Debug.Log("TriggeEnter with" + other.gameObject);
 
 
         if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Light" || other.gameObject.tag == "Electronic")
@@ -40,12 +40,12 @@ public class WalkedOver : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Door")
-            Debug.Log("TriggerExit with" + other.gameObject);
+//        if (other.gameObject.tag == "Door")
+//            Debug.Log("TriggerExit with" + other.gameObject);
 
         if (other.gameObject == walkedOver)
         {
-            Debug.Log("TriggerExit effectue");
+//            Debug.Log("TriggerExit effectue");
             pickUpScript.AddWalkedOverObject(null, null);
             walkedOver = null;
         }
