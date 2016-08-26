@@ -5,7 +5,7 @@ public class Movement : MonoBehaviour
 {
     public float speed = 6f;
     public float rotateSpeed = 6f;
-    private bool init = false;
+//    private bool init = false;
 
     Vector3 movement;
     Rigidbody playerRigidbody;

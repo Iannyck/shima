@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class LoadScene : MonoBehaviour {
@@ -13,9 +14,10 @@ public class LoadScene : MonoBehaviour {
 	
 	}
 
-    public void LoadingScreen(string name)
+	public void LoadingScreen(int index)
     {
-        Application.LoadLevel(name);
+//        Application.LoadLevel(name);
+		SceneManager.LoadScene (index);
     }
 
 
