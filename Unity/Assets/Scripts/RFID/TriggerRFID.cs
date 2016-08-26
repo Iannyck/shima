@@ -13,7 +13,8 @@ public class TriggerRFID : MonoBehaviour {
     private HitPoint[] tableau;                                                        // Correspond au tableau contenant les objets de classe HitPoint
     private Transform capteurPosition;
 
-    private DatabaseService databaseService;
+//    private DatabaseService databaseService;
+	private SmartHomeServer smartHomeServer;
 
     public class HitPoint
     {
@@ -104,8 +105,16 @@ public class TriggerRFID : MonoBehaviour {
 
         noise = 0;
 
-        databaseService = GetComponentInParent<RFIDController>().DatabaseService;
+//        databaseService = GetComponentInParent<RFIDController>().DatabaseService;
+		InitSmartHomeServerConnection();
     }
+
+	private void InitSmartHomeServerConnection() {
+		GameObject smartHomeServerObject = GameObject.Find ("smarthomeserver");
+		if(smartHomeServer == null)
+			Debug.Log("SmartHomeServer Not Loaded");
+		smartHomeServer = smartHomeServerObject.GetComponent<SmartHomeServer> ();
+	}
 	
 	void Update (){}
 
@@ -113,14 +122,15 @@ public class TriggerRFID : MonoBehaviour {
     {
         string timestamp = System.DateTime.Now.ToLongTimeString();
 
-        if (databaseService == null)
+		if (smartHomeServer == null)
         {
-            Debug.Log("Erreur DataBase");
+//            Debug.Log("Erreur DataBase");
 
-            if (GetComponentInParent<RFIDController>().DatabaseService == null)
-                Debug.Log("Erreur Database 2");
+//            if (GetComponentInParent<RFIDController>().DatabaseService == null)
+//                Debug.Log("Erreur Database 2");
 
-            databaseService = GetComponentInParent<RFIDController>().DatabaseService;
+//            databaseService = GetComponentInParent<RFIDController>().DatabaseService;
+			InitSmartHomeServerConnection();
         }
 
         else
@@ -128,7 +138,8 @@ public class TriggerRFID : MonoBehaviour {
             for (int i = 0; i < 10; i++)
             {
                 if (tableau[i].GetPuissance() != -1)
-                    StartCoroutine(databaseService.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), ""+tableau[i].GetTag()));
+					smartHomeServer.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), ""+tableau[i].GetTag());
+//                    StartCoroutine(databaseService.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), ""+tableau[i].GetTag()));
             }
 
             // for (int i = 0; i < taille; i++)
@@ -186,7 +197,7 @@ public class TriggerRFID : MonoBehaviour {
                         obstacle = CheckObstacle(collider);
                         tableau[i].ModifyPuissance(zoneNumber, obstacle);
 
-                        Debug.Log(tableau[i].GetPuissance(), tableau[i].GetCollider());
+//                        Debug.Log(tableau[i].GetPuissance(), tableau[i].GetCollider());
 
                         return 0;
                     }

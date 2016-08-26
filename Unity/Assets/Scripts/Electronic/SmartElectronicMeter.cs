@@ -22,13 +22,14 @@ public class SmartElectronicMeter : MonoBehaviour {
 	/// </summary>
 	private Phase phase3;
 
-	public string url = "http://localhost:8080/test/electricity";
+	//public string url = "http://localhost:8080/test/electricity";
 
 	private ArrayList requestPool;
 
 	private ElectricityLogger logger;
 
-	private DatabaseService database;
+	//private DatabaseService database;
+	private SmartHomeServer shServer;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +39,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 
 		requestPool = new ArrayList ();
 
-		database = new DatabaseService (url);
+		//database = new DatabaseService (url);
         InitLogger ();
 		if(logger != null)
 			logger.PhasesStates (phase1, phase2, phase3);
@@ -60,9 +61,12 @@ public class SmartElectronicMeter : MonoBehaviour {
 				}
 			}
 		}
-		// StartCoroutine(database.InsertElectricityData(timestamp, "1", phase1.Active_power, phase2.Reactive_power));
-		// StartCoroutine(database.InsertElectricityData(timestamp, "2", phase1.Active_power, phase2.Reactive_power));
-		// StartCoroutine(database.InsertElectricityData(timestamp, "3", phase1.Active_power, phase2.Reactive_power));
+		// StartCoroutine(database.InsertElectricityData(timestamp, "1", phase1.Active_power, phase1.Reactive_power));
+		// StartCoroutine(database.InsertElectricityData(timestamp, "2", phase2.Active_power, phase2.Reactive_power));
+		// StartCoroutine(database.InsertElectricityData(timestamp, "3", phase3.Active_power, phase3.Reactive_power));
+		shServer.InsertElectricityData(timestamp, "1", phase1.Active_power, phase1.Reactive_power);
+		shServer.InsertElectricityData(timestamp, "2", phase2.Active_power, phase2.Reactive_power);
+		shServer.InsertElectricityData(timestamp, "3", phase3.Active_power, phase3.Reactive_power);
 		requestPool.Clear();
 	}
 
@@ -72,6 +76,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 			Debug.Log("SmartHomeServer Not Loaded");
 
 		logger = smartHomeServer.GetComponent<ElectricityLogger> ();
+		shServer = smartHomeServer.GetComponent<SmartHomeServer> ();
 	}
 
 	/// <summary>
@@ -128,10 +133,10 @@ public class SmartElectronicMeter : MonoBehaviour {
 	/// Gets the database.
 	/// </summary>
 	/// <value>The database.</value>
-	public DatabaseService Database {
-		get {
-			return this.database;
-		}
-	}
+//	public DatabaseService Database {
+//		get {
+//			return this.database;
+//		}
+//	}
 
 }

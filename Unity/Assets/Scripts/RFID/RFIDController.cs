@@ -9,16 +9,18 @@ public class RFIDController : MonoBehaviour
     public GameObject capteur4;
 
     private int countTokenRing;
-    private DatabaseService databaseService;
+//    private DatabaseService databaseService;
+//
+//    public string url = "http://localhost:8080/test/rfid";
 
-    public string url = "http://localhost:8080/test/rfid";
+//    public DatabaseService DatabaseService { get { return this.databaseService; } }
 
-    public DatabaseService DatabaseService { get { return this.databaseService; } }
+
     
     // Use this for initialization
     void Start()
     {
-        databaseService = new DatabaseService(url);
+//        databaseService = new DatabaseService(url);
 
         capteur1.transform.GetChild(0).gameObject.SetActive(false);
         capteur1.transform.GetChild(1).gameObject.SetActive(false);
