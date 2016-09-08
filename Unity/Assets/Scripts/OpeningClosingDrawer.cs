@@ -3,44 +3,50 @@ using System.Collections;
 
 public class OpeningClosingDrawer : MonoBehaviour {
 
-    public bool isOpen;
-    public Animation anim;
+    public static int nbDrawer = 10;
+    private bool[] myList = new bool[nbDrawer];
 
-    // Use this for initialization
+    public Animation anim;
+   
+
     void Start()
     {
         anim = GetComponent<Animation>();
-        isOpen = false;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        for (int i = 0; i < nbDrawer; i++)
+            myList[i] = false;
 
     }
+
+    void Update(){}
 
     public void PlayAnim(string name)
     {
+        int position = GetPosition(name);
 
-        string tempName = null;
-        tempName = "D" + name.Substring(1,6);
-
-        if (isOpen)
+        if (myList[position])
         {
-
-            isOpen = false;
-            anim.Play(tempName+"_close");
+            myList[position] = false;
+            anim.Play(name + "_closing");
         }
 
         else
         {
-            isOpen = true;
-            anim.Play(tempName + "_open");
+            myList[position]= true;
+            anim.Play(name + "_opening");
         }
     }
 
-    public bool GetStatus()
+    public bool GetStatus(string name)
     {
-        return isOpen;
+        return (myList[GetPosition(name)]);
+    }
+
+    private int GetPosition (string name)
+    {
+        string tempName = null;
+        tempName = name.Substring(6);
+
+        return System.Int32.Parse(tempName);
     }
 }

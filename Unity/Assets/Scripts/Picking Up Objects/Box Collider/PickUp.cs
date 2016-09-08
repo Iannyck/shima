@@ -203,10 +203,10 @@ public class PickUp : MonoBehaviour {
 
                 case "Drawer":
                     {
-                        if (drawerInteraction.GetStatus() == false && guiShow == true)
+                        if (drawerInteraction.GetStatus(walkedOverObject.name) == false && guiShow == true)
                             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Open Drawer");
 
-                        if (drawerInteraction.GetStatus() == true && guiShow == true)
+                        if (drawerInteraction.GetStatus(walkedOverObject.name) == true && guiShow == true)
                             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Close Drawer");
 
                         break;
