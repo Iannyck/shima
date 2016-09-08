@@ -1,54 +1,22 @@
 fileFormatVersion: 2
-guid: 5f475b935ad8244f3bec4f041698d02a
-timeCreated: 1473346751
+guid: 9d2e519c0c9884d17b25568698238912
+timeCreated: 1473347497
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: instance_0
     100002: instance_0_001
-    100004: instance_0_002
-    100006: instance_0_003
-    100008: instance_0_004
-    100010: instance_0_005
-    100012: instance_0_006
-    100014: instance_0_007
-    100016: Last_Saved_SketchUp_View
-    100018: //RootNode
+    100004: //RootNode
     400000: instance_0
     400002: instance_0_001
-    400004: instance_0_002
-    400006: instance_0_003
-    400008: instance_0_004
-    400010: instance_0_005
-    400012: instance_0_006
-    400014: instance_0_007
-    400016: Last_Saved_SketchUp_View
-    400018: //RootNode
+    400004: //RootNode
     2300000: instance_0
     2300002: instance_0_001
-    2300004: instance_0_002
-    2300006: instance_0_003
-    2300008: instance_0_004
-    2300010: instance_0_005
-    2300012: instance_0_006
-    2300014: instance_0_007
     3300000: instance_0
     3300002: instance_0_001
-    3300004: instance_0_002
-    3300006: instance_0_003
-    3300008: instance_0_004
-    3300010: instance_0_005
-    3300012: instance_0_006
-    3300014: instance_0_007
-    4300000: instance_0_007
-    4300002: instance_0_006
-    4300004: instance_0_005
-    4300006: instance_0_004
-    4300008: instance_0_003
-    4300010: instance_0_002
-    4300012: instance_0_001
-    4300014: instance_0
+    4300000: instance_0_001
+    4300002: instance_0
     7400000: Default Take
     9500000: //RootNode
   materials:
