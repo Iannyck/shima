@@ -12,17 +12,17 @@ public class WalkedOver : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-//        if (other.gameObject.tag == "Door")
-//            Debug.Log("TriggeEnter with" + other.gameObject);
-//
-//        if (other.gameObject.tag == "PickUp")
-//            Debug.Log("TriggeEnter with" + other.gameObject);
-//
-//        if (other.gameObject.tag == "Light")
-//            Debug.Log("TriggeEnter with" + other.gameObject);
+        //        if (other.gameObject.tag == "Door")
+        //            Debug.Log("TriggeEnter with" + other.gameObject);
+        //
+        //        if (other.gameObject.tag == "PickUp")
+        //            Debug.Log("TriggeEnter with" + other.gameObject);
+        //
+        //        if (other.gameObject.tag == "Light")
+        //            Debug.Log("TriggeEnter with" + other.gameObject);
 
 
-        if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Light" || other.gameObject.tag == "Electronic")
+        if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Light" || other.gameObject.tag == "Electronic" || other.gameObject.tag == "Drawer")
         {
             if (walkedOver == null)
             {

@@ -12,6 +12,7 @@ public class PickUp : MonoBehaviour {
     private bool guiShow;
 
     public OpeningClosingDoor doorInteraction;
+    public OpeningClosingDrawer drawerInteraction;
 
     void Start ()
     {
@@ -59,6 +60,12 @@ public class PickUp : MonoBehaviour {
                     case "Door":
                         {
                             doorInteraction.PlayAnim();
+                            break;
+                        }
+
+                    case "Drawer":
+                        {
+                            drawerInteraction.PlayAnim(walkedOverObject.name);
                             break;
                         }
 
@@ -118,6 +125,13 @@ public class PickUp : MonoBehaviour {
                 case "Electronic":
                     {
                         this.walkedOverObject = walkedOverObjectFx;
+                        break;
+                    }
+
+                case "Drawer":
+                    {
+                        this.walkedOverObject = walkedOverObjectFx;
+                        drawerInteraction = walkedOverObject.GetComponentInParent<OpeningClosingDrawer>();
                         break;
                     }
             }
@@ -182,6 +196,18 @@ public class PickUp : MonoBehaviour {
 
                         if (walkedOverObject.GetComponent<ElectronicDevice>().DeviceState == ElectronicDevice.State.On)
                             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Close Device");
+
+                        break;
+
+                    }
+
+                case "Drawer":
+                    {
+                        if (drawerInteraction.GetStatus() == false && guiShow == true)
+                            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Open Drawer");
+
+                        if (drawerInteraction.GetStatus() == true && guiShow == true)
+                            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Close Drawer");
 
                         break;
 
