@@ -28,7 +28,7 @@ public class PlayerControl : MonoBehaviour
 	private int hFloat;
 	private int vFloat;
 	private int aimBool;
-	private int flyBool;
+//	private int flyBool;
 	private int groundedBool;
 	private Transform cameraTransform;
 
@@ -43,7 +43,7 @@ public class PlayerControl : MonoBehaviour
 	private bool isMoving;
 
 	// fly
-	private bool fly = false;
+//	private bool fly = false;
 	private float distToGround;
 	private float sprintFactor;
 
@@ -58,7 +58,7 @@ public class PlayerControl : MonoBehaviour
 		vFloat = Animator.StringToHash("V");
 		aimBool = Animator.StringToHash("Aim");
 		// fly
-		flyBool = Animator.StringToHash ("Fly");
+//		flyBool = Animator.StringToHash ("Fly");
 		groundedBool = Animator.StringToHash("Grounded");
 		distToGround = GetComponent<Collider>().bounds.extents.y;
 		sprintFactor = sprintSpeed / runSpeed;
@@ -71,8 +71,8 @@ public class PlayerControl : MonoBehaviour
 	void Update()
 	{
 		
-		if(Input.GetButtonDown ("Fly"))
-        fly = !fly;
+//		if(Input.GetButtonDown ("Fly"))
+//        fly = !fly;
 
 		aim = Input.GetButton("Aim");
 		h = Input.GetAxis("Horizontal");
@@ -84,30 +84,30 @@ public class PlayerControl : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		anim.SetBool (aimBool, IsAiming());
+//		anim.SetBool (aimBool, IsAiming());
 		anim.SetFloat(hFloat, h);
 		anim.SetFloat(vFloat, v);
 		
 		// Fly
-		anim.SetBool (flyBool, fly);
-		GetComponent<Rigidbody>().useGravity = !fly;
+//		anim.SetBool (flyBool, fly);
+//		GetComponent<Rigidbody>().useGravity = !fly;
 		anim.SetBool (groundedBool, IsGrounded ());
-		if(fly)
-			FlyManagement(h,v);
-
-		else
-		{
+//		if(fly)
+//			FlyManagement(h,v);
+//
+//		else
+//		{
 			MovementManagement (h, v, run, sprint);
 			JumpManagement ();
-		}
+//		}
 	}
 
 	// fly
-	void FlyManagement(float horizontal, float vertical)
-	{
-		Vector3 direction = Rotating(horizontal, vertical);
-		GetComponent<Rigidbody>().AddForce(direction * flySpeed * 100 * (sprint?sprintFactor:1));
-	}
+//	void FlyManagement(float horizontal, float vertical)
+//	{
+//		Vector3 direction = Rotating(horizontal, vertical);
+//		GetComponent<Rigidbody>().AddForce(direction * flySpeed * 100 * (sprint?sprintFactor:1));
+//	}
 
 	void JumpManagement()
 	{
@@ -160,8 +160,8 @@ public class PlayerControl : MonoBehaviour
 	Vector3 Rotating(float horizontal, float vertical)
 	{
 		Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
-		if (!fly)
-			forward.y = 0.0f;
+//		if (!fly)
+//			forward.y = 0.0f;
 		forward = forward.normalized;
 
 		Vector3 right = new Vector3(forward.z, 0, -forward.x);
@@ -170,23 +170,23 @@ public class PlayerControl : MonoBehaviour
 
 		float finalTurnSmoothing;
 
-		if(IsAiming())
-		{
-			targetDirection = forward;
-			finalTurnSmoothing = aimTurnSmoothing;
-		}
-		else
-		{
+//		if(IsAiming())
+//		{
+//			targetDirection = forward;
+//			finalTurnSmoothing = aimTurnSmoothing;
+//		}
+//		else
+//		{
 			targetDirection = forward * vertical + right * horizontal;
 			finalTurnSmoothing = turnSmoothing;
-		}
+//		}
 
-		if((isMoving && targetDirection != Vector3.zero) || IsAiming())
+		if((isMoving && targetDirection != Vector3.zero) )//|| IsAiming())
 		{
 			Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
 			// fly
-			if (fly)
-				targetRotation *= Quaternion.Euler (90, 0, 0);
+//			if (fly)
+//				targetRotation *= Quaternion.Euler (90, 0, 0);
 
 			Quaternion newRotation = Quaternion.Slerp(GetComponent<Rigidbody>().rotation, targetRotation, finalTurnSmoothing * Time.deltaTime);
 			GetComponent<Rigidbody>().MoveRotation (newRotation);
@@ -213,15 +213,15 @@ public class PlayerControl : MonoBehaviour
 		}
 	}
 
-	public bool IsFlying()
-	{
-		return fly;
-	}
+//	public bool IsFlying()
+//	{
+//		return fly;
+//	}
 
-	public bool IsAiming()
-	{
-		return aim && !fly;
-	}
+//	public bool IsAiming()
+//	{
+//		return aim && !fly;
+//	}
 
 	public bool isSprinting()
 	{

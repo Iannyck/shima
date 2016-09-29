@@ -60,30 +60,30 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 		angleV += Mathf.Clamp(Input.GetAxis("Mouse Y"), -1, 1) * verticalAimingSpeed * Time.deltaTime;
 
 		// fly
-		if(playerControl.IsFlying())
-		{
+//		if(playerControl.IsFlying())
+//		{
 			angleV = Mathf.Clamp(angleV, minVerticalAngle, flyMaxVerticalAngle);
-		}
-		else
-		{
+//		}
+//		else
+//		{
 			angleV = Mathf.Clamp(angleV, minVerticalAngle, maxVerticalAngle);
-		}
+//		}
 
 
 		Quaternion aimRotation = Quaternion.Euler(-angleV, angleH, 0);
 		Quaternion camYRotation = Quaternion.Euler(0, angleH, 0);
 		cam.rotation = aimRotation;
 
-		if(playerControl.IsAiming())
-		{
+//		if(playerControl.IsAiming())
+//		{
 			targetPivotOffset = aimPivotOffset;
 			targetCamOffset = aimCamOffset;
-		}
-		else
-		{
+//		}
+//		else
+//		{
 			targetPivotOffset = pivotOffset;
 			targetCamOffset = camOffset;
-		}
+//		}
 
 		if(playerControl.isSprinting())
 		{
@@ -109,10 +109,10 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 		}
 
 		// fly
-		if(playerControl.IsFlying())
-		{
-			targetCamOffset.y = 0;
-		}
+//		if(playerControl.IsFlying())
+//		{
+//			targetCamOffset.y = 0;
+//		}
 
 		smoothPivotOffset = Vector3.Lerp(smoothPivotOffset, targetPivotOffset, smooth * Time.deltaTime);
 		smoothCamOffset = Vector3.Lerp(smoothCamOffset, targetCamOffset, smooth * Time.deltaTime);
@@ -164,9 +164,9 @@ public class ThirdPersonOrbitCam : MonoBehaviour
 	void OnGUI () 
 	{
 		float mag = Mathf.Abs ((aimPivotOffset - smoothPivotOffset).magnitude);
-		if (playerControl.IsAiming() &&  mag < 0.05f)
-			GUI.DrawTexture(new Rect(Screen.width/2-(crosshair.width*0.5f), 
-			                         Screen.height/2-(crosshair.height*0.5f), 
-			                         crosshair.width, crosshair.height), crosshair);
+//		if (playerControl.IsAiming() &&  mag < 0.05f)
+//			GUI.DrawTexture(new Rect(Screen.width/2-(crosshair.width*0.5f), 
+//			                         Screen.height/2-(crosshair.height*0.5f), 
+//			                         crosshair.width, crosshair.height), crosshair);
 	}
 }

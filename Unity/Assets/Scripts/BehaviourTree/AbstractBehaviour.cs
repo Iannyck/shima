@@ -16,7 +16,9 @@ public abstract class AbstractBehaviour : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		behaviourState = Execute ();
+		if (behaviourState == State.Running) {
+			behaviourState = Execute ();
+		}
 	}
 
 }
