@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ForceSignal : MonoBehaviour
 {
     public string antennaID;
+    public GameObject pere;
     private SmartHomeServer smartHomeServer;
     private List<ColliderData> dataList;
 
@@ -36,7 +37,10 @@ public class ForceSignal : MonoBehaviour
     private float CalculDistance(GameObject collider)
     {
         Vector3 positionCollider = collider.transform.position;
-        Vector3 positionCapteur = GetComponentInParent<Transform>().position;
+        // Vector3 positionCapteur = GetComponentInParent<AntennePosition>().PositionAntenne();
+        Vector3 positionCapteur = pere.transform.position;
+
+        Debug.Log(pere.name + " - " + pere.transform.position + " - " + Vector3.Distance(positionCollider, positionCapteur));
 
         return Vector3.Distance(positionCollider, positionCapteur);
     }
@@ -45,9 +49,11 @@ public class ForceSignal : MonoBehaviour
     {
         float forceSignal = 0;
 
+        // Debug.Log("distance - " + GetComponentInParent<Transform>().name + " - " + distance);
+
         forceSignal = ((-9.1333f * Mathf.Log(distance)) - 10.726f);
 
-        return forceSignal;
+       return forceSignal;
     }
 
     private void StockData(float forceSignal, GameObject collider)

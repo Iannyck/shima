@@ -13,7 +13,7 @@ public class TokenRing : MonoBehaviour {
     void Start()
     {
         for (int i = 0; i < listeCapteurs.Count; i++)
-            listeCapteurs[i].gameObject.SetActive(false);
+            listeCapteurs[i].transform.GetChild(0).gameObject.SetActive(false);
 
         activate = false;
         activeTimer = 0.25f;
@@ -25,7 +25,7 @@ public class TokenRing : MonoBehaviour {
     {
         if (CheckTimer() && activate == false)
         {
-            listeCapteurs[token].transform.Find("Cone Detection").transform.gameObject.SetActive(true);
+            listeCapteurs[token].transform.GetChild(0).gameObject.SetActive(true);
 
             activate = true;
             ResetTimer();
@@ -34,7 +34,8 @@ public class TokenRing : MonoBehaviour {
         if (CheckTimer() && activate == true)
         {
             listeCapteurs[token].GetComponentInChildren<ForceSignal>().Desactivate();
-            listeCapteurs[token].GetComponentInChildren<GameObject>().SetActive(false);
+            listeCapteurs[token].transform.GetChild(0).gameObject.SetActive(false);
+
             GiveToken();
 
             activate = false;
@@ -63,7 +64,7 @@ public class TokenRing : MonoBehaviour {
     {
         token = token - 1;
 
-        if (token == 0)
+        if (token < 0)
             token = listeCapteurs.Count - 1;
     }
 
