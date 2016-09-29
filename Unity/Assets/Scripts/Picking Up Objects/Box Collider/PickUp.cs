@@ -88,7 +88,13 @@ public class PickUp : MonoBehaviour {
                             break;
                         }
 
-                    default:
+                    case "Test-RFID":
+                        {
+                            walkedOverObject.GetComponent<MovingObjectsRFID>().ChangePosition();
+                            break;
+                        }
+
+                        default:
                         break;
                 }
             }
@@ -132,6 +138,12 @@ public class PickUp : MonoBehaviour {
                     {
                         this.walkedOverObject = walkedOverObjectFx;
                         drawerInteraction = walkedOverObject.GetComponentInParent<OpeningClosingDrawer>();
+                        break;
+                    }
+
+                case "Test-RFID":
+                    {
+                        this.walkedOverObject = walkedOverObjectFx;
                         break;
                     }
             }
@@ -211,6 +223,12 @@ public class PickUp : MonoBehaviour {
 
                         break;
 
+                    }
+
+                case "Test-RFID":
+                    {
+                        GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Move Object");
+                        break;
                     }
 
                 default:

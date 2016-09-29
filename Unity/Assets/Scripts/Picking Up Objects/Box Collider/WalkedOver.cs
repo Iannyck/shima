@@ -22,7 +22,7 @@ public class WalkedOver : MonoBehaviour {
         //            Debug.Log("TriggeEnter with" + other.gameObject);
 
 
-        if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Light" || other.gameObject.tag == "Electronic" || other.gameObject.tag == "Drawer")
+        if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Light" || other.gameObject.tag == "Electronic" || other.gameObject.tag == "Drawer" || other.gameObject.tag == "Test-RFID")
         {
             if (walkedOver == null)
             {
