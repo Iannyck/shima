@@ -9,6 +9,7 @@ public class PressurePlate : MonoBehaviour {
     private float massColliderExit;
     private float massTotale;
 
+<<<<<<< HEAD
     private bool pressureOn;
 
 	public bool PressureOn {
@@ -16,6 +17,11 @@ public class PressurePlate : MonoBehaviour {
 			return this.pressureOn;
 		}
 	}
+=======
+    public float minimumValue;
+
+    bool pressureOn;
+>>>>>>> origin/master
 
 	// Use this for initialization
 	void Start () {
@@ -28,15 +34,18 @@ public class PressurePlate : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        rgbd = other.gameObject.GetComponent<Rigidbody>();
-        massColliderEnter = rgbd.mass;
-
-        massTotale = massTotale + massColliderEnter;
-        
-        if (massTotale != 0)
+        if (other.gameObject.tag != "Floor")
         {
-            pressureOn = true;
-            // Debug.Log(massTotale);
+            rgbd = other.gameObject.GetComponent<Rigidbody>();
+            massColliderEnter = rgbd.mass;
+
+            massTotale = massTotale + massColliderEnter;
+
+            if (massTotale != 0)
+            {
+                if (massTotale >= minimumValue)
+                    pressureOn = true;
+            }
         }
     }
 
