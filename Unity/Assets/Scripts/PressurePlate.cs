@@ -5,11 +5,17 @@ public class PressurePlate : MonoBehaviour {
 
     Rigidbody rgbd;
 
-    float massColliderEnter;
-    float massColliderExit;
-    float massTotale;
+    private float massColliderEnter;
+    private float massColliderExit;
+    private float massTotale;
 
-    bool pressureOn;
+    private bool pressureOn;
+
+	public bool PressureOn {
+		get {
+			return this.pressureOn;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {

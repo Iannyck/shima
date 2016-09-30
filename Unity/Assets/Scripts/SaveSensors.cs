@@ -9,7 +9,7 @@ public class SaveSensors : MonoBehaviour {
     public GameObject prefabPression;
     public GameObject prefabMouvement;
 
-    string winDir = System.Environment.GetEnvironmentVariable("windir");
+//    string winDir = System.Environment.GetEnvironmentVariable("windir");
     
     GameObject sensorParent;
     Transform sensorChild;
