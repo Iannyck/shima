@@ -110,29 +110,33 @@ public class PlayerControl : MonoBehaviour
 	Vector3 Rotating(float horizontal, float vertical)
 	{
 		Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
+//		Debug.Log ("forward1= "+forward.x+" "+forward.y+" "+forward.z);
 		forward = forward.normalized;
+//		Debug.Log ("forward= "+forward.x+" "+forward.y+" "+forward.z);
 
 		Vector3 right = new Vector3(forward.z, 0, -forward.x);
-
+//		Debug.Log ("right= "+right.x+ " "+right.y+" "+right.z);
 		Vector3 targetDirection;
 
 		float finalTurnSmoothing;
 
 		targetDirection = forward * vertical + right * horizontal;
+//		Debug.Log ("targetDirection= "+targetDirection.x+ " "+targetDirection.y+" "+targetDirection.z);
 		finalTurnSmoothing = turnSmoothing;
-
+//		Debug.Log ("finalTurnSmoothing= "+finalTurnSmoothing);
 		if((isMoving && targetDirection != Vector3.zero) )
 		{
 			Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
-
+//			Debug.Log ("targetRotation= "+targetRotation.x+ " "+targetRotation.y+" "+targetRotation.z+" "+targetRotation.w);
 			Quaternion newRotation = Quaternion.Slerp(GetComponent<Rigidbody>().rotation, targetRotation, finalTurnSmoothing * Time.deltaTime);
+//			Debug.Log ("newRotation= "+newRotation.x+ " "+newRotation.y+" "+newRotation.z+" "+newRotation.w);
 			GetComponent<Rigidbody>().MoveRotation (newRotation);
 			lastDirection = targetDirection;
 		}
 
 		if(!(Mathf.Abs(h) > 0.9 || Mathf.Abs(v) > 0.9))
 		{
-			Repositioning();
+//			Repositioning();
 		}
 
 		return targetDirection;

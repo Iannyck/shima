@@ -9,7 +9,6 @@ public class PressurePlate : MonoBehaviour {
     private float massColliderExit;
     private float massTotale;
 
-<<<<<<< HEAD
     private bool pressureOn;
 
 	public bool PressureOn {
@@ -17,11 +16,7 @@ public class PressurePlate : MonoBehaviour {
 			return this.pressureOn;
 		}
 	}
-=======
     public float minimumValue;
-
-    bool pressureOn;
->>>>>>> origin/master
 
 	// Use this for initialization
 	void Start () {
