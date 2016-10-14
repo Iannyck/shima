@@ -35,7 +35,6 @@ public class MoveToBehaviour : AbstractBehaviour {
 
 				anim.SetBool (groundedBool, true);
 				MovementManagement (h, v, run);
-				Debug.Log ("reached");
 				return State.Suceeded;
 			}
 			else {
@@ -82,7 +81,6 @@ public class MoveToBehaviour : AbstractBehaviour {
 	private int vFloat;
 
 	private int groundedBool;
-//	private Transform cameraTransform;
 
 	private float h;
 	private float v;
@@ -120,9 +118,6 @@ public class MoveToBehaviour : AbstractBehaviour {
 					h = 0;
 					v = 0;
 				}
-//				Debug.Log ("position= "+nextStep.x + " "+nextStep.y+" "+nextStep.z);
-//				Debug.Log ("my position= "+transform.position.x + " "+transform.position.y+" "+transform.position.z);
-//				Debug.Log ("h= " + h + " v=" + v);
 			} else {
 				nextStep = path [0].position;
 
@@ -130,7 +125,6 @@ public class MoveToBehaviour : AbstractBehaviour {
 				v = nextStep.z - transform.position.z;
 			}
 			run = false;
-//			Debug.Log ("h= " + h + " v=" + v);
 			isMoving = Mathf.Abs (h) > 0.1 || Mathf.Abs (v) > 0.1;
 		}
 	}
@@ -160,44 +154,14 @@ public class MoveToBehaviour : AbstractBehaviour {
 		GetComponent<Rigidbody>().AddForce(Vector3.forward*speed);
 	}
 
-	Vector3 Rotating(float horizontal, float vertical)
+	void Rotating(float horizontal, float vertical)
 	{
-//		Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
-//		Vector3 forward = target.transform.TransformDirection(Vector3.left);
-//		forward = forward.normalized;
-//
-//		Vector3 right = new Vector3(forward.z, 0, -forward.x);
-//
-//		Vector3 targetDirection;
-//
-		float finalTurnSmoothing;
-//
-//		targetDirection = forward * vertical + right * horizontal;
-		finalTurnSmoothing = turnSmoothing;
-//
-//		if((isMoving && targetDirection != Vector3.zero) )
-//		{
-//			Quaternion targetRotation = Quaternion.LookRotation (targetDirection, Vector3.up);
-//
-//			Quaternion newRotation = Quaternion.Slerp(GetComponent<Rigidbody>().rotation, targetRotation, finalTurnSmoothing * Time.deltaTime);
-//
-//			GetComponent<Rigidbody>().MoveRotation (newRotation);
-//			lastDirection = targetDirection;
-//		}
 		if((isMoving) )
 		{
 			Debug.Log ("rotation");
 			Vector3 direction = path [0].position - transform.position;
-			transform.rotation = Quaternion.LookRotation (direction);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation (direction), turnSmoothing * Time.deltaTime);
 		}
-
-//		if(!(Mathf.Abs(h) > 0.9 || Mathf.Abs(v) > 0.9))
-//		{
-//			Repositioning();
-//		}
-//
-//		return targetDirection;
-		return Vector3.up;
 	}	
 
 	private void Repositioning()
