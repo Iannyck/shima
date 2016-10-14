@@ -8,7 +8,6 @@ public class OpeningClosingDrawer : MonoBehaviour {
 
     public Animation anim;
    
-
     void Start()
     {
         anim = GetComponent<Animation>();
@@ -17,8 +16,6 @@ public class OpeningClosingDrawer : MonoBehaviour {
             myList[i] = false;
 
     }
-
-    void Update(){}
 
     public void PlayAnim(string name)
     {

@@ -3,16 +3,17 @@ using System.Collections;
 
 public class OpeningClosingDoor : MonoBehaviour {
 
+    // Il sera possible de retirer toutes les fonctions et parametres excepte Start, Animation et SelectAndPlay
+
     public bool isOpen;
     public Animation anim;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         anim = GetComponent<Animation>();
         isOpen = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
@@ -35,5 +36,23 @@ public class OpeningClosingDoor : MonoBehaviour {
     public bool GetStatus()
     {
         return isOpen;
+    }
+
+    public void SelectAndPlayAnimation(State myState)
+    {
+        switch(myState)
+        {
+            case State.Open:
+                {
+                    anim.Play("DoorClosing");
+                    return;
+                }
+
+            case State.Close:
+                {
+                    anim.Play("DoorOpening");
+                    return;
+                }
+        }
     }
 }

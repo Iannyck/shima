@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class PickUp : MonoBehaviour {
 
     private GameObject walkedOverObject;
     private Rigidbody rb;
     private Transform characterTransform;
+
+    public UI_Choice uiChoice;
 
     private bool isPick;
 
@@ -146,6 +149,13 @@ public class PickUp : MonoBehaviour {
                         this.walkedOverObject = walkedOverObjectFx;
                         break;
                     }
+
+                case "Test-UI":
+                    {
+                        this.walkedOverObject = walkedOverObjectFx;
+                        walkedOverObject.GetComponent<UI_Object>().AddUI();
+                        break;
+                    }
             }
 
 
@@ -181,10 +191,16 @@ public class PickUp : MonoBehaviour {
                 case "Door":
                     {
                         if (doorInteraction.GetStatus() == false && guiShow == true)
-                            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Open Door");
+                        {
+                           GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Open Door");
+                        }
+                            
 
                         if (doorInteraction.GetStatus() == true && guiShow == true)
+                        {
                             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 25), "Close Door");
+                        }
+                            
 
                         break;
                     }
@@ -231,9 +247,10 @@ public class PickUp : MonoBehaviour {
                         break;
                     }
 
+            
                 default:
                     break;
             }
         }
-    }      
+    } 
 }

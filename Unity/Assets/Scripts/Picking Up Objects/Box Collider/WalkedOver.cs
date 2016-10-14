@@ -22,7 +22,7 @@ public class WalkedOver : MonoBehaviour {
         //            Debug.Log("TriggeEnter with" + other.gameObject);
 
 
-        if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Light" || other.gameObject.tag == "Electronic" || other.gameObject.tag == "Drawer" || other.gameObject.tag == "Test-RFID")
+        if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Light" || other.gameObject.tag == "Electronic" || other.gameObject.tag == "Drawer" || other.gameObject.tag == "Test-RFID" || other.gameObject.tag == "Test-UI")
         {
             if (walkedOver == null)
             {
@@ -45,9 +45,14 @@ public class WalkedOver : MonoBehaviour {
 
         if (other.gameObject == walkedOver)
         {
-//            Debug.Log("TriggerExit effectue");
+//          Debug.Log("TriggerExit effectue");
+            if (walkedOver.tag == "Test-UI")
+            {
+                walkedOver.GetComponent<UI_Object>().RemoveUI();
+            }
+
             pickUpScript.AddWalkedOverObject(null, null);
-            walkedOver = null;
+            walkedOver = null;       
         }
     }
 
