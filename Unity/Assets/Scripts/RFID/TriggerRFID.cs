@@ -111,9 +111,10 @@ public class TriggerRFID : MonoBehaviour {
 
 	private void InitSmartHomeServerConnection() {
 		GameObject smartHomeServerObject = GameObject.Find ("smarthomeserver");
-		if(smartHomeServer == null)
+		if(smartHomeServerObject == null)
 			Debug.Log("SmartHomeServer Not Loaded");
-		smartHomeServer = smartHomeServerObject.GetComponent<SmartHomeServer> ();
+        else
+		    smartHomeServer = smartHomeServerObject.GetComponent<SmartHomeServer> ();
 	}
 	
 	void Update (){}

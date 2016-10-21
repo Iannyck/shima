@@ -23,16 +23,16 @@ public class NewRFID : MonoBehaviour
     struct ColliderData
     {
         public float signal;
-        public Collider collider;
+        public GameObject collider;
 
-        public ColliderData(float a, Collider b)
+        public ColliderData(float a, GameObject b)
         {
             signal = a;
             collider = b;
         }
     }
 
-    private void StockData(float forceSignal, Collider collider)
+    private void StockData(float forceSignal, GameObject collider)
     {
         ColliderData colliderData = new ColliderData(forceSignal, collider);
         dataList.Add(colliderData);
@@ -43,8 +43,10 @@ public class NewRFID : MonoBehaviour
     // Contient l'ensemble des fonctions MonoBehavior (Start,OnTriggerEnter et OnTriggerExit)
     #region MonoBehavior
 
-    void Start ()
+    void Awake ()
     {
+        dataList = new List<ColliderData>();
+
         zoneDetection = this.transform.Find("ZoneDetection");
 
         if (gestionnaire == null)
@@ -53,16 +55,18 @@ public class NewRFID : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "RFID")
+        if (other.gameObject.GetComponent<ListTagRFID>() != null || other.gameObject.tag == "TEST")
         {
-            float forceSignal = CalculSignalResultant(other);
+            List<GameObject> listeTags = other.gameObject.GetComponent<ListTagRFID>().ListeTags;
 
-            if (isForceStrongEnough(forceSignal))
-                StockData(forceSignal, other);
+            foreach (GameObject a in listeTags)
+            {
+                float forceSignal = CalculSignalResultant(a);
+
+                if (isForceStrongEnough(forceSignal))
+                    StockData(forceSignal, a);
+            }
         }
-
-        else
-            return;
     }
 
     void OnTriggerExit(Collider other)
@@ -87,9 +91,10 @@ public class NewRFID : MonoBehaviour
     private void InitSmartHomeServerConnection()
     {
         GameObject smartHomeServerObject = GameObject.Find("smarthomeserver");
-        if (smartHomeServer == null)
+        if (smartHomeServerObject == null)
             Debug.Log("SmartHomeServer Not Loaded");
-        smartHomeServer = smartHomeServerObject.GetComponent<SmartHomeServer>();
+        else
+            smartHomeServer = smartHomeServerObject.GetComponent<SmartHomeServer>();
     }
 
     private void SendData()
@@ -110,7 +115,7 @@ public class NewRFID : MonoBehaviour
     // Contient l'ensemble des fonctions mathématiques
     #region Calcul
 
-    float CalculSignalResultant(Collider collider) // Calcule la force du signal résultante compte tenu de tous les facteurs (Angle,Obstacle,etc.)
+    float CalculSignalResultant(GameObject collider) // Calcule la force du signal résultante compte tenu de tous les facteurs (Angle,Obstacle,etc.)
     {
         float distance = CalculDistance(collider.transform.position);
         float angle = CalculAngle(collider.transform.position);
@@ -146,11 +151,11 @@ public class NewRFID : MonoBehaviour
     {
         return 0;
     }
-    float CalculPerteSignalObstacle(Collider collider) // Calcule la perte du signal en fonction des obstacles (A REMPLIR)
+    float CalculPerteSignalObstacle(GameObject collider) // Calcule la perte du signal en fonction des obstacles (A REMPLIR)
     {
         return 0;
     }
-    float CalculPerteSignalBruit(Collider collider) // Calcule la perte du signal en fonction du bruit (A REMPLIR)
+    float CalculPerteSignalBruit(GameObject collider) // Calcule la perte du signal en fonction du bruit (A REMPLIR)
     {
         return 0;
     }
@@ -169,10 +174,16 @@ public class NewRFID : MonoBehaviour
     // Contient l'ensemble des fonctions de gestions qui peuvent être utilisé par le gestionnaire du capteur (TokenRing)
     #region Gestion
 
-    public void Desactivate()
+    public void OnDisable()
     {
         SendData();
         dataList.Clear();
+        this.gameObject.SetActive(false);
+    }
+
+    public void OnEnable()
+    {
+        this.gameObject.SetActive(true);
     }
 
     #endregion
