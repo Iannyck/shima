@@ -4,7 +4,20 @@ using System.Collections.Generic;
 
 public class DynamicObjectDetection : MonoBehaviour {
 
-    private List<GameObject> listeDetection = new List<GameObject>();
+    private List<GameObject> listeDetection;
+
+    void Start()
+    {
+        listeDetection = new List<GameObject>();
+    }
+
+    public List<GameObject> ListeDetection
+    {
+        get
+        {
+            return listeDetection;
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
