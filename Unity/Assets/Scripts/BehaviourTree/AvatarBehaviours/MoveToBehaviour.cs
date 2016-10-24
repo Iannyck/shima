@@ -17,6 +17,10 @@ public class MoveToBehaviour : AbstractBehaviour {
 	public GameObject aStarGameObject;
 	private PathFinding aStar;
 
+	private float nodeTime;
+	public float TimeOfNode = 5f;
+	private Node oldNode;
+
 	public MoveToBehaviour (string roomToGo, float speed, Rigidbody playerRigidbody)
 	{
 		this.roomToGo = roomToGo;
@@ -46,6 +50,8 @@ public class MoveToBehaviour : AbstractBehaviour {
 				MovementManagement (h, v, run);
 			}
 		} else {
+			oldNode = aStar.GetCurrentNode (transform.position);
+			nodeTime = TimeOfNode;
 			path = aStar.FindPath (transform.position, target.transform.position);
 			aStar.SetPath (path);
 			isInit = true;
@@ -107,8 +113,10 @@ public class MoveToBehaviour : AbstractBehaviour {
 		Vector3 nextStep;
 		if (path [0] != null) {
 			if (aStar.IsOnThisNode (transform.position, path [0])) {
-				Debug.Log ("next step");
+				//Debug.Log ("next step");
+				oldNode = path[0];
 				path.RemoveAt (0);
+				nodeTime = TimeOfNode;
 				if (path.Count > 0) {
 					nextStep = path [0].position;
 
@@ -119,6 +127,16 @@ public class MoveToBehaviour : AbstractBehaviour {
 					v = 0;
 				}
 			} else {
+				if(aStar.IsOnThisNode(transform.position,oldNode))
+					nodeTime -= Time.deltaTime;
+				if (IsStoped ()) {
+					Node newNode = aStar.GetReplacementNode (oldNode, path [0]);
+					nodeTime = TimeOfNode;
+					//path.Insert (0, newNode);
+					//Debug.Log ("stopped");
+					path [0] = newNode;
+					aStar.SetPath (path);
+				}
 				nextStep = path [0].position;
 
 				h = nextStep.x - transform.position.x;
@@ -158,7 +176,7 @@ public class MoveToBehaviour : AbstractBehaviour {
 	{
 		if((isMoving) )
 		{
-			Debug.Log ("rotation");
+			//Debug.Log ("rotation");
 			Vector3 direction = path [0].position - transform.position;
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation (direction), turnSmoothing * Time.deltaTime);
 		}
@@ -174,5 +192,11 @@ public class MoveToBehaviour : AbstractBehaviour {
 			Quaternion newRotation = Quaternion.Slerp(GetComponent<Rigidbody>().rotation, targetRotation, turnSmoothing * Time.deltaTime);
 			GetComponent<Rigidbody>().MoveRotation (newRotation);
 		}
+	}
+
+	private bool IsStoped() {
+		if (nodeTime <= 0f)
+			return true;
+		return false;
 	}
 }

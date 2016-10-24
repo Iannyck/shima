@@ -92,4 +92,31 @@ public class PathFinding : MonoBehaviour {
 			return true;
 		return false;
 	}
+
+
+	public Node GetReplacementNode(Node currentNode, Node nextNode) {
+		List<Node> currentNodeNeighbours = grid.GetNeighbours (currentNode);
+		List<Node> nextNodeNeighbours = grid.GetNeighbours (nextNode);
+		foreach(Node node in currentNodeNeighbours) {
+			if(node.walkable) {
+				if(IsNodeInNeighbours(node,nextNodeNeighbours)) {
+					return node;
+				}
+			}
+		}
+		return null;
+	}
+
+	private bool IsNodeInNeighbours(Node node, List<Node> neighbours) {
+		foreach(Node cnode in neighbours) {
+			if (cnode.gridX == node.gridX && cnode.gridY == node.gridY)
+				return true;
+		}
+		return false;
+	}
+
+	public Node GetCurrentNode(Vector3 position) {
+		return grid.NodeFromWorldPoint(position);
+	}
+	
 }

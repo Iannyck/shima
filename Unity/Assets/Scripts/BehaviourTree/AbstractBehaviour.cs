@@ -1,12 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Abstract behaviour.
+/// An abstract behaviour is 
+/// </summary>
 public abstract class AbstractBehaviour : MonoBehaviour {
 
+	/// <summary>
+	/// State of the AbstractBehaviour.
+	/// </summary>
 	public enum State {Running, Suceeded, Failed};
 
 	public abstract State Execute ();
 
+	/// <summary>
+	/// The current state of the behaviour.
+	/// </summary>
 	private State behaviourState;
 
 	// Use this for initialization
