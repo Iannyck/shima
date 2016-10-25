@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Grid.
+/// </summary>
 public class Grid : MonoBehaviour {
 
 	public Vector2 gridWorldSize;
@@ -12,9 +15,14 @@ public class Grid : MonoBehaviour {
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
 
+	/// <summary>
+	/// The path to show on the grid.
+	/// </summary>
 	public List<Node> path;
 
-
+	/// <summary>
+	/// Raises the draw gizmos event.
+	/// </summary>
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube (transform.position, new Vector3 (gridWorldSize.x, 1, gridWorldSize.y));
 		if (grid != null) {
@@ -34,6 +42,9 @@ public class Grid : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Start this instance.
+	/// </summary>
 	void Start() {
 		nodeDiameter = nodeRadius * 2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -41,6 +52,9 @@ public class Grid : MonoBehaviour {
 		CreateGrid ();
 	}
 
+	/// <summary>
+	/// Creates the grid.
+	/// </summary>
 	void CreateGrid() {
 		grid = new Node[gridSizeX, gridSizeY];
 		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
@@ -53,6 +67,11 @@ public class Grid : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Nodes from world point.
+	/// </summary>
+	/// <returns>The from world point.</returns>
+	/// <param name="worldPosition">World position.</param>
 	public Node NodeFromWorldPoint(Vector3 worldPosition) {
 		float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
 		float percentY = (worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y;
@@ -64,6 +83,11 @@ public class Grid : MonoBehaviour {
 		return grid [x, y];
 	}
 
+	/// <summary>
+	/// Gets the node neighbours.
+	/// </summary>
+	/// <returns>The neighbours.</returns>
+	/// <param name="node">Node.</param>
 	public List<Node> GetNeighbours(Node node) {
 		List<Node> neighbours = new List<Node> ();
 
@@ -82,4 +106,5 @@ public class Grid : MonoBehaviour {
 		}
 		return neighbours;
 	}
+
 }
