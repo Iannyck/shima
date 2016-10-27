@@ -21,6 +21,14 @@ public class MoveToBehaviour : AbstractBehaviour {
 	public float TimeOfNode = 5f;
 	private Node oldNode;
 
+	public MoveToBehaviour ()
+	{
+	}
+
+	public override void Init ()
+	{
+	}
+
 	public MoveToBehaviour (string roomToGo, float speed, Rigidbody playerRigidbody)
 	{
 		this.roomToGo = roomToGo;
@@ -132,8 +140,8 @@ public class MoveToBehaviour : AbstractBehaviour {
 				if (IsStoped ()) {
 					Node newNode = aStar.GetReplacementNode (oldNode, path [0]);
 					nodeTime = TimeOfNode;
-					//path.Insert (0, newNode);
-					//Debug.Log ("stopped");
+//					path.Insert (0, newNode);
+//					Debug.Log ("stopped");
 					path [0] = newNode;
 					aStar.SetPath (path);
 				}

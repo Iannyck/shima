@@ -12,6 +12,8 @@ public abstract class AbstractBehaviour : MonoBehaviour {
 	/// </summary>
 	public enum State {Running, Suceeded, Failed};
 
+	public abstract void Init ();
+
 	public abstract State Execute ();
 
 	/// <summary>
@@ -22,6 +24,7 @@ public abstract class AbstractBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		behaviourState = State.Running;
+		Init ();
 	}
 
 	// Update is called once per frame

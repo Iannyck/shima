@@ -3,10 +3,19 @@ using System.Collections;
 
 public class Sequence : BehaviourOperator {
 
-	int currentBehaviourIndex;
+	private int currentBehaviourIndex;
+
+	public override void Init ()
+	{
+		currentBehaviourIndex = 0;
+	}
+
+	public Sequence(AbstractBehaviour[] behaviours) {
+		this.behaviours = behaviours;
+	}
 
 	public Sequence() {
-		currentBehaviourIndex = 0;
+		this.behaviours = null;
 	}
 
 	public override State Execute ()
