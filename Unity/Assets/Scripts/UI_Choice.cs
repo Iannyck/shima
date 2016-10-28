@@ -57,19 +57,19 @@ public class UI_Choice : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Box(new Rect(Screen.width - 100, 0, 100, 120), "Choice Menu");
+        GUI.Box(new Rect(Screen.width - 150, 0, 150, 120), "Choice Menu");
 
-        if (GUI.Button(new Rect(Screen.width - 100, hauteurChoix*1, 100, 20), listeEvent[0].text))
+        if (GUI.Button(new Rect(Screen.width - 150, hauteurChoix*1, 150, 20), listeEvent[0].text))
         {
             listeEvent[0].unEvent.Invoke();
         }
 
-        if (GUI.Button(new Rect(Screen.width - 100, hauteurChoix * 2, 100, 20), listeEvent[1].text))
+        if (GUI.Button(new Rect(Screen.width - 150, hauteurChoix * 2, 150, 20), listeEvent[1].text))
         {
             listeEvent[1].unEvent.Invoke();
         }
 
-        if (GUI.Button(new Rect(Screen.width - 100, hauteurChoix * 3, 100, 20), listeEvent[2].text))
+        if (GUI.Button(new Rect(Screen.width - 150, hauteurChoix * 3, 150, 20), listeEvent[2].text))
         {
             listeEvent[2].unEvent.Invoke();
         }

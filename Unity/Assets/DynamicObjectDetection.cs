@@ -21,7 +21,7 @@ public class DynamicObjectDetection : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Door" || other.gameObject.tag == "PickUp" || other.gameObject.tag == "Light" || other.gameObject.tag == "Electronic" || other.gameObject.tag == "Drawer")
+        if (other.gameObject.tag == "UI_Object")
         {
             if (!listeDetection.Contains(other.gameObject))
             {

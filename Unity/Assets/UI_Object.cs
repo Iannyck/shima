@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 public class UI_Object : MonoBehaviour
 {
+    // Contient l'ensemble des parametres publics et prives de la classe
+    #region Parametres
+
     public UI_Choice uiChoice = null;
     private Transform characterTransform = null;
 
@@ -21,8 +24,14 @@ public class UI_Object : MonoBehaviour
     private State myState;
   
     public Type myType;
+    public State initialState;
     public string objectName = null;
-    
+
+    #endregion
+
+    // Contient l'ensemble des fonctions MonoBehavior (Awake)
+    #region MonoBehavior
+
     void Awake()
     {
         UI_Choice uiChoice = GameObject.FindWithTag("UI_Manager").GetComponent<UI_Choice>();
@@ -35,28 +44,28 @@ public class UI_Object : MonoBehaviour
             case Type.Door:
                 {
                     doorScript = GetComponent<OpeningClosingDoor>();
-                    myState = State.Close;
+                    myState = initialState;
                     break;
                 }
 
             case Type.Drawer:
                 {
-                    drawerScript = GetComponent<OpeningClosingDrawer>();
-                    myState = State.Close;
+                    drawerScript = GetComponentInParent<OpeningClosingDrawer>();
+                    myState = initialState;
                     break;
                 }
 
             case Type.Electronic:
                 {
                     electronicScript = GetComponent<ElectronicDevice>();
-                    myState = State.Close;
+                    myState = initialState;
                     break;
                 }
 
             case Type.Light:
                 {
                     electronicScript = GetComponent<ElectronicDevice>();
-                    myState = State.Close;
+                    myState = initialState;
                     break;
                 }
 
@@ -64,13 +73,18 @@ public class UI_Object : MonoBehaviour
                 {
                     characterTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
                     rb = GetComponent<Rigidbody>();
-                    myState = State.Drop;
+                    myState = initialState;
                     break;
                 }
         }
     }
 
-    public void AddUI()
+    #endregion
+
+    // Contient l'ensemble des fonctions qui permettent la mise à jour du UI
+    #region MAJ_UI
+
+    public void AddUI() // Permet d'ajouter le texte dans la liste des choix 
     {
         if (myEvent == null)
         {
@@ -78,9 +92,9 @@ public class UI_Object : MonoBehaviour
             myEvent = uiChoice.AddChoice(displayText);
             myEvent.AddListener(OnClick);
         }
-    }
+    } 
 
-    public void RemoveUI()
+    public void RemoveUI() // Permet d'ajouter le texte de la liste des choix 
     {
         if (myEvent != null)
         {
@@ -90,7 +104,7 @@ public class UI_Object : MonoBehaviour
         }
     }
 
-    private void DecideText()
+    private void DecideText()// Permet de déterminer le texte à afficher en fonction de l'état et du nom de l'objet 
     {
         switch (myState)
         {
@@ -120,7 +134,7 @@ public class UI_Object : MonoBehaviour
         }
     }
 
-    private void ChangeState()
+    private void ChangeState() // Permet de déterminer le texte à afficher en fonction de l'état et du nom de l'objet 
     {
         switch (myState)
         {
@@ -179,7 +193,7 @@ public class UI_Object : MonoBehaviour
 
     }
     
-    private void Action()
+    private void Action() // Permet de déterminer l'action à effectuer en fonction du type de l'objet et de son état 
     {
         switch (myType)
         {
@@ -191,8 +205,8 @@ public class UI_Object : MonoBehaviour
 
             case Type.Drawer:
                 {
-                    drawerScript.PlayAnim(this.name);
-                    return;
+                   drawerScript.PlayAnim(this.gameObject.name);
+                   return;
                 }
 
             case Type.Electronic:
@@ -236,11 +250,13 @@ public class UI_Object : MonoBehaviour
         }
     }	
 
-    private void OnClick()
+    private void OnClick() // Permet de déterminer les actions à effectuer lorsque l'utilisateur appuie sur le choix 
     {
         Action();
         ChangeState();
         DecideText();  
         uiChoice.UpdateChoice(myEvent, displayText);  
     }
+
+    #endregion
 }
