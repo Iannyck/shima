@@ -79,7 +79,7 @@ public class NewRFID : MonoBehaviour
                 return;
             }
 
-            Debug.Log("ERREUR: " + other.name + " ne se trouve pas dans la liste");
+            // Debug.Log("ERREUR: " + other.name + " ne se trouve pas dans la liste");
         }
     }
 
@@ -149,11 +149,26 @@ public class NewRFID : MonoBehaviour
 
     float CalculPerteSignalAngle(float angle) // Calcule la perte du signal en fonction de l'angle (A REMPLIR)
     {
+        // Utiliser la valeur de l'angle afin de déterminer la dégradation
         return 0;
     }
     float CalculPerteSignalObstacle(GameObject collider) // Calcule la perte du signal en fonction des obstacles (A REMPLIR)
     {
-        return 0;
+        RaycastHit hitInfo;
+
+        Debug.DrawLine(this.transform.position, collider.transform.position, Color.white, 10f);
+
+        Physics.Linecast(this.transform.position, collider.transform.position, out hitInfo);
+        {
+            if (hitInfo.collider.CompareTag("Fixed") || hitInfo.collider.CompareTag("Door"))                                   // Si le collider est un objet de type Fixed, la puissance doit etre diminue
+            {
+                // Déterminer la dégradation en fonction du type d'objet entre le capteur et le tag
+                return 0;
+            }
+
+            else
+                return 0;
+        }
     }
     float CalculPerteSignalBruit(GameObject collider) // Calcule la perte du signal en fonction du bruit (A REMPLIR)
     {

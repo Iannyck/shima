@@ -23,10 +23,14 @@ public class DynamicObjectDetection : MonoBehaviour {
     {
         if (other.gameObject.tag == "UI_Object")
         {
-            if (!listeDetection.Contains(other.gameObject))
+            if (other.gameObject.transform.GetComponent<UI_Object>() != null)
             {
-                listeDetection.Add(other.gameObject);
-                other.gameObject.GetComponent<UI_Object>().AddUI();
+
+                if (!listeDetection.Contains(other.gameObject))
+                {
+                    listeDetection.Add(other.gameObject);
+                    other.gameObject.GetComponent<UI_Object>().AddUI();
+                }
             }
         }
     }

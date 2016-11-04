@@ -55,21 +55,49 @@ public class UI_Choice : MonoBehaviour
         listeEvent.Add(event3);
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown("1"))
+        {
+            if (!listeEvent[0].IsEmpty())
+            {
+                listeEvent[0].unEvent.Invoke();
+            }
+        }
+
+        if (Input.GetKeyDown("2"))
+        {
+            if (!listeEvent[1].IsEmpty())
+            {
+                listeEvent[1].unEvent.Invoke();
+            }
+        }
+
+        if (Input.GetKeyDown("3"))
+        {
+            if (!listeEvent[2].IsEmpty())
+            {
+                listeEvent[2].unEvent.Invoke();
+            }
+        }
+
+    }
+
     void OnGUI()
     {
-        GUI.Box(new Rect(Screen.width - 150, 0, 150, 120), "Choice Menu");
+        GUI.Box(new Rect(Screen.width - 200, 0, 200, 120), "Choice Menu");
 
-        if (GUI.Button(new Rect(Screen.width - 150, hauteurChoix*1, 150, 20), listeEvent[0].text))
+        if (GUI.Button(new Rect(Screen.width - 200, hauteurChoix*1, 200, 20), listeEvent[0].text))
         {
             listeEvent[0].unEvent.Invoke();
         }
 
-        if (GUI.Button(new Rect(Screen.width - 150, hauteurChoix * 2, 150, 20), listeEvent[1].text))
+        if (GUI.Button(new Rect(Screen.width - 200, hauteurChoix * 2, 200, 20), listeEvent[1].text))
         {
             listeEvent[1].unEvent.Invoke();
         }
 
-        if (GUI.Button(new Rect(Screen.width - 150, hauteurChoix * 3, 150, 20), listeEvent[2].text))
+        if (GUI.Button(new Rect(Screen.width - 200, hauteurChoix * 3, 200, 20), listeEvent[2].text))
         {
             listeEvent[2].unEvent.Invoke();
         }
@@ -81,7 +109,7 @@ public class UI_Choice : MonoBehaviour
         {
             if (listeEvent[i].IsEmpty())
             {
-                listeEvent[i].Initialize(texte);
+                listeEvent[i].Initialize((i+1)+": " +texte);
                 return listeEvent[i].unEvent;
             }
         }
@@ -110,7 +138,7 @@ public class UI_Choice : MonoBehaviour
         {
             if (listeEvent[i].unEvent == a)
             {
-                listeEvent[i].text = b;
+                listeEvent[i].text = (i+1)+": " + b;
                 return;
             }
         }
