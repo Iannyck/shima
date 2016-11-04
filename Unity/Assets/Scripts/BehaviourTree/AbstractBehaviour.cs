@@ -7,10 +7,18 @@ using System.Collections;
 /// </summary>
 public abstract class AbstractBehaviour : MonoBehaviour {
 
+
+	public bool AutoRun = false;
+
 	/// <summary>
 	/// State of the AbstractBehaviour.
 	/// </summary>
-	public enum State {Running, Suceeded, Failed};
+	public enum State {Stopped, Running, Suceeded, Failed};
+
+	/// <summary>
+	/// The name of the AbstractBehaviour.
+	/// </summary>
+	public string BName;
 
 	public abstract void Init ();
 
@@ -21,10 +29,32 @@ public abstract class AbstractBehaviour : MonoBehaviour {
 	/// </summary>
 	private State behaviourState;
 
+	public State BehaviourState {
+		get {
+			return this.behaviourState;
+		}
+	}
+
+	/// <summary>
+	/// Run this instance.
+	/// </summary>
+	public void Run() {
+		behaviourState = State.Running;
+	}
+
+	/// <summary>
+	/// Pause this instance.
+	/// </summary>
+	public void Pause() {
+		behaviourState = State.Stopped;
+	}
+
 	// Use this for initialization
 	void Start () {
-		behaviourState = State.Running;
+		behaviourState = State.Stopped;
 		Init ();
+		if (AutoRun)
+			Run ();
 	}
 
 	// Update is called once per frame

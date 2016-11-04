@@ -5,8 +5,7 @@ using System.Collections.Generic;
 public class MoveToBehaviour : AbstractBehaviour {
 
 	public string roomToGo;
-	public GameObject target;
-	public float avatarSpeed;
+	private GameObject targetRoom;
 
 	private bool isInit = false;
 	private List<Node> path;
@@ -27,6 +26,21 @@ public class MoveToBehaviour : AbstractBehaviour {
 
 	public override void Init ()
 	{
+		MindMap mindMap = GetComponent<MindMap> ();
+		targetRoom = mindMap.GetRoomPoint (roomToGo);
+	}
+
+	public void PathInit() {
+		aStar = aStarGameObject.GetComponent<PathFinding> ();
+
+		anim = GetComponent<Animator> ();
+		//		cameraTransform = Camera.main.transform;
+
+		speedFloat = Animator.StringToHash ("Speed");
+		hFloat = Animator.StringToHash ("H");
+		vFloat = Animator.StringToHash ("V");
+
+		groundedBool = Animator.StringToHash ("Grounded");
 	}
 
 	public MoveToBehaviour (string roomToGo, float speed, Rigidbody playerRigidbody)
@@ -39,6 +53,7 @@ public class MoveToBehaviour : AbstractBehaviour {
 	public override State Execute ()
 	{
 		if (isInit) {
+			Debug.Log ("Moi "+ BName);
 			if (IsTargetRoomReached ()) {
 				h = 0;
 				v = 0;
@@ -58,9 +73,12 @@ public class MoveToBehaviour : AbstractBehaviour {
 				MovementManagement (h, v, run);
 			}
 		} else {
+//			if (aStar == null)
+//				Debug.Log ("TEST");
+			PathInit ();
 			oldNode = aStar.GetCurrentNode (transform.position);
 			nodeTime = TimeOfNode;
-			path = aStar.FindPath (transform.position, target.transform.position);
+			path = aStar.FindPath (transform.position, targetRoom.transform.position);
 			aStar.SetPath (path);
 			isInit = true;
 		}
@@ -102,20 +120,6 @@ public class MoveToBehaviour : AbstractBehaviour {
 	private bool run;
 
 	private bool isMoving;
-
-	void Awake()
-	{
-		aStar = aStarGameObject.GetComponent<PathFinding> ();
-
-		anim = GetComponent<Animator> ();
-//		cameraTransform = Camera.main.transform;
-
-		speedFloat = Animator.StringToHash("Speed");
-		hFloat = Animator.StringToHash("H");
-		vFloat = Animator.StringToHash("V");
-
-		groundedBool = Animator.StringToHash("Grounded");
-	}
 
 	void GetHV() {
 		Vector3 nextStep;

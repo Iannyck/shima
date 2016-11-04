@@ -1,29 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Sequence : BehaviourOperator {
+public abstract class Sequence : BehaviourOperator {
 
-	private int currentBehaviourIndex;
+	private int currentBehaviourIndex = 0;
 
-	public override void Init ()
-	{
-		currentBehaviourIndex = 0;
-	}
-
-	public Sequence(AbstractBehaviour[] behaviours) {
-		this.behaviours = behaviours;
-	}
-
-	public Sequence() {
-		this.behaviours = null;
-	}
+//	public override void Init ()
+//	{
+//		currentBehaviourIndex = 0;
+//	}
 
 	public override State Execute ()
 	{
-		if (currentBehaviourIndex >= behaviours.Length)
+		if (currentBehaviourIndex >= Behaviours.Length)
 			return State.Suceeded;
 		else {
-			State behaviourState = behaviours [currentBehaviourIndex].Execute ();
+			if (Behaviours [currentBehaviourIndex].BehaviourState == State.Stopped)
+				Behaviours [currentBehaviourIndex].Run ();
+			State behaviourState = Behaviours [currentBehaviourIndex].BehaviourState;
 			if (behaviourState == State.Suceeded) {
 				currentBehaviourIndex++;
 			} else if (behaviourState == State.Failed)

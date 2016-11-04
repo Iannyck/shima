@@ -27,6 +27,8 @@ public class MindMap : MonoBehaviour {
 	}
 
 	public GameObject GetRoomPoint(string name) {
-		return (GameObject)mindMap[name];
+		if(mindMap.ContainsKey(name))
+			return (GameObject)mindMap[name];
+		return null;
 	}
 }
