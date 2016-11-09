@@ -55,6 +55,7 @@ public class MoveToBehaviour : AbstractBehaviour {
 		if (isInit) {
 			Debug.Log ("Moi "+ BName);
 			if (IsTargetRoomReached ()) {
+//				Debug.Log ("Moi target reached "+ BName);
 				h = 0;
 				v = 0;
 				anim.SetFloat (hFloat, h);
@@ -65,6 +66,7 @@ public class MoveToBehaviour : AbstractBehaviour {
 				return State.Suceeded;
 			}
 			else {
+//				Debug.Log ("Moi move "+ BName);
 				GetHV ();
 				anim.SetFloat (hFloat, h);
 				anim.SetFloat (vFloat, v);
@@ -73,13 +75,15 @@ public class MoveToBehaviour : AbstractBehaviour {
 				MovementManagement (h, v, run);
 			}
 		} else {
-//			if (aStar == null)
-//				Debug.Log ("TEST");
 			PathInit ();
 			oldNode = aStar.GetCurrentNode (transform.position);
 			nodeTime = TimeOfNode;
-			path = aStar.FindPath (transform.position, targetRoom.transform.position);
-			aStar.SetPath (path);
+			if (targetRoom != null) {
+				path = aStar.FindPath (transform.position, targetRoom.transform.position);
+				aStar.SetPath (path);
+			} else {
+				Debug.Log ("The room for " + BName +"does not exist");
+			}
 			isInit = true;
 		}
 		return State.Running;

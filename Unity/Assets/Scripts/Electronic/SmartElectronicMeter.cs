@@ -52,8 +52,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 			
 			foreach(Request request in requestPool) {
 				request.Execute (phase1, phase2, phase3);
-				request.State = Request.RequestState.DeltaGiven;
-
+				request.IsRequestDone = true;
 				if (logger != null)
 					logger.PhasesStates (phase1, phase2, phase3);
 				else {
@@ -91,11 +90,14 @@ public class SmartElectronicMeter : MonoBehaviour {
 	/// <param name="delta_reactive_power_phase3">Delta reactive power phase3.</param>
 	public Request RequestForEnergy(int delta_active_power_phase1, int delta_reactive_power_phase1, int delta_active_power_phase2, 
 		int delta_reactive_power_phase2, int delta_active_power_phase3, int delta_reactive_power_phase3) {
-
 		Request request = new Request (delta_active_power_phase1, delta_reactive_power_phase1, delta_active_power_phase2, 
 			delta_reactive_power_phase2, delta_active_power_phase3, delta_reactive_power_phase3);
 		requestPool.Add (request);
 		return request;
+	}
+
+	public void ResquestForRevert(Request request) {
+		requestPool.Add (request);
 	}
 
 

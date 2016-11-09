@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FlowMeasurement : MonoBehaviour {
+public class FlowMeasurement : UsableDevice {
 
-	// Use this for initialization
-	void Start () {
-	
+	protected override bool Init ()
+	{
+		throw new System.NotImplementedException ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	protected override State OnOn ()
+	{
+		throw new System.NotImplementedException ();
+	}
+
+	protected override State OnClose ()
+	{
+		throw new System.NotImplementedException ();
+	}
+
+	protected override State OnOpening ()
+	{
+		throw new System.NotImplementedException ();
+	}
+
+	protected override State OnClosing ()
+	{
+		throw new System.NotImplementedException ();
 	}
 }

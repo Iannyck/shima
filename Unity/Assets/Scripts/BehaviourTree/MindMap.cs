@@ -3,10 +3,6 @@ using System.Collections;
 
 public class MindMap : MonoBehaviour {
 
-	public GameObject kitchenPoint;
-	public GameObject livingroomPoint;
-	public GameObject bedroomPoint;
-
 	private Hashtable mindMap;
 
 	private Hashtable objectsMap;
@@ -15,10 +11,14 @@ public class MindMap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GameObject[] points = GameObject.FindGameObjectsWithTag ("RoomPoint");
+
 		mindMap = new Hashtable ();
-		mindMap.Add ("kitchen", kitchenPoint);
-		mindMap.Add ("livingroom", livingroomPoint);
-		mindMap.Add ("bedroom", bedroomPoint);
+		foreach(GameObject point in points){
+			mindMap.Add (point.name, point);
+		}
+
+//		Debug.Log (mindMap.Keys.Count);
 	}
 	
 	// Update is called once per frame
@@ -27,8 +27,8 @@ public class MindMap : MonoBehaviour {
 	}
 
 	public GameObject GetRoomPoint(string name) {
-		if(mindMap.ContainsKey(name))
-			return (GameObject)mindMap[name];
+		if(mindMap.ContainsKey(name+"Point"))
+			return (GameObject)mindMap[name+"Point"];
 		return null;
 	}
 }

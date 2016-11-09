@@ -75,22 +75,22 @@ public class ElectronicDevice : UsableDevice {
 
 	protected override State OnClose ()
 	{
-		powerRequest = smartElectronicMeterScript.RequestForEnergy (-effective_delta_active_power_phase1, -effective_delta_reactive_power_phase1
-			, -effective_delta_active_power_phase2, -effective_delta_reactive_power_phase2, -effective_delta_active_power_phase3, -effective_delta_reactive_power_phase3);
+		powerRequest.Revert();
+		smartElectronicMeterScript.ResquestForRevert(powerRequest);
 		return State.Closing;
 	}
 
 	protected override State OnOpening ()
 	{
-		if(powerRequest.State == Request.RequestState.DeltaGiven)
+		if(powerRequest.IsRequestDone == true)
 			return State.On;
 		return State.Opening;
 	}
 
 	protected override State OnClosing ()
 	{
-		if(powerRequest.State == Request.RequestState.DeltaGiven)
-			deviceState = State.Off;
+		if(powerRequest.IsRequestDone == true)
+			return State.Off;
 		return State.Closing;
 	}
 

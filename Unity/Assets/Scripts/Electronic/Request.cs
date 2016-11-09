@@ -5,13 +5,11 @@
 /// </summary>
 public class Request {
 
-	public enum RequestState : byte {NotStarted, DeltaGiven}
-
 	private Action actionOnPhase1;
 	private Action actionOnPhase2;
 	private Action actionOnPhase3;
 
-	private RequestState state;
+	private bool isRequestDone;
 
 	public Request (int delta_active_power_phase1, int delta_reactive_power_phase1, int delta_active_power_phase2, 
 		int delta_reactive_power_phase2, int delta_active_power_phase3, int delta_reactive_power_phase3)
@@ -19,7 +17,7 @@ public class Request {
 		actionOnPhase1 = new Action(delta_active_power_phase1, delta_reactive_power_phase1);
 		actionOnPhase2 = new Action(delta_active_power_phase2, delta_reactive_power_phase2);
 		actionOnPhase3 = new Action(delta_active_power_phase3, delta_reactive_power_phase3);
-		state = RequestState.NotStarted;
+		isRequestDone = false;
 	}
 
 	public void Execute(Phase phase1, Phase phase2, Phase phase3) {
@@ -28,13 +26,20 @@ public class Request {
 		actionOnPhase3.Execute (phase3);
 	}
 
-	public RequestState State {
+	public bool IsRequestDone {
 		get {
-			return this.state;
+			return this.isRequestDone;
 		}
 		set {
-			state = value;
+			isRequestDone = value;
 		}
+	}
+
+	public void Revert() {
+		actionOnPhase1.Revert ();
+		actionOnPhase2.Revert ();
+		actionOnPhase3.Revert ();
+		isRequestDone = false;
 	}
 
 	/// <summary>
@@ -67,6 +72,9 @@ public class Request {
 			phase.AddReactive_power (delta_reactive_power);
 		}
 
-
+		public void Revert() {
+			delta_active_power = delta_active_power * (-1);
+			delta_reactive_power = delta_reactive_power * (-1);
+		}
 	}
 }

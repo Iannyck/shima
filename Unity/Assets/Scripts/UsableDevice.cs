@@ -5,10 +5,16 @@ public abstract class UsableDevice : MonoBehaviour {
 
 	public enum State : byte {Off, On, Opening, Closing}
 
-	public bool OnOffButtonPressed = false;
+	private bool OnOffButtonPressed = false;
 	protected State deviceState;
 
-	public bool IsInit = false;
+	private bool isInit = false;
+
+	public bool IsInit {
+		get {
+			return this.isInit;
+		}
+	}
 
 	public State DeviceState {
 		get {
@@ -20,22 +26,25 @@ public abstract class UsableDevice : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (IsInit) {
+		if (isInit) {
 			if (OnOffButtonPressed) {
+//				Debug.Log ("ITEM "+name+" : "+deviceState);
 				if (DeviceState == State.Off) {
 					deviceState = OnOn ();
 				} else if (DeviceState == State.On) {
 					deviceState = OnClose ();
 				} else if (DeviceState == State.Opening) {
 					deviceState = OnOpening ();
-					OnOffButtonPressed = false;
+					if(deviceState == State.On)
+						OnOffButtonPressed = false;
 				} else if (DeviceState == State.Closing) {
 					deviceState = OnClosing ();
-					OnOffButtonPressed = false;
+					if(deviceState == State.Off)
+						OnOffButtonPressed = false;
 				}
 			}
 		} else
-			IsInit = Init ();
+			isInit = Init ();
 	}
 
 	public void ActOn(){ 
@@ -46,6 +55,10 @@ public abstract class UsableDevice : MonoBehaviour {
 
 	protected abstract State OnClose ();
 
+
+	/// <summary>
+	/// Raises the opening event. 
+	/// </summary>
 	protected abstract State OnOpening ();
 
 	protected abstract State OnClosing ();
