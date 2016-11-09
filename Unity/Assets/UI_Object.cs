@@ -90,7 +90,9 @@ public class UI_Object : MonoBehaviour
         {
             DecideText();
             myEvent = uiChoice.AddChoice(displayText);
-            myEvent.AddListener(OnClick);
+
+            if (myEvent != null)
+                myEvent.AddListener(OnClick);
         }
     } 
 
@@ -168,8 +170,6 @@ public class UI_Object : MonoBehaviour
                 }
         }
 
-
-
         if (myState == State.Open)
         {
             Debug.Log("Open vers Close");
@@ -235,7 +235,6 @@ public class UI_Object : MonoBehaviour
                         this.transform.parent = null;
                         rb.useGravity = true;
                         rb.isKinematic = false;
-                        rb = null;
                     }
 
                     else if (myState == State.Drop)
