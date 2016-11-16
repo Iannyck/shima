@@ -34,8 +34,13 @@ public class SmartHomeServer : MonoBehaviour {
 		database.InsertElectricityData (timestamp, phaseId, activePower, reactivePower);
 	}
 
+	public void InsertFlowMeasurementData(string timestamp, string id, bool value) {
+		database.InsertFlowMeasurementData(timestamp, id, value);
+	}
+
 	private void WriteData() {
 		StartCoroutine(database.commitElectricityData ());
 		StartCoroutine(database.commitRFIDData ());
+		StartCoroutine(database.commitFlowmeasurementData ());
 	}
 }

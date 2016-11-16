@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Sequence : BehaviourOperator {
+public class Sequence : MultipleBehaviourOperator {
 
-	private int currentBehaviourIndex = 0;
+	private int currentBehaviourIndex;
 
-//	public override void Init ()
-//	{
-//		currentBehaviourIndex = 0;
-//	}
+	public override void Init ()
+	{
+		currentBehaviourIndex = 0;
+	}
 
 	public override State Execute ()
 	{

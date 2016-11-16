@@ -3,28 +3,46 @@ using System.Collections;
 
 public class FlowMeasurement : UsableDevice {
 
+	private SmartHomeServer shServer;
+
+	public AudioClip audio;
+
 	protected override bool Init ()
 	{
-		throw new System.NotImplementedException ();
+		if (shServer == null) {
+			GameObject smartHomeServer = GameObject.Find ("smarthomeserver");
+			if(smartHomeServer == null)
+				Debug.Log("SmartHomeServer Not Loaded");
+
+			shServer = smartHomeServer.GetComponent<SmartHomeServer> ();
+			return true;
+		}
+		return false;
 	}
 
 	protected override State OnOn ()
 	{
-		throw new System.NotImplementedException ();
+		if (audio != null)
+			AudioSource.PlayClipAtPoint (audio,transform.position);
+		string timestamp = System.DateTime.Now.ToLongTimeString();
+		shServer.InsertFlowMeasurementData (timestamp, name, true);
+		return State.Opening;
 	}
 
 	protected override State OnClose ()
 	{
-		throw new System.NotImplementedException ();
+		string timestamp = System.DateTime.Now.ToLongTimeString();
+		shServer.InsertFlowMeasurementData (timestamp, name, false);
+		return State.Closing;
 	}
 
 	protected override State OnOpening ()
 	{
-		throw new System.NotImplementedException ();
+		return State.On;
 	}
 
 	protected override State OnClosing ()
 	{
-		throw new System.NotImplementedException ();
+		return State.Off;
 	}
 }

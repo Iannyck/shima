@@ -7,7 +7,9 @@ using System.Collections;
 /// </summary>
 public abstract class AbstractBehaviour : MonoBehaviour {
 
-
+	/// <summary>
+	/// Indicates if this instance has to start by itself.
+	/// </summary>
 	public bool AutoRun = false;
 
 	/// <summary>
@@ -20,8 +22,14 @@ public abstract class AbstractBehaviour : MonoBehaviour {
 	/// </summary>
 	public string BName;
 
+	/// <summary>
+	/// Init this instance.
+	/// </summary>
 	public abstract void Init ();
 
+	/// <summary>
+	/// Execute this instance.
+	/// </summary>
 	public abstract State Execute ();
 
 	/// <summary>
@@ -29,6 +37,10 @@ public abstract class AbstractBehaviour : MonoBehaviour {
 	/// </summary>
 	private State behaviourState;
 
+	/// <summary>
+	/// Gets the state of the behaviour.
+	/// </summary>
+	/// <value>The state of the behaviour.</value>
 	public State BehaviourState {
 		get {
 			return this.behaviourState;

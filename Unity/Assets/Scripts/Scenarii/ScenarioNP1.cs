@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScenarioNP1 : Sequence {
+public class ScenarioNP1 : AbstractScript {
 
 	public string roomToGo1;
 	public string roomToGo2;
@@ -9,7 +9,7 @@ public class ScenarioNP1 : Sequence {
 	public GameObject aStar;
 	public Rigidbody playerRigidbody;
 
-	public override void Init ()
+	protected override AbstractBehaviour InitScript ()
 	{
 		this.BName = "Scenario1";
 
@@ -35,8 +35,11 @@ public class ScenarioNP1 : Sequence {
 		uDBehaviour.BName = "Act";
 		behaviours [2] = uDBehaviour;
 
-		this.Behaviours = behaviours;
+//		this.Behaviours = behaviours;
+		Sequence sequence = gameObject.AddComponent (typeof(Sequence)) as Sequence;
+		sequence.Behaviours = behaviours;
 
+		return sequence;
 //		this.Run ();
 	}
 	

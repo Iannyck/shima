@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CallForBus : Sequence {
+public class CallForBus : AbstractScript {
 
 	public GameObject phone;
 	public GameObject aStar;
 	public Rigidbody playerRigidbody;
 
-	public override void Init ()
+	protected override AbstractBehaviour InitScript ()
 	{
 
-		this.BName = "Call for pieces of information";
+		this.BName = "Call for bus";
 
 		AbstractBehaviour[] behaviours = new AbstractBehaviour[2];
 		MoveToBehaviour behaviour = gameObject.AddComponent(typeof(MoveToBehaviour)) as MoveToBehaviour;
@@ -26,7 +26,11 @@ public class CallForBus : Sequence {
 		uDBehaviour.BName = "Call";
 		behaviours [1] = uDBehaviour;
 
-		this.Behaviours = behaviours;
+//		this.Behaviours = behaviours;
+		Sequence sequence = gameObject.AddComponent (typeof(Sequence)) as Sequence;
+		sequence.Behaviours = behaviours;
+
+		return sequence;
 	}
 
 }

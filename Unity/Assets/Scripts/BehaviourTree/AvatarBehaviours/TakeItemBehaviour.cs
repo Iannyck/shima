@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TakeItemBehaviour : MonoBehaviour {
+public class TakeItemBehaviour : AbstractBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public GameObject DeviceToTake;
+
+	public override void Init ()
+	{
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public override State Execute ()
+	{
+		UI_Object item = DeviceToTake.GetComponent<UI_Object> ();
+		item.Action ();
+		return State.Suceeded;
 	}
 }

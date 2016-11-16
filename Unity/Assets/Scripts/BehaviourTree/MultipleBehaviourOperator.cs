@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class BehaviourOperator : AbstractBehaviour {
+public abstract class MultipleBehaviourOperator : AbstractBehaviour {
 
 	private AbstractBehaviour[] behaviours;
 

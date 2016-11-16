@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ReleaseItemBehaviour : MonoBehaviour {
+public class ReleaseItemBehaviour : AbstractBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public GameObject DeviceToRelease;
+
+	public override void Init ()
+	{
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public override State Execute ()
+	{
+		UI_Object item = DeviceToRelease.GetComponent<UI_Object> ();
+		item.Action ();
+		return State.Suceeded;
 	}
 }

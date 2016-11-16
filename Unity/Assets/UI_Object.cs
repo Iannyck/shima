@@ -193,7 +193,7 @@ public class UI_Object : MonoBehaviour
 
     }
     
-    private void Action() // Permet de déterminer l'action à effectuer en fonction du type de l'objet et de son état 
+    public void Action() // Permet de déterminer l'action à effectuer en fonction du type de l'objet et de son état 
     {
         switch (myType)
         {

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AnswerThePhone : Sequence {
+public class AnswerThePhone : AbstractScript {
 
 //	public AudioClip RingPhone;
 	public GameObject phone;
 	public GameObject aStar;
 	public Rigidbody playerRigidbody;
 
-	public override void Init ()
+	protected override AbstractBehaviour InitScript ()
 	{
 //		if (RingPhone != null)
 //			AudioSource.PlayClipAtPoint (RingPhone,phone.transform.position);
@@ -31,7 +31,11 @@ public class AnswerThePhone : Sequence {
 		uDBehaviour.BName = "Answer";
 		behaviours [1] = uDBehaviour;
 
-		this.Behaviours = behaviours;
+//		this.Behaviours = behaviours;
+		Sequence sequence = gameObject.AddComponent (typeof(Sequence)) as Sequence;
+		sequence.Behaviours = behaviours;
+
+		return sequence;
 
 	}
 
