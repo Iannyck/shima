@@ -53,7 +53,7 @@ public class DatabaseService {
 			electricityWWWForm = new WWWForm ();
 			electricityDataCounter = 0;
 		} else {
-			Debug.Log ("WWW post ERROR: "+ www.error);
+//			Debug.Log ("WWW post ERROR: "+ www.error);
 			electricityWWWForm = new WWWForm ();
 			electricityDataCounter = 0;
 		}
@@ -68,7 +68,7 @@ public class DatabaseService {
 			rfidWWWForm = new WWWForm ();
 			rfidDataCounter = 0;
 		} else {
-			Debug.Log ("WWW post ERROR: "+ www.error);
+//			Debug.Log ("WWW post ERROR: "+ www.error);
 			rfidWWWForm = new WWWForm ();
 			rfidDataCounter = 0;
 		}
@@ -83,7 +83,7 @@ public class DatabaseService {
 			flowmeasurementWWWForm = new WWWForm ();
 			flowmeasurementDataCounter = 0;
 		} else {
-			Debug.Log ("WWW post ERROR: "+ www.error);
+//			Debug.Log ("WWW post ERROR: "+ www.error);
 			flowmeasurementWWWForm = new WWWForm ();
 			flowmeasurementDataCounter = 0;
 		}

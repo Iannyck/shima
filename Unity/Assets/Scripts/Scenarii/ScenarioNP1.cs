@@ -14,19 +14,19 @@ public class ScenarioNP1 : AbstractScript {
 		this.BName = "Scenario1";
 
 		AbstractBehaviour[] behaviours = new AbstractBehaviour[3];
-		MoveToBehaviour behaviour = gameObject.AddComponent(typeof(MoveToBehaviour)) as MoveToBehaviour;
-		behaviour.playerRigidbody = playerRigidbody;
+		GoToBehaviour behaviour = gameObject.AddComponent(typeof(GoToBehaviour)) as GoToBehaviour;
+		behaviour.avatarRigidbody = playerRigidbody;
 		behaviour.roomToGo = roomToGo1;
 		behaviour.aStarGameObject = aStar;
-		behaviour.PathInit ();
+//		behaviour.PathInit ();
 		behaviour.BName = "Move1";
 		behaviours [0] = behaviour;
 
-		behaviour = gameObject.AddComponent(typeof(MoveToBehaviour)) as MoveToBehaviour;
-		behaviour.playerRigidbody = playerRigidbody;
+		behaviour = gameObject.AddComponent(typeof(GoToBehaviour)) as GoToBehaviour;
+		behaviour.avatarRigidbody = playerRigidbody;
 		behaviour.roomToGo = roomToGo2;
 		behaviour.aStarGameObject = aStar;
-		behaviour.PathInit ();
+//		behaviour.PathInit ();
 		behaviour.BName = "Move2";
 		behaviours [1] = behaviour;
 

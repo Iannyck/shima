@@ -48,7 +48,14 @@ public class PathFinding : MonoBehaviour {
 					continue;
 				}
 
-				int newMovementCostToNeighbour = currentNode.gCost + GetDistance (currentNode, neighbour);
+				int penality = 0;
+				if (IsNearToUnwalkable (neighbour)) {
+					penality = 1000;
+				}
+
+//				int newMovementCostToNeighbour = currentNode.gCost + GetDistance (currentNode, neighbour);
+				int newMovementCostToNeighbour = currentNode.gCost + GetDistance (currentNode, neighbour) + penality;
+//				Debug.Log (newMovementCostToNeighbour + "gCost "+neighbour.gCost);
 				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains (neighbour)) {
 					neighbour.gCost = newMovementCostToNeighbour;
 					neighbour.hCost = GetDistance (neighbour, targetNode);
@@ -92,8 +99,7 @@ public class PathFinding : MonoBehaviour {
 			return true;
 		return false;
 	}
-
-
+		
 	public Node GetReplacementNode(Node currentNode, Node nextNode) {
 		List<Node> currentNodeNeighbours = grid.GetNeighbours (currentNode);
 		List<Node> nextNodeNeighbours = grid.GetNeighbours (nextNode);
@@ -118,5 +124,15 @@ public class PathFinding : MonoBehaviour {
 	public Node GetCurrentNode(Vector3 position) {
 		return grid.NodeFromWorldPoint(position);
 	}
+
+	private bool IsNearToUnwalkable(Node node) {
+		List<Node> neighbour = grid.GetNeighbours (node);
+		foreach(Node cnode in neighbour){
+			if (!cnode.walkable)
+				return true;
+		}
+		return false;
+	}
+
 	
 }

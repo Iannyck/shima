@@ -136,7 +136,7 @@ public class UI_Object : MonoBehaviour
         }
     }
 
-    private void ChangeState() // Permet de déterminer le texte à afficher en fonction de l'état et du nom de l'objet 
+    public void ChangeState() // Permet de déterminer le texte à afficher en fonction de l'état et du nom de l'objet 
     {
         switch (myState)
         {
@@ -232,6 +232,7 @@ public class UI_Object : MonoBehaviour
                 {
                     if (myState == State.Pick)
                     {
+//					Debug.Log ("Take");
                         this.transform.parent = null;
                         rb.useGravity = true;
                         rb.isKinematic = false;
@@ -239,6 +240,7 @@ public class UI_Object : MonoBehaviour
 
                     else if (myState == State.Drop)
                     {
+//					Debug.Log ("Release");
                         this.transform.parent = characterTransform;
                         rb.useGravity = false;
                         rb.isKinematic = true;
@@ -247,7 +249,16 @@ public class UI_Object : MonoBehaviour
                     return;
                 }
         }
-    }	
+    }
+
+	public void PutItemAt(float x, float y, float z) {
+//		Debug.Log (this.transform.position.x + "," + this.transform.position.y + "," + this.transform.position.z);
+//		this.transform.position = new Vector3 (0, 0, 0);
+		this.transform.position = new Vector3 (x, y, z);
+//		Debug.Log (newPosition.x + "," + newPosition.y + "," + newPosition.z);
+//		transform.Translate (newPosition.x, newPosition.y, newPosition.z);
+//		Debug.Log (this.transform.position.x + "," + this.transform.position.y + "," + this.transform.position.z);
+	}
 
     private void OnClick() // Permet de déterminer les actions à effectuer lorsque l'utilisateur appuie sur le choix 
     {

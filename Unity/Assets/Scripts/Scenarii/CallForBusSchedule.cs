@@ -13,11 +13,11 @@ public class CallForBus : AbstractScript {
 		this.BName = "Call for bus";
 
 		AbstractBehaviour[] behaviours = new AbstractBehaviour[2];
-		MoveToBehaviour behaviour = gameObject.AddComponent(typeof(MoveToBehaviour)) as MoveToBehaviour;
-		behaviour.playerRigidbody = playerRigidbody;
+		GoToBehaviour behaviour = gameObject.AddComponent(typeof(GoToBehaviour)) as GoToBehaviour;
+		behaviour.avatarRigidbody = playerRigidbody;
 		behaviour.roomToGo = "Phone";
 		behaviour.aStarGameObject = aStar;
-		behaviour.PathInit ();
+//		behaviour.PathInit ();
 		behaviour.BName = "Move";
 		behaviours [0] = behaviour;
 
