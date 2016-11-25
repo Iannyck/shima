@@ -10,6 +10,8 @@ public class DatabaseService {
 	private int rfidDataCounter;
 	private WWWForm flowmeasurementWWWForm;
 	private int flowmeasurementDataCounter;
+	private WWWForm ultrasoundWWWForm;
+	private int ultrasoundDataCounter;
 
 	public DatabaseService(string url){
 		this.url = url;
@@ -19,6 +21,8 @@ public class DatabaseService {
 		rfidDataCounter = 0;
 		flowmeasurementWWWForm = new WWWForm ();
 		flowmeasurementDataCounter = 0;
+		ultrasoundWWWForm = new WWWForm ();
+		ultrasoundDataCounter = 0;
 	}
 
 	public void InsertRFIDData(string timestamp, string antenaId, float signalStrenght, string tagId) {
@@ -44,6 +48,13 @@ public class DatabaseService {
 		flowmeasurementDataCounter++;
 	}
 
+	public void InsertUltrasoundData(string timestamp, string id, float value) {
+		ultrasoundWWWForm.AddField ("timestamp"+ultrasoundDataCounter,""+timestamp);
+		ultrasoundWWWForm.AddField ("id"+ultrasoundDataCounter,""+id);
+		ultrasoundWWWForm.AddField ("value"+ultrasoundDataCounter,""+value);
+		ultrasoundDataCounter++;
+	}
+
 	public IEnumerator commitElectricityData() {
 		electricityWWWForm.AddField ("electricityDataCounter",""+electricityDataCounter);
 		WWW www = new WWW (url+"electricity", electricityWWWForm);
@@ -53,7 +64,7 @@ public class DatabaseService {
 			electricityWWWForm = new WWWForm ();
 			electricityDataCounter = 0;
 		} else {
-//			Debug.Log ("WWW post ERROR: "+ www.error);
+			Debug.Log ("WWW post ERROR: "+ www.error);
 			electricityWWWForm = new WWWForm ();
 			electricityDataCounter = 0;
 		}
@@ -68,7 +79,7 @@ public class DatabaseService {
 			rfidWWWForm = new WWWForm ();
 			rfidDataCounter = 0;
 		} else {
-//			Debug.Log ("WWW post ERROR: "+ www.error);
+			Debug.Log ("WWW post ERROR: "+ www.error);
 			rfidWWWForm = new WWWForm ();
 			rfidDataCounter = 0;
 		}
@@ -83,9 +94,24 @@ public class DatabaseService {
 			flowmeasurementWWWForm = new WWWForm ();
 			flowmeasurementDataCounter = 0;
 		} else {
-//			Debug.Log ("WWW post ERROR: "+ www.error);
+			Debug.Log ("WWW post ERROR: "+ www.error);
 			flowmeasurementWWWForm = new WWWForm ();
 			flowmeasurementDataCounter = 0;
+		}
+	}
+
+	public IEnumerator commitUltrasoundData() {
+		ultrasoundWWWForm.AddField ("ultrasoundDataCounter",""+ultrasoundDataCounter);
+		WWW www = new WWW (url+"ultrasound", ultrasoundWWWForm);
+		yield return www;
+		if (www.error == null) {
+			Debug.Log ("WWW post OK: "+ www.text);
+			ultrasoundWWWForm = new WWWForm ();
+			ultrasoundDataCounter = 0;
+		} else {
+			Debug.Log ("WWW post ERROR: "+ www.error);
+			ultrasoundWWWForm = new WWWForm ();
+			ultrasoundDataCounter = 0;
 		}
 	}
 

@@ -75,6 +75,17 @@ def index():
     print(request.forms.get("id"+str(0)))
     return "200"
 
+@route('/data/ultrasound', method='POST')
+def index():
+    ultrasoundDataCounter = request.forms.get("ultrasoundDataCounter")
+    for i in range(0, int(ultrasoundDataCounter)):
+        timestamp = request.forms.get("timestamp"+str(i))
+        id = request.forms.get("id"+str(i))
+        value = request.forms.get("value"+str(i))
+        cursor.execute("insert into Ultrasound (timestamp, id, value) values (?,?,?)", (timestamp, id, value))
+        connection.commit()
+    print(request.forms.get("id"+str(0)))
+    return "200"
 
 connection = sqlite3.connect("smarthome.db")
 cursor = connection.cursor()
@@ -87,6 +98,8 @@ connection.commit()
 cursor.execute("create table if not exists Ultrasound (timestamp character(255), sensorId character(255))")
 connection.commit()
 cursor.execute("create table if not exists Flowmeasurement (timestamp character(255), sensorId character(255), boolean value)")
+connection.commit()
+cursor.execute("create table if not exists Ultrasound (timestamp character(255), sensorId character(255), value integer)")
 connection.commit()
 
 run(host='localhost', port=8080, debug=True)

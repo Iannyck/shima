@@ -20,7 +20,7 @@ public class MakeADish : AbstractScript {
 	{
 		this.BName = "Make a dish";
 
-		AbstractBehaviour[] behaviours = new AbstractBehaviour[16];
+		AbstractBehaviour[] behaviours = new AbstractBehaviour[22];
 		behaviours [0] = CreateGoToBehaviour("Kitchen");
 
 		behaviours [1] = CreateGoToBehaviour("KitchenDevices");
@@ -52,6 +52,18 @@ public class MakeADish : AbstractScript {
 		behaviours [14] = CreateTakeItemBehaviour(dish);
 
 		behaviours [15] = CreateGoToBehaviour("DiningTable");
+
+		behaviours [16] = CreatePutItemAtBehaviour(dish, 25.1f, 11.41f, 40.4f);
+
+		behaviours [17] = CreateGoToBehaviour("Cooker");
+
+		behaviours [18] = CreateTakeItemBehaviour(frypan);
+
+		behaviours [19] = CreateGoToBehaviour("DiningTable");
+
+		behaviours [20] = CreateAtomicActivityBehaviour("Put Eggs into dish", 4f);
+
+		behaviours [21] = CreateGoToBehaviour("KitchenSink");
 			
 		Sequence sequence = gameObject.AddComponent (typeof(Sequence)) as Sequence;
 		sequence.Behaviours = behaviours;
