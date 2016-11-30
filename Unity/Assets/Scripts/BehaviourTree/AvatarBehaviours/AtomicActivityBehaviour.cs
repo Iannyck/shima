@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AtomicActivityBehaviour : AbstractBehaviour {
 
+	public GameObject smartHomeServer;
+
 	public enum AnimationType
 	{
 		NOTHING
@@ -16,6 +18,10 @@ public class AtomicActivityBehaviour : AbstractBehaviour {
 
 	public override void Init ()
 	{
+		if (smartHomeServer != null) {
+			SensorsGUI gui = smartHomeServer.GetComponent<SensorsGUI> ();
+			gui.SetDebugText (7, BName);
+		}
 		durationLeft = duration;
 	}
 

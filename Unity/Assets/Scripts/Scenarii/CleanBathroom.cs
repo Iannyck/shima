@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CleanBathroom : AbstractScript {
 
+	public GameObject smartHomeServer;
 
 	public float duration = 15.0f;
 	public GameObject toilet;
@@ -13,6 +14,12 @@ public class CleanBathroom : AbstractScript {
 	protected override AbstractBehaviour InitScript ()
 	{
 		this.BName = "Clean bathroom";
+
+		if (smartHomeServer != null) {
+			SensorsGUI gui = smartHomeServer.GetComponent<SensorsGUI> ();
+			gui.SetDebugText (9, BName);
+			gui.BehaviourTreeToShow = this;
+		}
 
 		AbstractBehaviour[] behaviours = new AbstractBehaviour[5];
 		GoToBehaviour behaviour = gameObject.AddComponent(typeof(GoToBehaviour)) as GoToBehaviour;

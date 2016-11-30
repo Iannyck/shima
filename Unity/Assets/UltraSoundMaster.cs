@@ -31,9 +31,10 @@ public class UltraSoundMaster : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        CheckDetection();
+//        CheckDetection();
     }
 
+	/*
     void CheckDetection()
     {
         if (detection1 == true)
@@ -82,6 +83,7 @@ public class UltraSoundMaster : MonoBehaviour {
         }
 
     }
+    */
 
     void ResetAll()
     {

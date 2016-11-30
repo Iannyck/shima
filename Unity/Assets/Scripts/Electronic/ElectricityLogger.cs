@@ -22,7 +22,7 @@ public class ElectricityLogger : MonoBehaviour {
 
 	void OnGUI() {
 		if(showElectricityData)
-			ShowElectronicData(2, 400);
+			ShowElectronicData(2, 300);
 		if (showElectronicCharts) {
 			ShowElectronicChart (700, 32, 300, 200, phases1, "Phase 1");
 			ShowElectronicChart (700, 264, 300, 200, phases2, "Phase 2");

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public abstract class MultipleBehaviourOperator : AbstractBehaviour {
 
@@ -13,5 +14,7 @@ public abstract class MultipleBehaviourOperator : AbstractBehaviour {
 			behaviours = value;
 		}
 	}
+
+	public abstract List<AbstractBehaviour> GetActiveBehaviours();
 
 }

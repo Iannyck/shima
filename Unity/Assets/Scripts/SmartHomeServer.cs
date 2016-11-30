@@ -14,7 +14,7 @@ public class SmartHomeServer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentTime = deltaTime;
-		database = new DatabaseService (url);
+		database = new DatabaseService (url,GetComponent<SensorsGUI>() as SensorsGUI);
 	}
 	
 	// Update is called once per frame
@@ -34,13 +34,18 @@ public class SmartHomeServer : MonoBehaviour {
 		database.InsertElectricityData (timestamp, phaseId, activePower, reactivePower);
 	}
 
-	public void InsertFlowMeasurementData(string timestamp, string id, bool value) {
-		database.InsertFlowMeasurementData(timestamp, id, value);
+	public void InsertBinarySensorData(string timestamp, string id, string type, bool value) {
+		database.InsertBinarySensorData(timestamp, id, type, value);
+	}
+
+	public void InsertUltrasoundData(string timestamp, string id, float value) {
+		database.InsertUltrasoundData(timestamp, id, value);
 	}
 
 	private void WriteData() {
 		StartCoroutine(database.commitElectricityData ());
 		StartCoroutine(database.commitRFIDData ());
-		StartCoroutine(database.commitFlowmeasurementData ());
+		StartCoroutine(database.commitBinarySensorData ());
+		StartCoroutine(database.commitUltrasoundData ());
 	}
 }

@@ -24,4 +24,10 @@ public class Parallel : MultipleBehaviourOperator {
 			return State.Suceeded;
 		return State.Running;
 	}
+
+	public override System.Collections.Generic.List<AbstractBehaviour> GetActiveBehaviours ()
+	{
+		return new System.Collections.Generic.List<AbstractBehaviour>(Behaviours);
+	}
+
 }

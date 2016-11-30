@@ -10,7 +10,7 @@ public class PutItemAtBehaviour : AbstractBehaviour {
 
 	public override void Init ()
 	{
-		Debug.Log (BName);
+//		Debug.Log (BName);
 	}
 
 	public override State Execute ()

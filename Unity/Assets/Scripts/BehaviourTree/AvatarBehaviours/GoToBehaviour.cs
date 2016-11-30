@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class GoToBehaviour : AbstractBehaviour {
 
+	public GameObject smartHomeServer;
+
 	/// <summary>
 	/// The name of the room to go.
 	/// </summary>
@@ -164,6 +166,10 @@ public class GoToBehaviour : AbstractBehaviour {
 	/// </summary>
 	public override void Init (){
 //		Debug.Log ("Init "+ BName);
+		if (smartHomeServer != null) {
+			SensorsGUI gui = smartHomeServer.GetComponent<SensorsGUI> ();
+			gui.SetDebugText (8, BName);
+		}
 		objectDetection = GetComponent<DynamicObjectDetection> ();
 		if (aStarGameObject == null) {
 			aStarGameObject = GameObject.Find ("AStar");

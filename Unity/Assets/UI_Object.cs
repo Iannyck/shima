@@ -89,10 +89,12 @@ public class UI_Object : MonoBehaviour
         if (myEvent == null)
         {
             DecideText();
-            myEvent = uiChoice.AddChoice(displayText);
+			if (uiChoice != null) {
+				myEvent = uiChoice.AddChoice (displayText);
 
-            if (myEvent != null)
-                myEvent.AddListener(OnClick);
+				if (myEvent != null)
+					myEvent.AddListener (OnClick);
+			}
         }
     } 
 

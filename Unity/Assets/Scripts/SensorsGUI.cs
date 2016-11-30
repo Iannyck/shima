@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SensorsGUI : MonoBehaviour {
 
@@ -9,12 +10,24 @@ public class SensorsGUI : MonoBehaviour {
 	private bool showElectricityChartPhase2;
 	private bool showElectricityChartPhase3;
 	private bool showDebugText;
+	private bool showBehaviourTree;
+
+	private AbstractBehaviour behaviourTreeToShow;
 
 	private string[] debugText;
 
 	private float deltaTime = 0.0f;
 
 	private bool showFPS;
+
+	public AbstractBehaviour BehaviourTreeToShow {
+		get {
+			return this.behaviourTreeToShow;
+		}
+		set {
+			behaviourTreeToShow = value;
+		}
+	}
 
 	private ElectricityLogger electricityLogger;
 
@@ -26,10 +39,12 @@ public class SensorsGUI : MonoBehaviour {
 		showElectricityChartPhase2 = false;
 		showElectricityChartPhase3 = false;
 		showDebugText = false;
+		showBehaviourTree = false;
 		debugText = new string[10];
 		showFPS = false;
 		deltaTime = 0.0f;
 
+		behaviourTreeToShow = null;
 		electricityLogger = GetComponent<ElectricityLogger> ();
 	}
 	
@@ -51,6 +66,9 @@ public class SensorsGUI : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.C)) {
 				electricityLogger.ShowElectronicCharts = !electricityLogger.ShowElectronicCharts;
 			}
+			if (Input.GetKeyDown (KeyCode.A)) {
+				showBehaviourTree = !showBehaviourTree;
+			}
 		}
 		deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
 	}
@@ -62,6 +80,8 @@ public class SensorsGUI : MonoBehaviour {
 			ShowHelp (2, 24, 200, 200);
 		if(showDebugText)
 			ShowDebug (300, 30, 300, 300);
+		if(showBehaviourTree)
+			ShowBehaviourTree (2, 500, 300, 128);
 		float msec = deltaTime * 1000.0f;
 		float fps = 1.0f / deltaTime;
 		if (showFPS) {
@@ -88,6 +108,7 @@ public class SensorsGUI : MonoBehaviour {
 		GUI.Label (new Rect (x + 8, y + 32, witdh - 32, 24), "Press 'b' to show debug");
 		GUI.Label (new Rect (x + 8, y + 48, witdh - 32, 24), "Press 'f' to show FPS");
 		GUI.Label (new Rect (x + 8, y + 64, witdh - 32, 24), "Press 'r' to show data");
+		GUI.Label (new Rect (x + 8, y + 80, witdh - 32, 24), "Press 'a' to show activity");
 	}
 
 	public void ShowDebug(int x, int y, int witdh, int heigth) {
@@ -102,5 +123,34 @@ public class SensorsGUI : MonoBehaviour {
 	public void SetDebugText(int number, string text) {
 		debugText [number] = text;
 	}
+
+	private void ShowBehaviourTree(int x, int y, int witdh, int heigth) {
+		if(behaviourTreeToShow != null) {
+			GUI.Box (new Rect (x, y, witdh, heigth), "Activity Tree");
+			AbstractBehaviour current = behaviourTreeToShow;
+			int deltaX = 8;
+			int deltaY = 16;
+			string indent = "";
+			while(current != null) {
+				GUI.Label (new Rect (x + deltaX, y + deltaY, witdh - 32, 24), indent + current.BName);
+				if (current is Sequence) {
+					List<AbstractBehaviour> sub = ((Sequence)current).GetActiveBehaviours ();
+					if (sub.Count == 1) {
+						current = sub [0];
+						indent += "-";
+						deltaY += 24;
+					} else
+						current = null;
+				} else if (current is AbstractScript) {
+					current = ((AbstractScript)current).Behaviour;
+					indent += "-";
+					deltaY += 24;
+				} else
+					current = null;
+			}
+		}
+	}
+
+
 		
 }

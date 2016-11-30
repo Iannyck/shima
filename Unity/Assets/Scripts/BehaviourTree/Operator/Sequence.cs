@@ -8,6 +8,7 @@ public class Sequence : MultipleBehaviourOperator {
 	public override void Init ()
 	{
 		currentBehaviourIndex = 0;
+		BName = "Sequence";
 	}
 
 	public override State Execute ()
@@ -24,5 +25,12 @@ public class Sequence : MultipleBehaviourOperator {
 				return State.Failed;
 		}
 		return State.Running;
+	}
+
+	public override System.Collections.Generic.List<AbstractBehaviour> GetActiveBehaviours ()
+	{
+		System.Collections.Generic.List<AbstractBehaviour> list = new System.Collections.Generic.List<AbstractBehaviour> ();
+		list.Add (Behaviours [currentBehaviourIndex]);
+		return list;
 	}
 }

@@ -63,14 +63,15 @@ def index():
         connection.commit()
     return "200"
 
-@route('/data/flowmeasurement', method='POST')
+@route('/data/binarySensor', method='POST')
 def index():
-    flowmeasurementDataCounter = request.forms.get("flowmeasurementDataCounter")
-    for i in range(0, int(flowmeasurementDataCounter)):
+    binarySensorDataCounter = request.forms.get("binarySensorDataCounter")
+    for i in range(0, int(binarySensorDataCounter)):
         timestamp = request.forms.get("timestamp"+str(i))
         id = request.forms.get("id"+str(i))
+        type = request.forms.get("type"+str(i))
         value = request.forms.get("value"+str(i))
-        cursor.execute("insert into Flowmeasurement (timestamp, id, value) values (?,?,?)", (timestamp, id, value))
+        cursor.execute("insert into BinarySensor (timestamp, sensorId, type, value) values (?,?,?,?)", (timestamp, id, type, value))
         connection.commit()
     print(request.forms.get("id"+str(0)))
     return "200"
@@ -82,7 +83,7 @@ def index():
         timestamp = request.forms.get("timestamp"+str(i))
         id = request.forms.get("id"+str(i))
         value = request.forms.get("value"+str(i))
-        cursor.execute("insert into Ultrasound (timestamp, id, value) values (?,?,?)", (timestamp, id, value))
+        cursor.execute("insert into Ultrasound (timestamp, sensorId, value) values (?,?,?)", (timestamp, id, value))
         connection.commit()
     print(request.forms.get("id"+str(0)))
     return "200"
@@ -93,11 +94,9 @@ cursor.execute("create table if not exists Electricity (timestamp character(255)
 connection.commit()
 cursor.execute("create table if not exists RFID (timestamp character(255), antenaId character(255), signalStrenght integer, tagId character(255))")
 connection.commit()
-cursor.execute("create table if not exists RFIDName (timestamp character(255), antenaId character(255))")
+cursor.execute("create table if not exists TagRFIDName (timestamp character(255), tagId character(255), tagName character(255))")
 connection.commit()
-cursor.execute("create table if not exists Ultrasound (timestamp character(255), sensorId character(255))")
-connection.commit()
-cursor.execute("create table if not exists Flowmeasurement (timestamp character(255), sensorId character(255), boolean value)")
+cursor.execute("create table if not exists BinarySensor (timestamp character(255), sensorId character(255), type character(255), value boolean)")
 connection.commit()
 cursor.execute("create table if not exists Ultrasound (timestamp character(255), sensorId character(255), value integer)")
 connection.commit()

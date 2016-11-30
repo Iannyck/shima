@@ -7,6 +7,7 @@ public class OverlapSphere : MonoBehaviour
     private MovementDetection[] tableau;
 
     public int taille;
+	public float range = 100;
     public bool movement;
 
     int layerMask = 1 << 9; // Layer : RFID
@@ -113,7 +114,7 @@ public class OverlapSphere : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 45);
+        Gizmos.DrawSphere(transform.position, range);
     }
 
     int CompareCollider(GameObject a)
