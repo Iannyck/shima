@@ -6,6 +6,7 @@ public class PIRSensor : MonoBehaviour {
 
 	public float range = 100f;
 	public float cooldown = 1f;
+	public float tolerance = 0f;
 	private float currentCooldown;
 	private bool canDetect;
 
@@ -47,12 +48,17 @@ public class PIRSensor : MonoBehaviour {
 							canDetect = false;
 							string timestamp = System.DateTime.Now.ToLongTimeString ();
 							smartHomeServerScript.InsertBinarySensorData (timestamp, name, "PIRSensor", true);
-//							Debug.Log ("Detected "+hitColliders [i].name);
+							Debug.Log ("Detected "+hitColliders [i].name);
 						} else {
 						}
 					}
-					if(!detected.Contains(hitColliders [i].gameObject))
-						detected.Add (hitColliders [i].gameObject, new MovementDetection(hitColliders [i].gameObject));
+					if (!detected.Contains (hitColliders [i].gameObject)) {
+//						detected.Add (hitColliders [i].gameObject, new MovementDetection (hitColliders [i].gameObject));
+						Vector3 position = new Vector3(hitColliders [i].gameObject.transform.position.x,
+							hitColliders [i].gameObject.transform.position.y
+							,hitColliders [i].gameObject.transform.position.z);
+						detected.Add (hitColliders [i].gameObject, position);
+					}
 				}
 				if (detectedEntity != null)
 					detectedEntity.Clear ();
@@ -72,7 +78,8 @@ public class PIRSensor : MonoBehaviour {
 			if (!detectedEntity.Contains (hit.gameObject))
 				return true;
 			else {
-				return ((MovementDetection)detectedEntity [hit.gameObject]).HasMoved (hit.gameObject);
+//				return ((MovementDetection)detectedEntity [hit.gameObject]).HasMoved (hit.gameObject);
+				return HasMoved(hit.gameObject);
 			}
 		}
 		return false;
@@ -84,27 +91,46 @@ public class PIRSensor : MonoBehaviour {
 		Gizmos.DrawSphere(transform.position, range);
 	}
 
-	private class MovementDetection
-	{
-		private float x,y,z;
-
-		public MovementDetection (GameObject entity)
-		{
-			this.x = entity.transform.position.x;
-			this.y = entity.transform.position.y;
-			this.z = entity.transform.position.z;
-		}
-
-		public bool HasMoved(GameObject entityNewPosition) {
-			if ((x == entityNewPosition.transform.position.x)
-			   && (y == entityNewPosition.transform.position.y)
-			   && (z == entityNewPosition.transform.position.z))
-				return false;
+	private bool HasMoved(GameObject entityNewPosition) {
+		Vector3 entityOldPosition = ((Vector3)detectedEntity[entityNewPosition]);
+		float delta = Mathf.Abs(entityOldPosition.x - entityNewPosition.transform.position.x);
+		delta += Mathf.Abs(entityOldPosition.y - entityNewPosition.transform.position.y);
+		delta += Mathf.Abs(entityOldPosition.z - entityNewPosition.transform.position.z);
+		if (delta > tolerance)
 			return true;
-		}
-		
-		
+		return false;
 	}
+
+//	private class MovementDetection
+//	{
+//		private float x,y,z;
+//
+//		public MovementDetection (GameObject entity)
+//		{
+//			this.x = entity.transform.position.x;
+//			this.y = entity.transform.position.y;
+//			this.z = entity.transform.position.z;
+//		}
+//
+//		public bool HasMoved(GameObject entityNewPosition) {
+//			float delta = Mathf.Abs(x - entityNewPosition.transform.position.x);
+//			delta += Mathf.Abs(y - entityNewPosition.transform.position.y);
+//			delta += Mathf.Abs(z - entityNewPosition.transform.position.z);
+//			if (delta > tolerance)
+//				return true;
+//			return false;
+//		}
+//
+////		public bool HasMoved(GameObject entityNewPosition) {
+////			if ((x == entityNewPosition.transform.position.x)
+////			   && (y == entityNewPosition.transform.position.y)
+////			   && (z == entityNewPosition.transform.position.z))
+////				return false;
+////			return true;
+////		}
+//		
+//		
+//	}
 
 
 
