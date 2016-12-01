@@ -64,7 +64,7 @@ public class OverlapSphere : MonoBehaviour
 
     void Update()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(capteurTransform.position, 45, layerMask);
+        Collider[] hitColliders = Physics.OverlapSphere(capteurTransform.position, range, layerMask);
 
         if (hitColliders.Length != 0)
         {
@@ -117,7 +117,7 @@ public class OverlapSphere : MonoBehaviour
         Gizmos.DrawSphere(transform.position, range);
     }
 
-    int CompareCollider(GameObject a)
+    private int CompareCollider(GameObject a)
     {
         for (int i= 0; i < taille; i++)
         {

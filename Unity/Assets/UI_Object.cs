@@ -20,6 +20,8 @@ public class UI_Object : MonoBehaviour
     private OpeningClosingDrawer drawerScript = null;
     private ElectronicDevice electronicScript = null;
 
+	private DDContactSensor contactSensor = null;
+
     private string displayText = null;
     private State myState;
   
@@ -44,6 +46,7 @@ public class UI_Object : MonoBehaviour
             case Type.Door:
                 {
                     doorScript = GetComponent<OpeningClosingDoor>();
+					contactSensor = GetComponent<DDContactSensor> ();
                     myState = initialState;
                     break;
                 }
@@ -51,6 +54,7 @@ public class UI_Object : MonoBehaviour
             case Type.Drawer:
                 {
                     drawerScript = GetComponentInParent<OpeningClosingDrawer>();
+					contactSensor = GetComponent<DDContactSensor> ();
                     myState = initialState;
                     break;
                 }
@@ -201,33 +205,34 @@ public class UI_Object : MonoBehaviour
         {
             case Type.Door:
                 {
-                    doorScript.SelectAndPlayAnimation(myState);
-                    return;
+				doorScript.SelectAndPlayAnimation(myState);
+				if (contactSensor != null)
+					contactSensor.Switch ();
+				return;
                 }
 
             case Type.Drawer:
                 {
-                   drawerScript.PlayAnim(this.gameObject.name);
-                   return;
+				drawerScript.PlayAnim(this.gameObject.name);
+				if (contactSensor != null)
+					contactSensor.Switch ();
+				return;
                 }
 
             case Type.Electronic:
                 {
-                    electronicScript.ActOn();
-                    return;
+				electronicScript.ActOn();
+				return;
                 }
 
             case Type.Light:
                 {
-                    electronicScript.ActOn();
-
-                    if (myState == State.Open)
-                        this.transform.GetChild(0).GetComponent<Light>().enabled = false;
-
-                    else if (myState == State.Close)
-                        this.transform.GetChild(0).GetComponent<Light>().enabled = true;
-
-                    return;
+				electronicScript.ActOn();
+				if (myState == State.Open)
+					this.transform.GetChild(0).GetComponent<Light>().enabled = false;
+				else if (myState == State.Close)
+					this.transform.GetChild(0).GetComponent<Light>().enabled = true;
+				return;
                 }
 
             case Type.PickUp:
