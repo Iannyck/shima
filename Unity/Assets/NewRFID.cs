@@ -99,15 +99,13 @@ public class NewRFID : MonoBehaviour
 
     private void SendData()
     {
-        string timestamp = System.DateTime.Now.ToLongTimeString();
-
         if (smartHomeServer == null)
             InitSmartHomeServerConnection();
 
         else
         {
             for (int i = 0; i < dataList.Count; i++)
-                smartHomeServer.InsertRFIDData(timestamp, antennaID, dataList[i].signal, dataList[i].collider.name);
+                smartHomeServer.InsertRFIDData(antennaID, dataList[i].signal, dataList[i].collider.name);
         }
     }
     #endregion
@@ -160,7 +158,7 @@ public class NewRFID : MonoBehaviour
 
         Physics.Linecast(this.transform.position, collider.transform.position, out hitInfo);
         {
-            if (hitInfo.collider.CompareTag("Fixed") || hitInfo.collider.CompareTag("Door"))                                   // Si le collider est un objet de type Fixed, la puissance doit etre diminue
+			if (hitInfo.collider != null && (hitInfo.collider.CompareTag("Fixed") || hitInfo.collider.CompareTag("Door")))                                   // Si le collider est un objet de type Fixed, la puissance doit etre diminue
             {
                 // Déterminer la dégradation en fonction du type d'objet entre le capteur et le tag
                 return 0;

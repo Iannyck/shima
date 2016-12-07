@@ -26,19 +26,27 @@ public class SmartHomeServer : MonoBehaviour {
 		}
 	}
 
-	public void InsertRFIDData(string timestamp, string antenaId, float signalStrenght, string tagId) {
+	public void InsertRFIDData(string antenaId, float signalStrenght, string tagId) {
+		string timestamp = System.DateTime.UtcNow.ToLongTimeString() + ":"+ System.DateTime.UtcNow.Millisecond;
 		database.InsertRFIDData (timestamp, antenaId, signalStrenght, tagId);
+	}
+
+	public void InsertElectricityData(string phaseId, int activePower, int reactivePower) {
+		string timestamp = System.DateTime.UtcNow.ToLongTimeString() + ":"+ System.DateTime.UtcNow.Millisecond;
+		database.InsertElectricityData (timestamp, phaseId, activePower, reactivePower);
 	}
 
 	public void InsertElectricityData(string timestamp, string phaseId, int activePower, int reactivePower) {
 		database.InsertElectricityData (timestamp, phaseId, activePower, reactivePower);
 	}
 
-	public void InsertBinarySensorData(string timestamp, string id, string type, bool value) {
+	public void InsertBinarySensorData(string id, string type, bool value) {
+		string timestamp = System.DateTime.UtcNow.ToLongTimeString() + ":"+ System.DateTime.UtcNow.Millisecond;
 		database.InsertBinarySensorData(timestamp, id, type, value);
 	}
 
-	public void InsertUltrasoundData(string timestamp, string id, float value) {
+	public void InsertUltrasoundData(string id, float value) {
+		string timestamp = System.DateTime.UtcNow.ToLongTimeString() + ":"+ System.DateTime.UtcNow.Millisecond;
 		database.InsertUltrasoundData(timestamp, id, value);
 	}
 

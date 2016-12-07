@@ -35,6 +35,12 @@ public class PlayerControl : MonoBehaviour
 
 	private bool isMoving;
 
+//	void OnTriggerEnter(Collider other)
+//	{
+//		if (other.gameObject.layer != 9)
+//			Debug.Log (other.name +" "+other.gameObject.layer);
+//	}
+
 	void Awake()
 	{
 		anim = GetComponent<Animator> ();

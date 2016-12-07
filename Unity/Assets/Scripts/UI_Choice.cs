@@ -12,7 +12,7 @@ public class EventList
     public EventList(UnityEvent a)
     {
         unEvent = a;
-        text = "Aucun Choix";
+		text = "Aucun Choix";
         isEmpty = true;
     }
 
@@ -114,7 +114,7 @@ public class UI_Choice : MonoBehaviour
             }
         }
 
-        Debug.Log("ERREUR : Liste de choix complete");
+//        Debug.Log("ERREUR : Liste de choix complete");
         return null;
     }
 
@@ -129,7 +129,7 @@ public class UI_Choice : MonoBehaviour
             }
         }
 
-        Debug.Log("ERREUR : Evenement introuvable pour Remove");
+//        Debug.Log("ERREUR : Evenement introuvable pour Remove");
     }
 
     public void UpdateChoice(UnityEvent a,string b)

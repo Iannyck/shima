@@ -27,8 +27,7 @@ public class DDContactSensor : MonoBehaviour {
 		if (currentTime <= 0) {
 			state = !state;
 			currentTime = delay;
-			string timestamp = System.DateTime.Now.ToLongTimeString ();
-			smartHomeServerScript.InsertBinarySensorData (timestamp, name, "ContactSensor", state);
+			smartHomeServerScript.InsertBinarySensorData (name, "ContactSensor", state);
 		}
 	}
 }

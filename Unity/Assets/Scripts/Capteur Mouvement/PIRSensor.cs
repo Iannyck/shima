@@ -46,9 +46,8 @@ public class PIRSensor : MonoBehaviour {
 					if (detectedEntity != null) {
 						if (canDetect && CheckMove (hitColliders [i])) {
 							canDetect = false;
-							string timestamp = System.DateTime.Now.ToLongTimeString ();
-							smartHomeServerScript.InsertBinarySensorData (timestamp, name, "PIRSensor", true);
-							Debug.Log ("Detected "+hitColliders [i].name);
+							smartHomeServerScript.InsertBinarySensorData (name, "PIRSensor", true);
+//							Debug.Log ("Detected "+hitColliders [i].name);
 						} else {
 						}
 					}

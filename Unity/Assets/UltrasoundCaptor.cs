@@ -69,8 +69,7 @@ public class UltrasoundCaptor : MonoBehaviour {
 
 //            Debug.Log(temps);
 				detection = false;
-				string timestamp = System.DateTime.Now.ToLongTimeString ();
-				smartHomeServeScript.InsertUltrasoundData (timestamp, name, distance);
+				smartHomeServeScript.InsertUltrasoundData (name, distance);
 //			Debug.Log (""+timestamp +" - "+ name +" - "+ distance);
 			}
 		}

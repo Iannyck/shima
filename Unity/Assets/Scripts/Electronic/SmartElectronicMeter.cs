@@ -47,7 +47,7 @@ public class SmartElectronicMeter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		string timestamp = System.DateTime.Now.ToLongTimeString();
+		string timestamp = System.DateTime.UtcNow.ToLongTimeString() + ":"+ System.DateTime.UtcNow.Millisecond;
 		if(requestPool.Count > 0) {
 			
 			foreach(Request request in requestPool) {

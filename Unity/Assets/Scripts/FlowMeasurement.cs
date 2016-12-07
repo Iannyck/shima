@@ -24,15 +24,13 @@ public class FlowMeasurement : UsableDevice {
 	{
 		if (audio != null)
 			AudioSource.PlayClipAtPoint (audio,transform.position);
-		string timestamp = System.DateTime.Now.ToLongTimeString();
-		shServer.InsertBinarySensorData (timestamp, name, "FlowMeasurement", true);
+		shServer.InsertBinarySensorData (name, "FlowMeasurement", true);
 		return State.Opening;
 	}
 
 	protected override State OnClose ()
 	{
-		string timestamp = System.DateTime.Now.ToLongTimeString();
-		shServer.InsertBinarySensorData (timestamp, name, "FlowMeasurement", false);
+		shServer.InsertBinarySensorData (name, "FlowMeasurement", false);
 		return State.Closing;
 	}
 

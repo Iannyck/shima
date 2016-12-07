@@ -121,7 +121,6 @@ public class TriggerRFID : MonoBehaviour {
 
     public void SetInactive()
     {
-        string timestamp = System.DateTime.Now.ToLongTimeString();
 
 		if (smartHomeServer == null)
         {
@@ -139,7 +138,7 @@ public class TriggerRFID : MonoBehaviour {
             for (int i = 0; i < 10; i++)
             {
                 if (tableau[i].GetPuissance() != -1)
-					smartHomeServer.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), ""+tableau[i].GetTag());
+					smartHomeServer.InsertRFIDData(transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), ""+tableau[i].GetTag());
 //                    StartCoroutine(databaseService.InsertRFIDData(timestamp, transform.parent.name + " - " + gameObject.name, tableau[i].GetPuissance(), ""+tableau[i].GetTag()));
             }
 

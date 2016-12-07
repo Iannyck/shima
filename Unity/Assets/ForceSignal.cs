@@ -64,15 +64,13 @@ public class ForceSignal : MonoBehaviour
 
     private void SendData()
     {
-        string timestamp = System.DateTime.Now.ToLongTimeString();
-
         if (smartHomeServer == null)
             InitSmartHomeServerConnection();
 
         else
         {
             for (int i = 0; i < dataList.Count; i++)
-                smartHomeServer.InsertRFIDData(timestamp, antennaID, dataList[i].signal, dataList[i].collider.name);
+                smartHomeServer.InsertRFIDData(antennaID, dataList[i].signal, dataList[i].collider.name);
         }
     }
 

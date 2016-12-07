@@ -59,7 +59,7 @@ public class GoToBehaviour : AbstractBehaviour {
 	/// <summary>
 	/// The maximum time that the avatar can spent on a node. This values is used to detect if the avatar rigidbody is blocked by something. 
 	/// </summary>
-	public float maximumTimeSpentByNode = 2f;
+	public float maximumTimeSpentByNode = 0.75f;
 
 	/// <summary>
 	/// Store the previous nodes used by the avatar.
@@ -160,6 +160,10 @@ public class GoToBehaviour : AbstractBehaviour {
 	/// The wait.
 	/// </summary>
 	private bool wait;
+
+	private Collider unwalkableCollider;
+
+	private Collider doorCollider;
 
 	/// <summary>
 	/// Init this instance.
@@ -405,5 +409,23 @@ public class GoToBehaviour : AbstractBehaviour {
 			GetComponent<Rigidbody>().MoveRotation (newRotation);
 		}
 	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "UI_Object" && other.gameObject.name.Contains ("Door")) {
+			doorCollider = other;
+		}
+		else if(other.gameObject.layer == 0 || other.gameObject.layer == 11) {
+			unwalkableCollider = other;
+		}
+	}
+
+//	void OnTriggerExit(Collider other)
+//	{
+//		if((unwalkableCollider != null) && (other.gameObject == unwalkableCollider.gameObject)) {
+//			unwalkableCollider = null;
+//		}
+//	}
+
 
 }

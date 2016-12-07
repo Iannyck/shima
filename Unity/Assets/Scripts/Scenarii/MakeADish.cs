@@ -133,7 +133,7 @@ public class MakeADish : AbstractScript {
 
 		behaviours[51] = CreateGoToBehaviour("KitchenTools");
 
-		behaviours[52] = CreatePutItemAtBehaviour(frypan, 41.21f, 17.2f, 84.06f);
+		behaviours[52] = CreatePutItemAtBehaviour(frypan, 41.21f, 19.2f, 84.06f);
 
 		behaviours[53] = CreateGoToBehaviour("KitchenSink");
 
