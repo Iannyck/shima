@@ -15,6 +15,7 @@ public class MakeADish : AbstractScript {
 	public GameObject mug;
 	public GameObject coffeeMachine;
 	public GameObject milk;
+	public GameObject sink;
 	public GameObject fork;
 	public GameObject foodToCook;
 
@@ -28,7 +29,7 @@ public class MakeADish : AbstractScript {
 			gui.BehaviourTreeToShow = this;
 		}
 
-		AbstractBehaviour[] behaviours = new AbstractBehaviour[64];
+		AbstractBehaviour[] behaviours = new AbstractBehaviour[68];
 		behaviours[0] = CreateGoToBehaviour("Kitchen");
 
 		behaviours[1] = CreateGoToBehaviour("KitchenDishes");
@@ -113,49 +114,57 @@ public class MakeADish : AbstractScript {
 
 		behaviours[41] = CreateGoToBehaviour("KitchenSink");
 
-		behaviours[42] = CreatePutItemAtBehaviour(dish, 40.369f, 7.46f, 93.18f);
+		behaviours[42] = CreateUseDeviceBehaviour(sink);
 
-		behaviours[43] = CreatePutItemAtBehaviour(fork, 40.369f, 7.46f, 93.18f);
+		behaviours[43] = CreatePutItemAtBehaviour(dish, 40.369f, 7.46f, 93.18f);
 
-		behaviours[44] = CreateAtomicActivityBehaviour("Do the washing up", 10f);
+		behaviours[44] = CreatePutItemAtBehaviour(fork, 40.369f, 7.46f, 93.18f);
 
-		behaviours[45] = CreateTakeItemBehaviour(fork);
+		behaviours[45] = CreateAtomicActivityBehaviour("Do the washing up", 10f);
 
-		behaviours[46] = CreatePutItemAtBehaviour(fork, 38.41f, 10.54f, 97.75f);
+		behaviours[46] = CreateTakeItemBehaviour(fork);
 
-		behaviours[47] = CreateTakeItemBehaviour(dish);
+		behaviours[47] = CreatePutItemAtBehaviour(fork, 38.41f, 10.54f, 97.75f);
 
-		behaviours[48] = CreatePutItemAtBehaviour(dish, 36.91f, 10.54f, 97.75f);
+		behaviours[48] = CreateTakeItemBehaviour(dish);
 
-		behaviours[49] = CreateAtomicActivityBehaviour("Wash the frypan", 10f);
+		behaviours[49] = CreatePutItemAtBehaviour(dish, 36.91f, 10.54f, 97.75f);
 
-		behaviours[50] = CreateTakeItemBehaviour(frypan);
+		behaviours[50] = CreateAtomicActivityBehaviour("Wash the frypan", 10f);
 
-		behaviours[51] = CreateGoToBehaviour("KitchenTools");
+		behaviours[51] = CreateTakeItemBehaviour(frypan);
 
-		behaviours[52] = CreatePutItemAtBehaviour(frypan, 41.21f, 19.2f, 84.06f);
+		behaviours[52] = CreateUseDeviceBehaviour(sink);
 
-		behaviours[53] = CreateGoToBehaviour("KitchenSink");
+		behaviours[53] = CreateGoToBehaviour("KitchenTools");
 
-		behaviours[54] = CreateGoToBehaviour("DiningTable");
+		behaviours[54] = CreatePutItemAtBehaviour(frypan, 41.21f, 19.2f, 84.06f);
 
-		behaviours[55] = CreateTakeItemBehaviour(mug);
+		behaviours[55] = CreateGoToBehaviour("KitchenSink");
 
-		behaviours[56] = CreateGoToBehaviour("KitchenSink");
+		behaviours[56] = CreateGoToBehaviour("DiningTable");
 
-		behaviours[57] = CreateAtomicActivityBehaviour("Wash the mug", 4f);
+		behaviours[57] = CreateTakeItemBehaviour(mug);
 
-		behaviours[58] = CreateTakeItemBehaviour(dish);
+		behaviours[58] = CreateGoToBehaviour("KitchenSink");
 
-		behaviours[59] = CreateTakeItemBehaviour(fork);
+		behaviours[59] = CreateUseDeviceBehaviour(sink);
 
-		behaviours[60] = CreateGoToBehaviour("KitchenDishes");
+		behaviours[60] = CreateAtomicActivityBehaviour("Wash the mug", 4f);
 
-		behaviours[61] = CreatePutItemAtBehaviour(fork, 19.37021f, 8.851f, 120.51f);
+		behaviours[61] = CreateUseDeviceBehaviour(sink);
 
-		behaviours[62] = CreatePutItemAtBehaviour(dish, 22.46242f, 9.782906f, 120.6399f);
+		behaviours[62] = CreateTakeItemBehaviour(dish);
 
-		behaviours[63] = CreatePutItemAtBehaviour(mug, 15.15f, 8.83f, 120.31f);
+		behaviours[63] = CreateTakeItemBehaviour(fork);
+
+		behaviours[64] = CreateGoToBehaviour("KitchenDishes");
+
+		behaviours[65] = CreatePutItemAtBehaviour(fork, 19.37021f, 8.851f, 120.51f);
+
+		behaviours[66] = CreatePutItemAtBehaviour(dish, 22.46242f, 9.782906f, 120.6399f);
+
+		behaviours[67] = CreatePutItemAtBehaviour(mug, 15.15f, 8.83f, 120.31f);
 
 //		behaviours[31] = CreateGoToBehaviour("KitchenDishes");
 
