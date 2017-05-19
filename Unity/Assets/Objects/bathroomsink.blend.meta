@@ -10,23 +10,38 @@ ModelImporter:
     100004: sifon
     100006: smesitel
     100008: tymba
+    100010: ChamferCyl
+    100012: Circle01
+    100014: Ellipse01
     400000: //RootNode
     400002: rakovina
     400004: sifon
     400006: smesitel
     400008: tymba
+    400010: ChamferCyl
+    400012: Circle01
+    400014: Ellipse01
     2300000: rakovina
     2300002: sifon
     2300004: smesitel
     2300006: tymba
+    2300008: ChamferCyl
+    2300010: Circle01
+    2300012: Ellipse01
     3300000: rakovina
     3300002: sifon
     3300004: smesitel
     3300006: tymba
+    3300008: ChamferCyl
+    3300010: Circle01
+    3300012: Ellipse01
     4300000: smesitel
     4300002: rakovina
     4300004: sifon
     4300006: tymba
+    4300008: ChamferCyl
+    4300010: Circle01
+    4300012: Ellipse01
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -75,6 +90,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -85,7 +101,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
