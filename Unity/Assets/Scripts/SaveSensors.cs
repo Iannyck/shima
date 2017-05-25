@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
-
+/* 
 public class SaveSensors : MonoBehaviour {
 
     public GameObject prefabRFID;
@@ -30,7 +30,7 @@ public class SaveSensors : MonoBehaviour {
     // Update is called once per frame
     void Update() {}
 
-    void Save()
+    public void Save()
     {
         StreamWriter writer = new StreamWriter("SaveSensors.txt");
         int numberChildren = transform.childCount;
@@ -75,47 +75,7 @@ public class SaveSensors : MonoBehaviour {
 
     void Load()
     {
-        string buffer;
-        GameObject prefab;
-
-        StreamReader reader = new StreamReader("SaveSensors.txt");
-        buffer = reader.ReadLine();
-
-        while (buffer != null)
-        {
-            switch (buffer)
-            {
-                case "RFID":
-                    {
-                        prefab = prefabRFID;
-                        LoadSensor(buffer, reader, prefab,4);
-                        break;
-                    }
-
-
-                case "Ultrasons":
-                    {
-                        prefab = prefabUltrasons;
-                        LoadSensor(buffer, reader, prefab,3);
-                        break;
-                    }
-
-                case "Mouvement":
-                    {
-                        prefab = prefabMouvement;
-                        LoadSensor(buffer, reader, prefab, 1);
-                        break;
-                    }
-
-                case "Pression":
-                    {
-                        prefab = prefabPression;
-                        LoadSensor(buffer, reader, prefab,1);
-                        break;
-                    }
-            }
-
-            buffer = reader.ReadLine();
+       
         }
     }
 
@@ -178,3 +138,4 @@ public class SaveSensors : MonoBehaviour {
         }
     }
 }
+*/
