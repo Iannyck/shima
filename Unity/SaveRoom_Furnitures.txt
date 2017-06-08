@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 {"name":"furniture0","type":"","position":{"x":-19.087690353393556,"y":0.0,"z":-11.082076072692871},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
 {"name":"furniture1","type":"","position":{"x":-19.103153228759767,"y":0.0,"z":18.225780487060548},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
+=======
+{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":-14.000801086425782,"y":0.0,"z":-11.258377075195313},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
+{"type":"Double","width":1.0,"thickness":1.0,"entityName":"Double(Clone)","position":{"x":4.907497406005859,"y":0.0,"z":21.939388275146486},"rotation":{"x":0.0,"y":0.7071068286895752,"z":0.0,"w":0.7071068286895752}}
+{"type":"Table","width":1.0,"thickness":1.0,"entityName":"Table(Clone)","position":{"x":21.650718688964845,"y":0.0,"z":-16.887561798095704},"rotation":{"x":0.0,"y":0.3826834559440613,"z":0.0,"w":0.9238795042037964}}
+>>>>>>> origin/master

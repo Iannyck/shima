@@ -25,7 +25,7 @@ public class BAddFurniture : MonoBehaviour {
 		Text text = buttonText.GetComponent<Text> () as Text;
 		text.text = furnitureName;
 
-		transform.parent = parent;
+        transform.SetParent(parent);
 
 		transform.localPosition = position;
 		transform.localScale = new Vector3 (5, 22.22f, 1);
