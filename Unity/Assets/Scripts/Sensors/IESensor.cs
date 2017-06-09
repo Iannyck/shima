@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IESensor : MonoBehaviour {
 
-	public bool isSimulating = false;
+	public bool isStarted = false;
 
 	private SmartHomeServer smartHomeServer;
 
@@ -22,27 +22,43 @@ public class IESensor : MonoBehaviour {
 			smartHomeServer = smartHomeServerObject.GetComponent<SmartHomeServer> ();
 	}
 
+	void OnDisable() {
+		IESensorStop ();
+	}
+
 	// Use this for initialization
 	void Start () {
-		if (isSimulating)
+		if (isStarted) {
 			InitSmartHomeServerConnection ();
+			IESensorInit ();
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isSimulating) {
-			Sense (smartHomeServer);
-//			if (smartHomeServer == null)
-//				InitSmartHomeServerConnection ();
-//			else
-//				Sense (smartHomeServer);
+		if (isStarted) {
+			if (smartHomeServer == null)
+				InitSmartHomeServerConnection ();
+			else
+				IESensorUpdate ();
 		}
 	}
 
 	/// <summary>
-	/// Sense the specified smartHomeServer.
-	/// Method to override to add specific sensing behavior
+	/// IEs the sensor init.
 	/// </summary>
-	/// <param name="smartHomeServer">Smart home server.</param>
-	protected virtual void Sense(SmartHomeServer smartHomeServer) {}
+	/// <returns>The sensor init.</returns>
+	protected virtual void IESensorInit() {}
+
+	/// <summary>
+	/// IEs the sensor update.
+	/// </summary>
+	/// <returns>The sensor update.</returns>
+	protected virtual void IESensorUpdate() {}
+
+	/// <summary>
+	/// IEs the sensor stop.
+	/// </summary>
+	/// <returns>The sensor stop.</returns>
+	protected virtual void IESensorStop() {}
 }

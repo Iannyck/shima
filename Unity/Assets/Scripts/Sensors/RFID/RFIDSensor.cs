@@ -28,9 +28,9 @@ public class RFIDSensor : IESensor {
 		remainingTime = activationTime;
 	}
 
-	protected override void Sense (SmartHomeServer smartHomeServer)
+	protected override void IESensorUpdate ()
 	{
-		base.Sense (smartHomeServer);
+		base.IESensorUpdate ();
 		if (isEnable) {
 			remainingTime -= Time.deltaTime;
 			if (remainingTime <= 0f) {
