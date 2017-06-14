@@ -156,8 +156,9 @@ public class BMenuManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+
 	}
 
 	private void ShowBuildMenu(bool value) {

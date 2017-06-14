@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class BBuildManager : MonoBehaviour {
 
     private List<Furniture_Recepteur> furnitureList = new List<Furniture_Recepteur>();
+    private List<Commande> commandeList = new List<Commande>();
+
 //  private List<Sensor_Recepteur> SensorList;
 //  private List<Wall_Recepteur> WallList;
 
@@ -17,9 +19,9 @@ public class BBuildManager : MonoBehaviour {
         Furniture newFurniture = new Furniture(id, width, thickness, newObject);
 
         Furniture_Recepteur newRecepteur = new Furniture_Recepteur(newObject, newFurniture);
-        furnitureList.Add(newRecepteur);       
+        furnitureList.Add(newRecepteur);
+        commandeList.Add(new global::Commande("AddFurniture", newRecepteur));    
     }
-
     public void LoadFurniture(string jsonTextLine)
     {
         Furniture newFurniture = JsonUtility.FromJson<Furniture>(jsonTextLine);
@@ -33,6 +35,20 @@ public class BBuildManager : MonoBehaviour {
         furnitureList.Add(newRecepteur);
     }
 
+    public void RemoveFurniture(Furniture furniture)
+    {
+        foreach (Furniture_Recepteur currentFurniture in furnitureList)
+        {
+            if (currentFurniture.getFurniture() == furniture)
+            {
+                Destroy(currentFurniture.getGameObject().gameObject);
+                furnitureList.Remove(currentFurniture);
+                return;        
+            }
+        }
+
+        Debug.Log("Erreur: Le Furniture_Recepteur en parametre est invalide (Voir RemoveFurniture de BBuildManager)");
+    }
     public List<Furniture_Recepteur> getFurnitureList()
     {
         Debug.Log(furnitureList.Count);
@@ -49,6 +65,21 @@ public class BBuildManager : MonoBehaviour {
 
         Debug.Log("Erreur lors de la recherche du GameObject (Voir FindInFurnitureList dans BBuildManager)");
         return null;
+    }
+    public void Cancel()
+    {
+        Commande commande = commandeList[commandeList.Count - 1];
+        string nomCommande = commande.nomCommande;
+        Furniture furniture = commande.furniture.getFurniture();
+
+        switch(nomCommande)
+        {
+            case "AddFurniture":
+                RemoveFurniture(furniture);
+                commandeList.Remove(commande);
+                break;
+        }
+
     }
 
 
