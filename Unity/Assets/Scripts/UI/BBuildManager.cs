@@ -6,22 +6,25 @@ using UnityEngine.UI;
 public class BBuildManager : MonoBehaviour {
 
     private List<Furniture_Recepteur> furnitureList = new List<Furniture_Recepteur>();
-    private List<Commande> commandeList = new List<Commande>();
+    private Stack<Commande> commandeList = new Stack<Commande>();
 
-//  private List<Sensor_Recepteur> SensorList;
-//  private List<Wall_Recepteur> WallList;
 
     public void AddFurniture(string id, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), float width = 1f, float thickness = 1f)
     {
-        GameObject newObject = Instantiate(Resources.Load("Furniture/" + id), position, rotation) as GameObject;
-        newObject.transform.SetParent(this.transform.GetComponentInParent<BMenuManager>().furnituresFolder.transform);
+        Transform furnitureFolder = this.transform.GetComponentInParent<BMenuManager>().furnituresFolder.transform;
 
-        Furniture newFurniture = new Furniture(id, width, thickness, newObject);
-
-        Furniture_Recepteur newRecepteur = new Furniture_Recepteur(newObject, newFurniture);
-        furnitureList.Add(newRecepteur);
-        commandeList.Add(new global::Commande("AddFurniture", newRecepteur));    
+        Commande commande = new AddFurniture(this, furnitureFolder, id, position, rotation, width, thickness);
+        commande.Do();
+        commandeList.Push(commande);
+        furnitureList.Add((commande as AddFurniture).getFurnitureRecepteur());
     }
+
+    public void Cancel()
+    {
+        Commande commande = commandeList.Pop();
+        commande.Undo();
+    }
+
     public void LoadFurniture(string jsonTextLine)
     {
         Furniture newFurniture = JsonUtility.FromJson<Furniture>(jsonTextLine);
@@ -66,21 +69,7 @@ public class BBuildManager : MonoBehaviour {
         Debug.Log("Erreur lors de la recherche du GameObject (Voir FindInFurnitureList dans BBuildManager)");
         return null;
     }
-    public void Cancel()
-    {
-        Commande commande = commandeList[commandeList.Count - 1];
-        string nomCommande = commande.nomCommande;
-        Furniture furniture = commande.furniture.getFurniture();
 
-        switch(nomCommande)
-        {
-            case "AddFurniture":
-                RemoveFurniture(furniture);
-                commandeList.Remove(commande);
-                break;
-        }
-
-    }
 
 
 //    public void AddWall() {
