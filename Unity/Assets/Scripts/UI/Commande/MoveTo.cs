@@ -9,10 +9,10 @@ public class MoveTo : Commande {
     private Vector3 oldPosition;
     private Vector3 newPosition;
 
-    public MoveTo (GameObject furniture, Vector3 newPosition)
+    public MoveTo (GameObject furniture, Vector3 oldPosition, Vector3 newPosition)
     {
         this.furniture = furniture;
-        oldPosition = furniture.transform.position;
+        this.oldPosition = oldPosition;
         this.newPosition = newPosition;
     }
 

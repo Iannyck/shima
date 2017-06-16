@@ -5,9 +5,15 @@ using UnityEngine.UI;
 
 public class BBuildManager : MonoBehaviour {
 
+    private EditManager editManager;
+
     private List<Furniture_Recepteur> furnitureList = new List<Furniture_Recepteur>();
     private Stack<Commande> commandeList = new Stack<Commande>();
 
+    private void Start()
+    {
+        editManager = this.GetComponentInParent<EditManager>();
+    }
 
     public void AddFurniture(string id, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), float width = 1f, float thickness = 1f)
     {
@@ -19,10 +25,38 @@ public class BBuildManager : MonoBehaviour {
         furnitureList.Add((commande as AddFurniture).getFurnitureRecepteur());
     }
 
+    public void MoveFurniture(Furniture_Recepteur recepteur, Vector3 oldPosition, Vector3 newPosition)
+    {
+        if (oldPosition != newPosition)
+        {
+            Commande commande = new MoveTo(recepteur.getGameObject(), oldPosition, newPosition);
+            commande.Do();
+            commandeList.Push(commande);
+        }
+    }
+
+    public void SetName(Furniture_Recepteur recepteur, string oldName, string newName)
+    {
+        if (oldName != newName)
+        {
+            Commande commande = new SetName(recepteur.getGameObject(), oldName, newName);
+            commande.Do();
+            commandeList.Push(commande);
+            editManager.RefreshInfos();
+        }
+    }
+   
     public void Cancel()
     {
-        Commande commande = commandeList.Pop();
-        commande.Undo();
+        if (commandeList.Count != 0)
+        {
+            Commande commande = commandeList.Pop();
+            commande.Undo();
+            editManager.RefreshInfos();
+        }
+
+        else
+            Debug.Log("Aucune commande ne peut etre annule");
     }
 
     public void LoadFurniture(string jsonTextLine)
@@ -44,6 +78,9 @@ public class BBuildManager : MonoBehaviour {
         {
             if (currentFurniture.getFurniture() == furniture)
             {
+                if (currentFurniture.getGameObject() == editManager.getSelected())
+                    editManager.CloseEdit();
+
                 Destroy(currentFurniture.getGameObject().gameObject);
                 furnitureList.Remove(currentFurniture);
                 return;        

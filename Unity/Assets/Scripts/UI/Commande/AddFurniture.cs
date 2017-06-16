@@ -32,9 +32,9 @@ public class AddFurniture : Commande {
         GameObject newObject = GameObject.Instantiate(Resources.Load("Furniture/" + id), position, rotation) as GameObject;
         newObject.transform.SetParent(furnitureFolder);
 
-        Furniture newFurniture = new Furniture(id, width, thickness, newObject);
+        newFurniture = new Furniture(id, width, thickness, newObject);
 
-        Furniture_Recepteur newRecepteur = new Furniture_Recepteur(newObject, newFurniture);
+        newRecepteur = new Furniture_Recepteur(newObject, newFurniture);
     }
 
     public void Undo()
