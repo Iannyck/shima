@@ -1,62 +1,47 @@
 fileFormatVersion: 2
-guid: 1a6941c3189b6432d9f2b708ab06b06c
-timeCreated: 1497627537
+guid: f1126838c584b4cb28e322c87aee1418
+timeCreated: 1497637933
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: Back
-    100002: boxmid
-    100004: DoorLeft
-    100006: DoorRight
-    100008: Down
-    100010: handleLeft
-    100012: handleRight
-    100014: //RootNode
-    100016: Left
-    100018: Right
-    100020: Top
+    100002: Bottom
+    100004: FrontLEft
+    100006: HandleLeft
+    100008: Left
+    100010: Right
+    100012: //RootNode
+    100014: Top
     400000: Back
-    400002: boxmid
-    400004: DoorLeft
-    400006: DoorRight
-    400008: Down
-    400010: handleLeft
-    400012: handleRight
-    400014: //RootNode
-    400016: Left
-    400018: Right
-    400020: Top
+    400002: Bottom
+    400004: FrontLEft
+    400006: HandleLeft
+    400008: Left
+    400010: Right
+    400012: //RootNode
+    400014: Top
     2300000: Back
-    2300002: boxmid
-    2300004: DoorLeft
-    2300006: DoorRight
-    2300008: Down
-    2300010: handleLeft
-    2300012: handleRight
-    2300014: Left
-    2300016: Right
-    2300018: Top
+    2300002: Bottom
+    2300004: FrontLEft
+    2300006: HandleLeft
+    2300008: Left
+    2300010: Right
+    2300012: Top
     3300000: Back
-    3300002: boxmid
-    3300004: DoorLeft
-    3300006: DoorRight
-    3300008: Down
-    3300010: handleLeft
-    3300012: handleRight
-    3300014: Left
-    3300016: Right
-    3300018: Top
-    4300000: handleRight
-    4300002: DoorRight
-    4300004: boxmid
-    4300006: Back
-    4300008: Left
-    4300010: Down
+    3300002: Bottom
+    3300004: FrontLEft
+    3300006: HandleLeft
+    3300008: Left
+    3300010: Right
+    3300012: Top
+    4300000: Right
+    4300002: Left
+    4300004: Back
+    4300006: FrontLEft
+    4300008: HandleLeft
+    4300010: Bottom
     4300012: Top
-    4300014: Right
-    4300016: DoorLeft
-    4300018: handleLeft
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -85,7 +70,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 4.75
+    globalScale: 7
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

@@ -1,62 +1,62 @@
 fileFormatVersion: 2
-guid: 1a6941c3189b6432d9f2b708ab06b06c
-timeCreated: 1497627537
+guid: dff283babe83c4d418fdbba7678f6ed6
+timeCreated: 1497636617
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Back
-    100002: boxmid
-    100004: DoorLeft
-    100006: DoorRight
-    100008: Down
-    100010: handleLeft
-    100012: handleRight
-    100014: //RootNode
-    100016: Left
-    100018: Right
+    100000: BackLeft
+    100002: BackRight
+    100004: Bottom
+    100006: FrontLEft
+    100008: FrontRight
+    100010: HandleLeft
+    100012: HandleRight
+    100014: Left
+    100016: Right
+    100018: //RootNode
     100020: Top
-    400000: Back
-    400002: boxmid
-    400004: DoorLeft
-    400006: DoorRight
-    400008: Down
-    400010: handleLeft
-    400012: handleRight
-    400014: //RootNode
-    400016: Left
-    400018: Right
+    400000: BackLeft
+    400002: BackRight
+    400004: Bottom
+    400006: FrontLEft
+    400008: FrontRight
+    400010: HandleLeft
+    400012: HandleRight
+    400014: Left
+    400016: Right
+    400018: //RootNode
     400020: Top
-    2300000: Back
-    2300002: boxmid
-    2300004: DoorLeft
-    2300006: DoorRight
-    2300008: Down
-    2300010: handleLeft
-    2300012: handleRight
+    2300000: BackLeft
+    2300002: BackRight
+    2300004: Bottom
+    2300006: FrontLEft
+    2300008: FrontRight
+    2300010: HandleLeft
+    2300012: HandleRight
     2300014: Left
     2300016: Right
     2300018: Top
-    3300000: Back
-    3300002: boxmid
-    3300004: DoorLeft
-    3300006: DoorRight
-    3300008: Down
-    3300010: handleLeft
-    3300012: handleRight
+    3300000: BackLeft
+    3300002: BackRight
+    3300004: Bottom
+    3300006: FrontLEft
+    3300008: FrontRight
+    3300010: HandleLeft
+    3300012: HandleRight
     3300014: Left
     3300016: Right
     3300018: Top
-    4300000: handleRight
-    4300002: DoorRight
-    4300004: boxmid
-    4300006: Back
-    4300008: Left
-    4300010: Down
-    4300012: Top
-    4300014: Right
-    4300016: DoorLeft
-    4300018: handleLeft
+    4300000: Right
+    4300002: Left
+    4300004: BackLeft
+    4300006: HandleRight
+    4300008: FrontRight
+    4300010: FrontLEft
+    4300012: HandleLeft
+    4300014: Bottom
+    4300016: BackRight
+    4300018: Top
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -85,7 +85,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 4.75
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
