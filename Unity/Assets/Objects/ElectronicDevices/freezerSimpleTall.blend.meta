@@ -1,0 +1,216 @@
+fileFormatVersion: 2
+guid: 50256c16a31704e9b9d69ca645f38300
+timeCreated: 1497988972
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Box
+    100002: DecoratorBottom
+    100004: DecoratorTop
+    100006: DoorBottom
+    100008: DoorBoxBottom
+    100010: DoorBoxMiddle
+    100012: DoorBoxTop
+    100014: DoorTop
+    100016: Foot0
+    100018: Foot1
+    100020: Foot2
+    100022: Foot3
+    100024: //RootNode
+    100026: Object004
+    100028: Object004_001
+    100030: PlateBaseBottom
+    100032: PlateBaseDecoratorBottom
+    100034: PlateBaseDecoratorTop
+    100036: PlateBaseTop
+    100038: PlateTopBottom
+    100040: PlateTopDecoratorBottom
+    100042: PlateTopDecoratorTop
+    100044: PlateTopTop
+    100046: Rectangle0
+    100048: Rectangle0_001
+    100050: Rectangle1
+    100052: Rectangle1_001
+    100054: Top
+    400000: Box
+    400002: DecoratorBottom
+    400004: DecoratorTop
+    400006: DoorBottom
+    400008: DoorBoxBottom
+    400010: DoorBoxMiddle
+    400012: DoorBoxTop
+    400014: DoorTop
+    400016: Foot0
+    400018: Foot1
+    400020: Foot2
+    400022: Foot3
+    400024: //RootNode
+    400026: Object004
+    400028: Object004_001
+    400030: PlateBaseBottom
+    400032: PlateBaseDecoratorBottom
+    400034: PlateBaseDecoratorTop
+    400036: PlateBaseTop
+    400038: PlateTopBottom
+    400040: PlateTopDecoratorBottom
+    400042: PlateTopDecoratorTop
+    400044: PlateTopTop
+    400046: Rectangle0
+    400048: Rectangle0_001
+    400050: Rectangle1
+    400052: Rectangle1_001
+    400054: Top
+    2300000: Box
+    2300002: DecoratorBottom
+    2300004: DecoratorTop
+    2300006: DoorBottom
+    2300008: DoorBoxBottom
+    2300010: DoorBoxMiddle
+    2300012: DoorBoxTop
+    2300014: DoorTop
+    2300016: Foot0
+    2300018: Foot1
+    2300020: Foot2
+    2300022: Foot3
+    2300024: Object004
+    2300026: Object004_001
+    2300028: PlateBaseBottom
+    2300030: PlateBaseDecoratorBottom
+    2300032: PlateBaseDecoratorTop
+    2300034: PlateBaseTop
+    2300036: PlateTopBottom
+    2300038: PlateTopDecoratorBottom
+    2300040: PlateTopDecoratorTop
+    2300042: PlateTopTop
+    2300044: Rectangle0
+    2300046: Rectangle0_001
+    2300048: Rectangle1
+    2300050: Rectangle1_001
+    2300052: Top
+    3300000: Box
+    3300002: DecoratorBottom
+    3300004: DecoratorTop
+    3300006: DoorBottom
+    3300008: DoorBoxBottom
+    3300010: DoorBoxMiddle
+    3300012: DoorBoxTop
+    3300014: DoorTop
+    3300016: Foot0
+    3300018: Foot1
+    3300020: Foot2
+    3300022: Foot3
+    3300024: Object004
+    3300026: Object004_001
+    3300028: PlateBaseBottom
+    3300030: PlateBaseDecoratorBottom
+    3300032: PlateBaseDecoratorTop
+    3300034: PlateBaseTop
+    3300036: PlateTopBottom
+    3300038: PlateTopDecoratorBottom
+    3300040: PlateTopDecoratorTop
+    3300042: PlateTopTop
+    3300044: Rectangle0
+    3300046: Rectangle0_001
+    3300048: Rectangle1
+    3300050: Rectangle1_001
+    3300052: Top
+    4300000: DoorTop
+    4300002: DecoratorTop
+    4300004: Rectangle0_001
+    4300006: PlateTopBottom
+    4300008: PlateTopDecoratorBottom
+    4300010: PlateTopTop
+    4300012: PlateTopDecoratorTop
+    4300014: Object004_001
+    4300016: Rectangle1_001
+    4300018: Top
+    4300020: Foot0
+    4300022: Foot2
+    4300024: Box
+    4300026: Rectangle1
+    4300028: Object004
+    4300030: PlateBaseDecoratorTop
+    4300032: PlateBaseTop
+    4300034: PlateBaseDecoratorBottom
+    4300036: PlateBaseBottom
+    4300038: Foot3
+    4300040: Foot1
+    4300042: Rectangle0
+    4300044: DecoratorBottom
+    4300046: DoorBottom
+    4300048: DoorBoxMiddle
+    4300050: DoorBoxTop
+    4300052: DoorBoxBottom
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
