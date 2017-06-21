@@ -15,7 +15,7 @@ public class SimpleCharacterControl : MonoBehaviour {
     [SerializeField] private Animator m_animator;
     [SerializeField] private Rigidbody m_rigidBody;
 
-    [SerializeField] private ControlMode m_controlMode = ControlMode.Direct;
+    [SerializeField] private ControlMode m_controlMode = ControlMode.Tank;
 
     private float m_currentV = 0;
     private float m_currentH = 0;
