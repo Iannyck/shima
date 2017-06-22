@@ -10,21 +10,26 @@ public class BBuildManager : MonoBehaviour {
     private List<Furniture_Recepteur> furnitureList = new List<Furniture_Recepteur>();
     private Stack<Commande> commandeList = new Stack<Commande>();
 
+    public Transform furnitureFolder;
+    public Transform sensorsFolder;
+    public Transform wallsFolder;
+
     private void Start()
     {
         editManager = this.GetComponentInParent<EditManager>();
+        furnitureFolder = this.transform.GetComponentInParent<BMenuManager>().furnituresFolder.transform;
+        wallsFolder = this.transform.GetComponentInParent<BMenuManager>().wallsFolder.transform;
+        sensorsFolder = this.transform.GetComponentInParent<BMenuManager>().sensorsFolder.transform;
     }
+
 
     public void AddFurniture(string id, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), float width = 1f, float thickness = 1f)
     {
-        Transform furnitureFolder = this.transform.GetComponentInParent<BMenuManager>().furnituresFolder.transform;
-
-        Commande commande = new AddFurniture(this, furnitureFolder, id, position, rotation, width, thickness);
+        Commande commande = new AddFurniture(this, furnitureFolder, sensorsFolder, wallsFolder, id, position, rotation, width, thickness);
         commande.Do();
         commandeList.Push(commande);
         furnitureList.Add((commande as AddFurniture).getFurnitureRecepteur());
     }
-
     public void MoveFurniture(Furniture_Recepteur recepteur, Vector3 oldPosition, Vector3 newPosition)
     {
         if (oldPosition != newPosition)
@@ -34,7 +39,6 @@ public class BBuildManager : MonoBehaviour {
             commandeList.Push(commande);
         }
     }
-
     public void SetName(Furniture_Recepteur recepteur, string oldName, string newName)
     {
         if (oldName != newName)
@@ -45,7 +49,18 @@ public class BBuildManager : MonoBehaviour {
             editManager.RefreshInfos();
         }
     }
+    public void RotateFurniture(Furniture_Recepteur recepteur, Vector3 oldRotation, Vector3 newRotation)
+    {
+            Commande commande = new RotateTo(recepteur.getGameObject(), oldRotation, newRotation);
+            commande.Do();
+            commandeList.Push(commande);
+            editManager.RefreshInfos();
+    }
+
    
+
+
+
     public void Cancel()
     {
         if (commandeList.Count != 0)

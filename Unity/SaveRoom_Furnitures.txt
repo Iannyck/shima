@@ -1,3 +1,0 @@
-{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
-{"type":"Table","width":1.0,"thickness":1.0,"entityName":"Table(Clone)","position":{"x":29.589319229125978,"y":0.0,"z":-21.79505729675293},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
-{"type":"Double","width":1.0,"thickness":1.0,"entityName":"Double(Clone)","position":{"x":16.31021499633789,"y":-0.0000152587890625,"z":28.578956604003908},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}

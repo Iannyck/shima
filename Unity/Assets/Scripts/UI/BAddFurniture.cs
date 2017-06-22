@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class BAddFurniture : MonoBehaviour {
 
-	private BBuildManager bbuildManager;
+	private BBuildManager bbuildManager = null;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+       
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -35,7 +37,11 @@ public class BAddFurniture : MonoBehaviour {
 		Transform buttonText = transform.Find ("Text");
 		Text text = buttonText.GetComponent<Text> () as Text;
 		Debug.Log (text.text);
-		bbuildManager.AddFurniture (text.text);
+
+        if (bbuildManager == null)
+            bbuildManager = GameObject.Find("MenuButton").GetComponent<BBuildManager>();
+
+        bbuildManager.AddFurniture (text.text);
 	}
 
 

@@ -6,25 +6,25 @@ public class RotateTo : Commande
 {
 
     private GameObject furniture;
-    private Quaternion oldRotation;
-    private Quaternion newRotation;
+    private Vector3 oldRotation;
+    private Vector3 newRotation;
 
 
-    public RotateTo(GameObject furniture, Quaternion newRotation)
+    public RotateTo(GameObject furniture, Vector3 oldRotation, Vector3 newRotation)
     {
         this.furniture = furniture;
         this.newRotation = newRotation;
-        oldRotation = furniture.transform.localRotation;
+        this.oldRotation = oldRotation;
         
     }
 
     public void Do()
     {
-        furniture.transform.localRotation = newRotation;
+        furniture.transform.eulerAngles = newRotation;
     }
 
     public void Undo()
     {
-        furniture.transform.localRotation = oldRotation;
+        furniture.transform.eulerAngles = oldRotation;
     }
 }
