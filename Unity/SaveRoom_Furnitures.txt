@@ -1,0 +1,4 @@
+{"type":"Terrain","width":1.0,"thickness":1.0,"entityName":"Terrain(Clone)","position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
+{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":15.877195358276368,"y":0.0,"z":-14.722490310668946},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
+{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":6.4952168464660648,"y":0.0,"z":14.43381118774414},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
+{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":-26.125205993652345,"y":0.0,"z":-2.453747272491455},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}

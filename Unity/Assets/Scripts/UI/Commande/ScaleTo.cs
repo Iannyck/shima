@@ -10,11 +10,11 @@ public class ScaleTo : Commande
     private Vector3 newScaling;
 
 
-    public ScaleTo(GameObject furniture, Vector3 newScaling)
+    public ScaleTo(GameObject furniture, Vector3 oldScaling, Vector3 newScaling)
     {
         this.furniture = furniture;
         this.newScaling = newScaling;
-        oldScaling = furniture.transform.localScale;
+        this.oldScaling = oldScaling;
     }
 
     public void Do()
