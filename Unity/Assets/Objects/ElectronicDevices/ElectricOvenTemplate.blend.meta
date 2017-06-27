@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 781fa93a8e8ba426e8ffea5ee86dd5b7
+timeCreated: 1498058028
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Base
+    100002: Button0
+    100004: Button1
+    100006: Button2
+    100008: Button3
+    100010: ButtonOven
+    100012: ButtonOven_001
+    100014: Caddle
+    100016: Cooker
+    100018: DELCooker
+    100020: DELOven
+    100022: DoorBottom
+    100024: DoorDecorative
+    100026: DoorFront
+    100028: //RootNode
+    100030: ElectricOven
+    100032: Grill
+    100034: Handle
+    100036: Left
+    100038: Oven
+    100040: OvenBack
+    100042: OvenElectricBase
+    100044: OvenFront
+    100046: OvenLight
+    100048: Plate
+    100050: Right
+    100052: Top
+    100054: TopFront
+    100056: TriangleLeft
+    100058: TriangleRight
+    400000: Base
+    400002: Button0
+    400004: Button1
+    400006: Button2
+    400008: Button3
+    400010: ButtonOven
+    400012: ButtonOven_001
+    400014: Caddle
+    400016: Cooker
+    400018: DELCooker
+    400020: DELOven
+    400022: DoorBottom
+    400024: DoorDecorative
+    400026: DoorFront
+    400028: ElectricOven
+    400030: //RootNode
+    400032: Grill
+    400034: Handle
+    400036: Left
+    400038: Oven
+    400040: OvenBack
+    400042: OvenElectricBase
+    400044: OvenFront
+    400046: OvenLight
+    400048: Plate
+    400050: Right
+    400052: Top
+    400054: TopFront
+    400056: TriangleLeft
+    400058: TriangleRight
+    2300000: Base
+    2300002: Button0
+    2300004: Button1
+    2300006: Button2
+    2300008: Button3
+    2300010: ButtonOven
+    2300012: ButtonOven_001
+    2300014: Caddle
+    2300016: Cooker
+    2300018: DELCooker
+    2300020: DELOven
+    2300022: DoorBottom
+    2300024: DoorDecorative
+    2300026: DoorFront
+    2300028: Handle
+    2300030: Left
+    2300032: Oven
+    2300034: OvenBack
+    2300036: OvenElectricBase
+    2300038: OvenFront
+    2300040: OvenLight
+    2300042: Plate
+    2300044: Right
+    2300046: Top
+    2300048: TopFront
+    2300050: TriangleLeft
+    2300052: TriangleRight
+    3300000: Base
+    3300002: Button0
+    3300004: Button1
+    3300006: Button2
+    3300008: Button3
+    3300010: ButtonOven
+    3300012: ButtonOven_001
+    3300014: Caddle
+    3300016: Cooker
+    3300018: DELCooker
+    3300020: DELOven
+    3300022: DoorBottom
+    3300024: DoorDecorative
+    3300026: DoorFront
+    3300028: Handle
+    3300030: Left
+    3300032: Oven
+    3300034: OvenBack
+    3300036: OvenElectricBase
+    3300038: OvenFront
+    3300040: OvenLight
+    3300042: Plate
+    3300044: Right
+    3300046: Top
+    3300048: TopFront
+    3300050: TriangleLeft
+    3300052: TriangleRight
+    4300000: TriangleLeft
+    4300002: Top
+    4300004: TriangleRight
+    4300006: DELCooker
+    4300008: ButtonOven_001
+    4300010: Button3
+    4300012: DoorBottom
+    4300014: Handle
+    4300016: DoorFront
+    4300018: OvenLight
+    4300020: OvenBack
+    4300022: DoorDecorative
+    4300024: Plate
+    4300026: Oven
+    4300028: OvenElectricBase
+    4300030: Button2
+    4300032: Button1
+    4300034: Button0
+    4300036: Base
+    4300038: DELOven
+    4300040: ButtonOven
+    4300042: Caddle
+    4300044: OvenFront
+    4300046: TopFront
+    4300048: Cooker
+    4300050: Left
+    4300052: Right
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
