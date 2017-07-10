@@ -91,6 +91,8 @@ public class BMenuManager : MonoBehaviour {
         // 2) Lire 1 ligne, convertir en GameObject
         // 3) Creer un Furniture_Recepteur pour chaque gameObject avec la fonction AddFurniture de BBuildManager
 
+        this.GetComponentInParent<BBuildManager>().RemoveAllFurniture();
+
         StreamReader reader = new StreamReader("SaveRoom_Furnitures.txt");
         string line = reader.ReadLine();
 

@@ -133,14 +133,9 @@ public class BBuildManager : MonoBehaviour
     public void LoadFurniture(string jsonTextLine)
     {
         Furniture newFurniture = JsonUtility.FromJson<Furniture>(jsonTextLine);
-
-        GameObject newObject = Instantiate(Resources.Load("Furniture/" + newFurniture.getType()), newFurniture.getPosition(), newFurniture.getRotation()) as GameObject;
-
-        newObject.transform.SetParent(this.transform.GetComponentInParent<BMenuManager>().furnituresFolder.transform);
-        newObject.name = newFurniture.getName();
-
-        Furniture_Recepteur newRecepteur = new global::Furniture_Recepteur(newObject, newFurniture);
-        furnitureList.Add(newRecepteur);
+        Commande commande = new AddFurniture(this, furnitureFolder, sensorsFolder, wallsFolder, newFurniture.getType(),newFurniture.getPosition(), newFurniture.getRotation(), newFurniture.width, newFurniture.thickness);
+        commande.Do();
+        furnitureList.Add((commande as AddFurniture).getFurnitureRecepteur());
     }
     public void RemoveFurniture(Furniture furniture)
     {
@@ -158,6 +153,18 @@ public class BBuildManager : MonoBehaviour
         }
 
         Debug.Log("Erreur: Le Furniture_Recepteur en parametre est invalide (Voir RemoveFurniture de BBuildManager)");
+    }
+
+    public void RemoveAllFurniture()
+    {
+        int j = furnitureList.Count;
+
+        for (int i=0; i<j;i++)
+        {
+            Destroy(furnitureList[i].getGameObject().gameObject);
+        }
+
+        furnitureList.Clear();
     }
 
     #endregion
