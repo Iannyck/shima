@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class IESensor : MonoBehaviour {
 
+	[SerializeField]
+	private string smartHomeServerObjectName = "smarthomeserver";
+
 	public bool isStarted = false;
 
 	private SmartHomeServer smartHomeServer;
@@ -15,9 +18,9 @@ public class IESensor : MonoBehaviour {
 	}
 
 	private void InitSmartHomeServerConnection() {
-		GameObject smartHomeServerObject = GameObject.Find ("smarthomeserver");
+		GameObject smartHomeServerObject = GameObject.Find (smartHomeServerObjectName);
 		if(smartHomeServerObject == null)
-			Debug.Log("SmartHomeServer Not Loaded");
+			Debug.Log(smartHomeServerObjectName+" Not found");
 		else
 			smartHomeServer = smartHomeServerObject.GetComponent<SmartHomeServer> ();
 	}
