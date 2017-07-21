@@ -1,7 +1,1 @@
-{"type":"Terrain","width":1.0,"thickness":2.0,"entityName":"Terrain(Clone)","position":{"x":0.28867340087890627,"y":0.0,"z":1.2990455627441407},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
-{"type":"Wall","width":1.0,"thickness":1.0,"entityName":"Wall(Clone)","position":{"x":-1.8764019012451172,"y":-0.0000152587890625,"z":34.78549575805664},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
-{"type":"Wall","width":1.0,"thickness":1.0,"entityName":"Wall(Clone)","position":{"x":-0.28867626190185549,"y":0.00000762939453125,"z":-36.517547607421878},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
-{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":17.031902313232423,"y":0.0,"z":-19.341312408447267},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
-{"type":"Table","width":1.0,"thickness":43.0,"entityName":"Table(Clone)","position":{"x":15.877196311950684,"y":0.0,"z":8.082938194274903},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
-{"type":"Double","width":1.0,"thickness":1.0,"entityName":"Double(Clone)","position":{"x":-20.784692764282228,"y":0.0,"z":10.825363159179688},"rotation":{"x":0.0,"y":0.3826834559440613,"z":0.0,"w":0.9238795042037964}}
-{"type":"LoungeSeat","width":1.0,"thickness":1.0,"entityName":"LoungeSeat(Clone)","position":{"x":-21.36204719543457,"y":0.0,"z":-20.784692764282228},"rotation":{"x":0.0,"y":0.7071068286895752,"z":0.0,"w":0.7071068286895752}}
+{"type":"Terrain","width":1.0,"thickness":1.0,"entityName":"Terrain(Clone)","position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}

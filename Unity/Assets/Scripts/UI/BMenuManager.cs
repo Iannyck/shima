@@ -19,6 +19,8 @@ public class BMenuManager : MonoBehaviour {
     public GameObject sensorsFolder;
     public GameObject wallsFolder;
 
+    public RectTransform contentWindow;
+
     public void Menu() {
         if (menuPanel != null)
             menuPanel.SetActive(!menuPanel.activeInHierarchy);
@@ -109,18 +111,23 @@ public class BMenuManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Object[] furnitures = Resources.LoadAll ("Furniture");
+        int n = furnitures.Length;
+        float bottom = n / 7;
+        contentWindow.offsetMax = new Vector2(contentWindow.offsetMax.x, bottom);
 		GameObject furnitureButton;
 		BAddFurniture bAddFurniture;
 		BBuildManager bBuildManager = GetComponent<BBuildManager> ();
-		int x = -920;
-		int y = 640;
+        //float x = contentWindow.anchoredPosition.x;
+        //float y = contentWindow.anchoredPosition.y;
+		int x = -1000; // -920
+		int y = 640; // 640
 		foreach (GameObject g in furnitures) {
 			furnitureButton = Instantiate (Resources.Load ("UI/FurnitureButton")) as GameObject;
 			bAddFurniture = furnitureButton.GetComponent<BAddFurniture> ();
 			bAddFurniture.Init (bBuildManager, g.name, new Vector3 (x, y, 0), furnitureScrollView.transform);
 			x += 496;
-			if (x >= 840) {
-				x = -920;
+			if (x >= 1300 ) { // 840
+				x = -1000;
 				y -= 726;
 			}
 		}
