@@ -105,7 +105,7 @@ public class EditManager : MonoBehaviour
 
     void Update()
     {
-        // Rénitialise les paramètres si l'utilisateur n'est pas en train de sélectionner un objet
+        // Rénitialise les paramètres si l'utilisateur n'est pas en train de sélectionner un objet 
         #region GetMouseButtonDown(1)
 
         if (Input.GetMouseButtonDown(1))
