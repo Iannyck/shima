@@ -6,6 +6,8 @@ using System.IO;
 
 public class BMenuManager : MonoBehaviour {
 
+    #region Parametres
+
     public GameObject menuPanel;
     public GameObject buildPanel;
     public GameObject roomPanel;
@@ -20,6 +22,61 @@ public class BMenuManager : MonoBehaviour {
     public GameObject wallsFolder;
 
     public RectTransform contentWindow;
+
+    #endregion
+
+    #region MonoBehavior
+
+    void Start()
+    {
+        Object[] furnitures = Resources.LoadAll("Furniture");
+        int n = furnitures.Length;
+        float bottom = n / 7;
+        contentWindow.offsetMax = new Vector2(contentWindow.offsetMax.x, bottom);
+        GameObject furnitureButton;
+        BAddFurniture bAddFurniture;
+        BBuildManager bBuildManager = GetComponent<BBuildManager>();
+        //float x = contentWindow.anchoredPosition.x;
+        //float y = contentWindow.anchoredPosition.y;
+        int x = -1000; // -920
+        int y = 640; // 640
+        foreach (GameObject g in furnitures)
+        {
+            furnitureButton = Instantiate(Resources.Load("UI/FurnitureButton")) as GameObject;
+            bAddFurniture = furnitureButton.GetComponent<BAddFurniture>();
+            bAddFurniture.Init(bBuildManager, g.name, new Vector3(x, y, 0), furnitureScrollView.transform);
+            x += 496;
+            if (x >= 1300)
+            { // 840
+                x = -1000;
+                y -= 726;
+            }
+        }
+        ShowBuildMenu(false);
+        ShowRoomMenu(false);
+        ShowSensorMenu(false);
+        ShowAccuatorMenu(false);
+        ShowBinaryMenu(false);
+        ShowFurniturePanelMenu(false);
+        //		Transform furnitureButton = furnitureScrollView.transform.Find ("FurnitureButton");
+        //		furnitureButton.transform.name = furnitures [0].name+"Button";
+        //		Transform buttonText = furnitureButton.Find ("Text");
+        //		Text text = buttonText.GetComponent<Text> () as Text;
+        //		text.text = furnitures [0].name;
+
+        //		foreach(GameObject g in Resources.LoadAll("Furniture")){
+        //			Debug.Log (g.name);
+        //
+        //		}
+    }
+    void Update()
+    {
+
+    }
+
+    #endregion
+
+    #region MenuButton
 
     public void Menu() {
         if (menuPanel != null)
@@ -68,6 +125,41 @@ public class BMenuManager : MonoBehaviour {
         }
     }
 
+    private void ShowBuildMenu(bool value)
+    {
+        if (buildPanel != null)
+            buildPanel.SetActive(value);
+    }
+    private void ShowRoomMenu(bool value)
+    {
+        if (roomPanel != null)
+            roomPanel.SetActive(value);
+    }
+    private void ShowSensorMenu(bool value)
+    {
+        if (sensorPanel != null)
+            sensorPanel.SetActive(value);
+    }
+    private void ShowAccuatorMenu(bool value)
+    {
+        if (accuatorPanel != null)
+            accuatorPanel.SetActive(value);
+    }
+    private void ShowBinaryMenu(bool value)
+    {
+        if (binarySensorPanel != null)
+            binarySensorPanel.SetActive(value);
+    }
+    private void ShowFurniturePanelMenu(bool value)
+    {
+        if (furniturePanel != null)
+            furniturePanel.SetActive(value);
+    }
+
+    #endregion
+
+    #region Save and Load
+
     public void SaveFurniture()
     {
         StreamWriter writer = new StreamWriter("SaveRoom_Furnitures.txt");
@@ -86,7 +178,6 @@ public class BMenuManager : MonoBehaviour {
 
         writer.Close();
     }
-
     public void LoadFurniture()
     {
         // 1) Effacer tous les objets actuellement present dans la scene
@@ -108,81 +199,5 @@ public class BMenuManager : MonoBehaviour {
         return;
     }
 
-	// Use this for initialization
-	void Start () {
-		Object[] furnitures = Resources.LoadAll ("Furniture");
-        int n = furnitures.Length;
-        float bottom = n / 7;
-        contentWindow.offsetMax = new Vector2(contentWindow.offsetMax.x, bottom);
-		GameObject furnitureButton;
-		BAddFurniture bAddFurniture;
-		BBuildManager bBuildManager = GetComponent<BBuildManager> ();
-        //float x = contentWindow.anchoredPosition.x;
-        //float y = contentWindow.anchoredPosition.y;
-		int x = -1000; // -920
-		int y = 640; // 640
-		foreach (GameObject g in furnitures) {
-			furnitureButton = Instantiate (Resources.Load ("UI/FurnitureButton")) as GameObject;
-			bAddFurniture = furnitureButton.GetComponent<BAddFurniture> ();
-			bAddFurniture.Init (bBuildManager, g.name, new Vector3 (x, y, 0), furnitureScrollView.transform);
-			x += 496;
-			if (x >= 1300 ) { // 840
-				x = -1000;
-				y -= 726;
-			}
-		}
-		ShowBuildMenu (false);
-		ShowRoomMenu (false);
-		ShowSensorMenu (false);
-		ShowAccuatorMenu (false);
-		ShowBinaryMenu (false);
-		ShowFurniturePanelMenu (false);
-//		Transform furnitureButton = furnitureScrollView.transform.Find ("FurnitureButton");
-//		furnitureButton.transform.name = furnitures [0].name+"Button";
-//		Transform buttonText = furnitureButton.Find ("Text");
-//		Text text = buttonText.GetComponent<Text> () as Text;
-//		text.text = furnitures [0].name;
-
-//		foreach(GameObject g in Resources.LoadAll("Furniture")){
-//			Debug.Log (g.name);
-//
-//		}
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-
-	}
-
-	private void ShowBuildMenu(bool value) {
-		if (buildPanel != null)
-			buildPanel.SetActive (value);
-	}
-
-	private void ShowRoomMenu(bool value) {
-		if (roomPanel != null)
-			roomPanel.SetActive (value);
-	}
-
-	private void ShowSensorMenu(bool value) {
-		if (sensorPanel != null)
-			sensorPanel.SetActive (value);
-	}
-
-	private void ShowAccuatorMenu(bool value) {
-		if (accuatorPanel != null)
-			accuatorPanel.SetActive (value);
-	}
-
-	private void ShowBinaryMenu(bool value) {
-		if (binarySensorPanel != null)
-			binarySensorPanel.SetActive (value);
-	}
-
-	private void ShowFurniturePanelMenu(bool value) {
-		if (furniturePanel != null)
-			furniturePanel.SetActive (value);
-	}
-
+    #endregion
 }

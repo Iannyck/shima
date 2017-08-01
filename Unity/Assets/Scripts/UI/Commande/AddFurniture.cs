@@ -52,8 +52,11 @@ public class AddFurniture : Commande {
 
     public GameObject Load()
     {
-        Object obj = Resources.Load("Furniture/" + id) as GameObject;
+        GameObject obj = Resources.Load("Furniture/" + id) as GameObject;
         GameObject newObject = null;
+
+        if (obj != null)
+         rotation = obj.transform.rotation;
 
         if (obj != null)
         {

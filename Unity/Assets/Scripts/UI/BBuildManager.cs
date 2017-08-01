@@ -70,6 +70,7 @@ public class BBuildManager : MonoBehaviour
     #endregion
 
     #region Commande
+
     public void AddFurniture(string id, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), float width = 1f, float thickness = 1f)
     {
         Commande commande = new AddFurniture(this, furnitureFolder, sensorsFolder, wallsFolder, id, position, rotation, width, thickness);
@@ -117,7 +118,6 @@ public class BBuildManager : MonoBehaviour
         commandeList.Push(commande);
         editManager.RefreshInfos();
     }
-
     public void Cancel()
     {
         if (commandeList.Count != 0)
@@ -154,7 +154,6 @@ public class BBuildManager : MonoBehaviour
 
         Debug.Log("Erreur: Le Furniture_Recepteur en parametre est invalide (Voir RemoveFurniture de BBuildManager)");
     }
-
     public void RemoveAllFurniture()
     {
         int j = furnitureList.Count;
@@ -169,7 +168,7 @@ public class BBuildManager : MonoBehaviour
 
     #endregion
 
-    #region Furniture 
+    #region FurnitureList
 
     public List<Furniture_Recepteur> getFurnitureList()
     {

@@ -7,18 +7,6 @@ public class BAddFurniture : MonoBehaviour {
 
 	private BBuildManager bbuildManager = null;
 
-	// Use this for initialization
-	void Start ()
-    {
-       
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
 	public void Init(BBuildManager buildManager, string furnitureName, Vector3 position, Transform parent) {
 		bbuildManager = buildManager;
 		transform.name = furnitureName+"Button";
@@ -43,6 +31,5 @@ public class BAddFurniture : MonoBehaviour {
 
         bbuildManager.AddFurniture (text.text);
 	}
-
 
 }

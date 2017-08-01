@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EditManager : MonoBehaviour
 {
+    #region Parametres
 
     private BBuildManager buildManager;
     public GameObject editPanel;
@@ -38,14 +39,9 @@ public class EditManager : MonoBehaviour
     [HideInInspector]
     public Furniture_Recepteur recepteur;
 
-    private GameObject GetClickedGameObject()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            return hit.transform.gameObject;
-        return null;
-    }
+    #endregion
+
+    #region MonoBehavior
 
     void Start()
     {
@@ -53,56 +49,20 @@ public class EditManager : MonoBehaviour
 
         objectNameInputField.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.SetName(recepteur, oldName, objectNameInputField.text); RefreshInfos(); } });
 
-        angleNameInputField_X.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.RotateFurniture(recepteur, oldRotation, new Vector3(float.Parse(angleNameInputField_X.text), float.Parse(angleNameInputField_Y.text), float.Parse(angleNameInputField_Z.text)));}});
-        angleNameInputField_Y.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.RotateFurniture(recepteur, oldRotation, new Vector3(float.Parse(angleNameInputField_X.text), float.Parse(angleNameInputField_Y.text), float.Parse(angleNameInputField_Z.text)));}});
-        angleNameInputField_Z.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.RotateFurniture(recepteur, oldRotation, new Vector3(float.Parse(angleNameInputField_X.text), float.Parse(angleNameInputField_Y.text), float.Parse(angleNameInputField_Z.text)));}});
+        angleNameInputField_X.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.RotateFurniture(recepteur, oldRotation, new Vector3(float.Parse(angleNameInputField_X.text), float.Parse(angleNameInputField_Y.text), float.Parse(angleNameInputField_Z.text))); } });
+        angleNameInputField_Y.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.RotateFurniture(recepteur, oldRotation, new Vector3(float.Parse(angleNameInputField_X.text), float.Parse(angleNameInputField_Y.text), float.Parse(angleNameInputField_Z.text))); } });
+        angleNameInputField_Z.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.RotateFurniture(recepteur, oldRotation, new Vector3(float.Parse(angleNameInputField_X.text), float.Parse(angleNameInputField_Y.text), float.Parse(angleNameInputField_Z.text))); } });
 
-        scaleNameInputField_X.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.ScaleFurniture(recepteur, oldScaling, new Vector3(float.Parse(scaleNameInputField_X.text), float.Parse(scaleNameInputField_Y.text), float.Parse(scaleNameInputField_Z.text)));}});
-        scaleNameInputField_Y.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.ScaleFurniture(recepteur, oldScaling, new Vector3(float.Parse(scaleNameInputField_X.text), float.Parse(scaleNameInputField_Y.text), float.Parse(scaleNameInputField_Z.text)));}});
-        scaleNameInputField_Z.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.ScaleFurniture(recepteur, oldScaling, new Vector3(float.Parse(scaleNameInputField_X.text), float.Parse(scaleNameInputField_Y.text), float.Parse(scaleNameInputField_Z.text)));}});
+        scaleNameInputField_X.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.ScaleFurniture(recepteur, oldScaling, new Vector3(float.Parse(scaleNameInputField_X.text), float.Parse(scaleNameInputField_Y.text), float.Parse(scaleNameInputField_Z.text))); } });
+        scaleNameInputField_Y.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.ScaleFurniture(recepteur, oldScaling, new Vector3(float.Parse(scaleNameInputField_X.text), float.Parse(scaleNameInputField_Y.text), float.Parse(scaleNameInputField_Z.text))); } });
+        scaleNameInputField_Z.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.ScaleFurniture(recepteur, oldScaling, new Vector3(float.Parse(scaleNameInputField_X.text), float.Parse(scaleNameInputField_Y.text), float.Parse(scaleNameInputField_Z.text))); } });
 
-        positionNameInputField_X.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.MoveFurniture(recepteur, oldPosition, new Vector3(float.Parse(positionNameInputField_X.text), float.Parse(positionNameInputField_Y.text), float.Parse(positionNameInputField_Z.text)));}});
-        positionNameInputField_Y.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.MoveFurniture(recepteur, oldPosition, new Vector3(float.Parse(positionNameInputField_X.text), float.Parse(positionNameInputField_Y.text), float.Parse(positionNameInputField_Z.text)));}});
-        positionNameInputField_Z.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.MoveFurniture(recepteur, oldPosition, new Vector3(float.Parse(positionNameInputField_X.text), float.Parse(positionNameInputField_Y.text), float.Parse(positionNameInputField_Z.text)));}});
+        positionNameInputField_X.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.MoveFurniture(recepteur, oldPosition, new Vector3(float.Parse(positionNameInputField_X.text), float.Parse(positionNameInputField_Y.text), float.Parse(positionNameInputField_Z.text))); } });
+        positionNameInputField_Y.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.MoveFurniture(recepteur, oldPosition, new Vector3(float.Parse(positionNameInputField_X.text), float.Parse(positionNameInputField_Y.text), float.Parse(positionNameInputField_Z.text))); } });
+        positionNameInputField_Z.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.MoveFurniture(recepteur, oldPosition, new Vector3(float.Parse(positionNameInputField_X.text), float.Parse(positionNameInputField_Y.text), float.Parse(positionNameInputField_Z.text))); } });
 
-        thicknessNameInputField.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.SetThickness(recepteur, oldThickness, float.Parse(thicknessNameInputField.text));}});
+        thicknessNameInputField.onEndEdit.AddListener(delegate { if (recepteur != null) { recepteur.UpdateInfos(selected); buildManager.SetThickness(recepteur, oldThickness, float.Parse(thicknessNameInputField.text)); } });
     }
-
-    public void RefreshInfos()
-    {
-        if (selected != null)
-        {
-            oldName = selected.name;
-            objectNameInputField.text = selected.name;
-            oldThickness = buildManager.FindInFurnitureList(selected).getFurniture().thickness;
-            oldRotation = selected.transform.eulerAngles;
-            oldScaling = new Vector3(selected.transform.localScale.x, selected.transform.localScale.y, selected.transform.localScale.z);
-
-            angleNameInputField_X.text = (selected.transform.localRotation.eulerAngles.x.ToString());
-            angleNameInputField_Y.text = (selected.transform.localRotation.eulerAngles.y.ToString());
-            angleNameInputField_Z.text = (selected.transform.localRotation.eulerAngles.z.ToString());
-
-            scaleNameInputField_X.text = (selected.transform.localScale.x.ToString());
-            scaleNameInputField_Y.text = (selected.transform.localScale.y.ToString());
-            scaleNameInputField_Z.text = (selected.transform.localScale.z.ToString());
-
-            positionNameInputField_X.text = (selected.transform.position.x.ToString());
-            positionNameInputField_Y.text = (selected.transform.position.y.ToString());
-            positionNameInputField_Z.text = (selected.transform.position.z.ToString());
-
-            thicknessNameInputField.text = buildManager.FindInFurnitureList(selected).getFurniture().thickness.ToString();
-        }
-
-    }
-    public void CloseEdit()
-    {
-        editPanel.SetActive(false);
-    }
-    public GameObject getSelected()
-    {
-        return selected;
-    }
-
     void Update()
     {
         // Rénitialise les paramètres si l'utilisateur n'est pas en train de sélectionner un objet 
@@ -193,4 +153,55 @@ public class EditManager : MonoBehaviour
 
         #endregion
     }
+
+    #endregion
+
+    #region Functions
+
+    private GameObject GetClickedGameObject()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            return hit.transform.gameObject;
+        return null;
+    }
+    public GameObject getSelected()
+    {
+        return selected;
+    }
+
+    public void RefreshInfos()
+    {
+        if (selected != null)
+        {
+            oldName = selected.name;
+            objectNameInputField.text = selected.name;
+            oldThickness = buildManager.FindInFurnitureList(selected).getFurniture().thickness;
+            oldRotation = selected.transform.eulerAngles;
+            oldScaling = new Vector3(selected.transform.localScale.x, selected.transform.localScale.y, selected.transform.localScale.z);
+
+            angleNameInputField_X.text = (selected.transform.localRotation.eulerAngles.x.ToString());
+            angleNameInputField_Y.text = (selected.transform.localRotation.eulerAngles.y.ToString());
+            angleNameInputField_Z.text = (selected.transform.localRotation.eulerAngles.z.ToString());
+
+            scaleNameInputField_X.text = (selected.transform.localScale.x.ToString());
+            scaleNameInputField_Y.text = (selected.transform.localScale.y.ToString());
+            scaleNameInputField_Z.text = (selected.transform.localScale.z.ToString());
+
+            positionNameInputField_X.text = (selected.transform.position.x.ToString());
+            positionNameInputField_Y.text = (selected.transform.position.y.ToString());
+            positionNameInputField_Z.text = (selected.transform.position.z.ToString());
+
+            thicknessNameInputField.text = buildManager.FindInFurnitureList(selected).getFurniture().thickness.ToString();
+        }
+
+    }
+    public void CloseEdit()
+    {
+        editPanel.SetActive(false);
+    }
+
+    #endregion
+
 }
