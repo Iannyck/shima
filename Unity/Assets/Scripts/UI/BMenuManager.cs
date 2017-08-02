@@ -8,6 +8,9 @@ public class BMenuManager : MonoBehaviour {
 
     #region Parametres
 
+    public string saveName = "SaveRoom_Furnitures.txt";
+    public string loadName = "SaveRoom_Furnitures.txt";
+
     public GameObject menuPanel;
     public GameObject buildPanel;
     public GameObject roomPanel;
@@ -162,7 +165,7 @@ public class BMenuManager : MonoBehaviour {
 
     public void SaveFurniture()
     {
-        StreamWriter writer = new StreamWriter("SaveRoom_Furnitures.txt");
+        StreamWriter writer = new StreamWriter(saveName);
 
         BBuildManager a = this.transform.GetComponent<BBuildManager>();
         Debug.Log(a);
@@ -186,7 +189,7 @@ public class BMenuManager : MonoBehaviour {
 
         this.GetComponentInParent<BBuildManager>().RemoveAllFurniture();
 
-        StreamReader reader = new StreamReader("SaveRoom_Furnitures.txt");
+        StreamReader reader = new StreamReader(loadName);
         string line = reader.ReadLine();
 
         while (line != null)

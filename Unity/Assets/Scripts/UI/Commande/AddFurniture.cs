@@ -56,7 +56,8 @@ public class AddFurniture : Commande {
         GameObject newObject = null;
 
         if (obj != null)
-         rotation = obj.transform.rotation;
+            if (rotation == default(Quaternion))
+                rotation = obj.transform.rotation;
 
         if (obj != null)
         {
