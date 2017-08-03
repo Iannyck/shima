@@ -25,7 +25,7 @@ public class Furniture_Recepteur
 
     public void UpdateInfos(GameObject a)
     {
-        furniture.UpdateAll(a.name, a.transform.position, a.transform.rotation);
+        furniture.UpdateAll(a.name, a.transform.position, a.transform.rotation, a.transform.localScale);
         SetGameObject(a);
     }
 

@@ -20,7 +20,10 @@ public class Furniture
     private Vector3 position;         // Il s'agit de la position du GameObject qui lui est rattaché, doit être modifié avec la fonction UpdatePosition()
 
     [SerializeField]
-    private Quaternion rotation;      // Il s'agit du nom du GameObject qui lui est rattaché, doit être modifié avec la fonction UpdateRotation()
+    private Quaternion rotation;      // Il s'agit de la rotation du GameObject qui lui est rattaché, doit être modifié avec la fonction UpdateRotation()
+
+    [SerializeField]
+    private Vector3 scale;           // Il s'agit du scale du GameObject qui lui est rattaché, doit être modifié avec la fonction UpdateScale()
 
     #endregion
 
@@ -28,49 +31,56 @@ public class Furniture
 
     //  Constructeur de la classe, il permet d'initialiser les valeurs propres au Furniture et celles du GameObject 
 
-    public Furniture(string type, float width, float thickness, GameObject newObject) 
+    public Furniture(string type, float thickness, GameObject newObject) 
     {
         this.type = type;
-        this.width = width;
         this.thickness = thickness;
 
         entityName = newObject.name;
         position = newObject.transform.position;
         rotation = newObject.transform.rotation;
+        scale = newObject.transform.localScale;
     }
 
     #endregion
 
     #region Update Methodes
 
-    public void UpdateName(string newName)
+    public void UpdateName(string newName)  // Permet de modifier le nom visible dans l'inteface utilisateur de l'objet, devrait être appelé uniquement par la classe Furniture_Recepteur
     {
         entityName = newName;
         return;
-    }                                                    // Permet de modifier le nom visible dans l'inteface utilisateur de l'objet, devrait être appelé uniquement par la classe Furniture_Recepteur
-    public void UpdatePosition(Vector3 newPosition)
+    }                                                    
+    public void UpdatePosition(Vector3 newPosition) // Permet de modifier la position dans l'inteface de l'objet, devrait être appelé uniquement par la classe Furniture_Recepteur
     {
         position = newPosition;
         return;
-    }                                           // Permet de modifier la position dans l'inteface de l'objet, devrait être appelé uniquement par la classe Furniture_Recepteur
-    public void UpdateRotation(Quaternion newRotation)
+    }                                          
+    public void UpdateRotation(Quaternion newRotation) // Permet de modifier la rotation dans l'inteface de l'objet, devrait être appelé uniquement par la classe Furniture_Recepteur
     {
         rotation = newRotation;
         return;
-    }                                        // Permet de modifier la rotation dans l'inteface de l'objet, devrait être appelé uniquement par la classe Furniture_Recepteur
+    }                                       
+    public void UpdateScale(Vector3 newScale) // Permet de modifier le scale dans l'inteface de l'objet, devrait être appelé uniquement par la classe Furniture_Recepteur
+    {
+        scale = newScale;
+        return;
+    }
 
-    public void UpdateAll(string newName, Vector3 newPosition, Quaternion newRotation)
+    public void UpdateAll(string newName, Vector3 newPosition, Quaternion newRotation, Vector3 newScale)// Permet de mettre à jour l'ensemble des paramètres modifiables de l'objet, devrait être appelé lorsque de l'initialisation du GameObject qui s'y rattache
     {
         UpdateName(newName);
         UpdatePosition(newPosition);
         UpdateRotation(newRotation);
-    }        // Permet de mettre à jour l'ensemble des paramètres modifiables de l'objet, devrait être appelé lorsque de l'initialisation du GameObject qui s'y rattache
-    public void UpdateAll(GameObject a)
+        UpdateScale(newScale);
+    }        
+    public void UpdateAll(GameObject a) // Permet de mettre à jour l'ensemble des paramètres modifiables de l'objet, cette fois en lui passant l'objet en question en parametre
     {
         UpdateName(a.name);
         UpdatePosition(a.transform.position);
         UpdateRotation(a.transform.rotation);
-    }                                                       // Permet de mettre à jour l'ensemble des paramètres modifiables de l'objet, cette fois en lui passant l'objet en question en parametre
+        UpdateScale(a.transform.localScale);
+    }                                                       
 
     #endregion
 
@@ -87,6 +97,10 @@ public class Furniture
     public Quaternion getRotation()
     {
         return rotation;
+    }
+    public Vector3 getScale()
+    {
+        return scale;
     }
     public string getName()
     {

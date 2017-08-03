@@ -12,18 +12,18 @@ public class AddFurniture : Commande {
     private string id;
     private Vector3 position;
     private Quaternion rotation;
-    private float width;
+    private Vector3 scale;
     private float thickness;
 
     private Furniture newFurniture;
     private Furniture_Recepteur newRecepteur;
 
-    public AddFurniture(BBuildManager manager, Transform furnituresFolder, Transform sensorsFolder, Transform wallsFolder, string id, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), float width = 1f, float thickness = 1f)
+    public AddFurniture(BBuildManager manager, Transform furnituresFolder, Transform sensorsFolder, Transform wallsFolder, string id, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3 scale = default(Vector3), float thickness = 1f)
     {
         this.id = id;
         this.position = position;
         this.rotation = rotation;
-        this.width = width;
+        this.scale = scale;
         this.thickness = thickness;
         this.furnituresFolder = furnituresFolder;
         this.sensorsFolder = sensorsFolder;
@@ -35,7 +35,7 @@ public class AddFurniture : Commande {
     {
         GameObject newObject = Load();
    
-        newFurniture = new Furniture(id, width, thickness, newObject);
+        newFurniture = new Furniture(id, thickness, newObject);
 
         newRecepteur = new Furniture_Recepteur(newObject, newFurniture);
     }
@@ -63,6 +63,7 @@ public class AddFurniture : Commande {
         {
             newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
             newObject.transform.SetParent(furnituresFolder);
+            newObject.transform.localScale = scale;
         }
 
         else
@@ -72,6 +73,7 @@ public class AddFurniture : Commande {
             {
                 newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
                 newObject.transform.SetParent(sensorsFolder);
+                newObject.transform.localScale = scale;
             }
 
             else
@@ -81,10 +83,20 @@ public class AddFurniture : Commande {
                 {
                     newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
                     newObject.transform.SetParent(wallsFolder);
+                    newObject.transform.localScale = scale;
                 }
             }
         }
 
+        if (newObject != null)
         return newObject;
+
+        else
+        {
+            string a = id.ToString();
+            Debug.Log("Impossible de charger le prefab du type indiqué (Voir AddFurniture.Load)");
+            Debug.Log(a);
+            return null;
+        }
     }
 };

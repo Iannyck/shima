@@ -19,12 +19,14 @@ public class BMenuManager : MonoBehaviour {
     public GameObject accuatorPanel;
     public GameObject binarySensorPanel;
     public GameObject furnitureScrollView;
+    public GameObject saveScrollView;
 
     public GameObject furnituresFolder;
     public GameObject sensorsFolder;
     public GameObject wallsFolder;
 
     public RectTransform contentWindow;
+    public RectTransform saveWindow;
 
     #endregion
 
@@ -32,6 +34,8 @@ public class BMenuManager : MonoBehaviour {
 
     void Start()
     {
+        LoadSaveFolder();
+
         Object[] furnitures = Resources.LoadAll("Furniture");
         int n = furnitures.Length;
         float bottom = n / 7;
@@ -61,6 +65,8 @@ public class BMenuManager : MonoBehaviour {
         ShowAccuatorMenu(false);
         ShowBinaryMenu(false);
         ShowFurniturePanelMenu(false);
+
+
         //		Transform furnitureButton = furnitureScrollView.transform.Find ("FurnitureButton");
         //		furnitureButton.transform.name = furnitures [0].name+"Button";
         //		Transform buttonText = furnitureButton.Find ("Text");
@@ -200,6 +206,39 @@ public class BMenuManager : MonoBehaviour {
 
         reader.Close();
         return;
+    }
+
+    private void LoadSaveFolder()
+    {
+        // string[] filePaths = Directory.GetFiles(Application.dataPath + "/", ".shima");
+        // Debug.Log(filePaths.Length);
+
+        DirectoryInfo directory = new DirectoryInfo(@"Assets\Resources\Saves");
+        FileInfo[] info = directory.GetFiles("*.shima");
+        Debug.Log(info.Length);
+        Debug.Log(info[0].Name);
+
+        float bottom = info.Length / 7;
+        saveWindow.offsetMax = new Vector2(saveWindow.offsetMax.x, bottom);
+        GameObject furnitureButton;
+        BAddFurniture bAddFurniture;
+        BBuildManager bBuildManager = GetComponent<BBuildManager>();
+
+        int x = -1000; // -920
+        int y = 640; // 640
+
+        for (int i=0;i<info.Length;i++)
+        {
+            furnitureButton = Instantiate(Resources.Load("UI/FurnitureButton")) as GameObject;
+            bAddFurniture = furnitureButton.GetComponent<BAddFurniture>();
+            bAddFurniture.Init(bBuildManager, info[i].Name, new Vector3(x, y, 0), saveScrollView.transform);
+            x += 496;
+           if (x >= 1300)
+            { // 840
+                x = -1000;
+                y -= 726;
+            }
+        }
     }
 
     #endregion

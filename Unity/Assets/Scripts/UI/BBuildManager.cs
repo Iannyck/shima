@@ -71,9 +71,9 @@ public class BBuildManager : MonoBehaviour
 
     #region Commande
 
-    public void AddFurniture(string id, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), float width = 1f, float thickness = 1f)
+    public void AddFurniture(string id, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Vector3 scale = default(Vector3), float thickness = 1f)
     {
-        Commande commande = new AddFurniture(this, furnitureFolder, sensorsFolder, wallsFolder, id, position, rotation, width, thickness);
+        Commande commande = new AddFurniture(this, furnitureFolder, sensorsFolder, wallsFolder, id, position, rotation, scale, thickness);
         commande.Do();
         commandeList.Push(commande);
         furnitureList.Add((commande as AddFurniture).getFurnitureRecepteur());
@@ -133,7 +133,7 @@ public class BBuildManager : MonoBehaviour
     public void LoadFurniture(string jsonTextLine)
     {
         Furniture newFurniture = JsonUtility.FromJson<Furniture>(jsonTextLine);
-        Commande commande = new AddFurniture(this, furnitureFolder, sensorsFolder, wallsFolder, newFurniture.getType(),newFurniture.getPosition(), newFurniture.getRotation(), newFurniture.width, newFurniture.thickness);
+        Commande commande = new AddFurniture(this, furnitureFolder, sensorsFolder, wallsFolder, newFurniture.getType(),newFurniture.getPosition(), newFurniture.getRotation(), newFurniture.getScale(), newFurniture.thickness);
         commande.Do();
         furnitureList.Add((commande as AddFurniture).getFurnitureRecepteur());
     }

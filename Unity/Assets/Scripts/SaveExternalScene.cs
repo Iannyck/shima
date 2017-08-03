@@ -16,7 +16,7 @@ public class SaveExternalScene : MonoBehaviour {
         for(int i=0;i<nb;i++)
         {
             GameObject child = transform.GetChild(i).gameObject;
-            Furniture newFurniture = new global::Furniture(child.name, 1f, 1f, child); // Le nom de l'objet doit être le même que son prefab
+            Furniture newFurniture = new global::Furniture(child.name, 1f, child); // Le nom de l'objet doit être le même que son prefab
             Furniture_Recepteur recepteur = new Furniture_Recepteur(child, newFurniture);
             furnitureList.Add(recepteur);
         }
