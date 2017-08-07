@@ -26,7 +26,6 @@ public class SaveExternalScene : MonoBehaviour {
         foreach (Furniture_Recepteur currentFurniture in furnitureList)
         {
             writer.WriteLine(JsonUtility.ToJson(currentFurniture.getFurniture()));
-            Debug.Log(currentFurniture.getFurniture());
         }
 
         writer.Close();

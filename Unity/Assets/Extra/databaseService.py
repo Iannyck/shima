@@ -88,6 +88,11 @@ def index():
     print(request.forms.get("id"+str(0)))
     return "200"
 
+@route('/data/actuator', method='GET')
+def index():
+    print(request.forms.get("id"))
+    return "200"
+
 connection = sqlite3.connect("smarthome.db")
 cursor = connection.cursor()
 cursor.execute("create table if not exists Electricity (timestamp character(255), phaseId character(2), activePower integer, reactivePower integer)")
@@ -99,6 +104,9 @@ connection.commit()
 cursor.execute("create table if not exists BinarySensor (timestamp character(255), sensorId character(255), type character(255), value boolean)")
 connection.commit()
 cursor.execute("create table if not exists Ultrasound (timestamp character(255), sensorId character(255), value integer)")
+connection.commit()
+# CREATE ACTUATOR DATABASE
+cursor.execute("create table if not exists Actuator (actuatorId character(255), action character(255), extraData blob)")
 connection.commit()
 
 run(host='localhost', port=8080, debug=True)
