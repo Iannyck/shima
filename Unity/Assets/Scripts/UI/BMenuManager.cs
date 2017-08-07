@@ -12,6 +12,7 @@ public class BMenuManager : MonoBehaviour {
     public string loadName = "SaveRoom_Furnitures.txt";
 
     public GameObject menuPanel;
+    public GameObject loadPanel;
     public GameObject buildPanel;
     public GameObject roomPanel;
     public GameObject furniturePanel;
@@ -34,7 +35,7 @@ public class BMenuManager : MonoBehaviour {
 
     void Start()
     {
-        LoadSaveFolder();
+        //LoadSaveFolder();
 
         Object[] furnitures = Resources.LoadAll("Furniture");
         int n = furnitures.Length;
@@ -65,6 +66,7 @@ public class BMenuManager : MonoBehaviour {
         ShowAccuatorMenu(false);
         ShowBinaryMenu(false);
         ShowFurniturePanelMenu(false);
+        ShowLoadMenu(false);
 
 
         //		Transform furnitureButton = furnitureScrollView.transform.Find ("FurnitureButton");
@@ -90,6 +92,19 @@ public class BMenuManager : MonoBehaviour {
     public void Menu() {
         if (menuPanel != null)
             menuPanel.SetActive(!menuPanel.activeInHierarchy);
+        ShowBuildMenu(false);
+        ShowRoomMenu(false);
+        ShowSensorMenu(false);
+        ShowAccuatorMenu(false);
+        ShowBinaryMenu(false);
+        ShowFurniturePanelMenu(false);
+        ShowLoadMenu(false);
+        
+    }
+    public void Load()
+    {
+        if (loadPanel != null)
+            loadPanel.SetActive(!loadPanel.activeInHierarchy);
         ShowBuildMenu(false);
         ShowRoomMenu(false);
         ShowSensorMenu(false);
@@ -138,6 +153,11 @@ public class BMenuManager : MonoBehaviour {
     {
         if (buildPanel != null)
             buildPanel.SetActive(value);
+    }
+    private void ShowLoadMenu(bool value)
+    {
+        if (loadPanel != null)
+            loadPanel.SetActive(value);
     }
     private void ShowRoomMenu(bool value)
     {

@@ -54,13 +54,15 @@ public class AddFurniture : Commande {
     {
         GameObject obj = Resources.Load("Furniture/" + id) as GameObject;
         GameObject newObject = null;
-
+            
         if (obj != null)
+        {
             if (rotation == default(Quaternion))
                 rotation = obj.transform.rotation;
 
-        if (obj != null)
-        {
+            if (scale == default(Vector3))
+                scale = obj.transform.localScale;
+
             newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
             newObject.transform.SetParent(furnituresFolder);
             newObject.transform.localScale = scale;
@@ -69,8 +71,15 @@ public class AddFurniture : Commande {
         else
         {
             obj = Resources.Load("Sensor/" + id) as GameObject;
+
             if (obj != null)
             {
+                if (rotation == default(Quaternion))
+                    rotation = obj.transform.rotation;
+
+                if (scale == default(Vector3))
+                    scale = obj.transform.localScale;
+
                 newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
                 newObject.transform.SetParent(sensorsFolder);
                 newObject.transform.localScale = scale;
@@ -79,11 +88,18 @@ public class AddFurniture : Commande {
             else
             {
                 obj = Resources.Load("Wall/" + id) as GameObject;
+
                 if (obj != null)
                 {
+                    if (rotation == default(Quaternion))
+                        rotation = obj.transform.rotation;
+
+                    if (scale == default(Vector3))
+                        scale = obj.transform.localScale;
+
                     newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
                     newObject.transform.SetParent(wallsFolder);
-                    newObject.transform.localScale = scale;
+                    newObject.transform.localScale = scale;        
                 }
             }
         }
