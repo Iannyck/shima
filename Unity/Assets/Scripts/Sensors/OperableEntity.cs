@@ -55,7 +55,7 @@ public abstract class OperableEntity : MonoBehaviour {
 	}
 
 	public void subscribe(ISensorObserver iSensorObserver) {
-		observer += new EventHandler (iSensorObserver.Notify);
+//		observer += new EventHandler (iSensorObserver.Notify);
 	}
 
 	protected abstract bool EntityInit ();

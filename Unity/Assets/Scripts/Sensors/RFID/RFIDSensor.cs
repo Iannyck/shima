@@ -51,12 +51,12 @@ public class RFIDSensor : IESensor {
 
 	private float RSSI(GameObject collider) {
 		float distance = Vector3.Distance(this.transform.position, collider.transform.position);
-		float angle = Vector3.Angle(this.transform.position, collider.transform.position);
+		float angle = Vector3.Angle(this.transform.position, collider.transform.position) + SimpleNoiseGenerationFunction(0,10);
 		float angleLose = 1 - Mathf.Cos (angle);
 		float ambiantNoise = AmbiantNoise();
 		float obstacleLose = ObstacleNoise(collider);
 
-		float rssi = ((-9.1333f * Mathf.Log(distance)) - 10.726f) * angleLose;
+		float rssi = ((-9.1333f * Mathf.Log(distance)) - 10.726f) * angleLose + SimpleNoiseGenerationFunction(0,3);
 
 
 		return rssi;
@@ -89,6 +89,10 @@ public class RFIDSensor : IESensor {
 			else
 				return null;
 		}
+	}
+
+	private float SimpleNoiseGenerationFunction(int min, int max) {
+		return Random.value + Random.Range (min, max);
 	}
 
 }

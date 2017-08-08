@@ -13,10 +13,6 @@ public class ContactSensor : IESensor, ISensorObserver {
 	protected override void IESensorInit ()
 	{
 		base.IESensorInit ();
-		ActionableEntity actionableEntity = GetComponent<ActionableEntity> ();
-		if (actionableEntity != null) {
-			actionableEntity.subscribe (this);
-		}
 	}
 
 	protected override void IESensorUpdate ()
@@ -31,7 +27,7 @@ public class ContactSensor : IESensor, ISensorObserver {
 		base.IESensorStop ();
 	}
 
-	void ISensorObserver.Notify (object sender, EventArgs e) {
+	void ISensorObserver.Notify () {
 		if (currentTime <= 0) {
 			state = !state;
 			currentTime = delay;

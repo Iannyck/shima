@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SmartElectricMeter : IESensor {
 
+	// NEw version
+
 	[SerializeField]
 	private int phasesNumber = 3;
 
@@ -52,16 +54,18 @@ public class SmartElectricMeter : IESensor {
 	}
 
 	public bool Consume(int phase, int activePower, int reactivePower){
-		if (((ElectricPhase)electricPhases [phase]).IsActive) {
-			((ElectricPhase)electricPhases [phase]).AddActivePower (activePower);
-			((ElectricPhase)electricPhases [phase]).AddReactivePower (reactivePower);
-			return true;
+		if (electricPhases != null && electricPhases [phase - 1] != null) {
+			if (((ElectricPhase)electricPhases [phase - 1]).IsActive) {
+				((ElectricPhase)electricPhases [phase - 1]).AddActivePower (activePower);
+				((ElectricPhase)electricPhases [phase - 1]).AddReactivePower (reactivePower);
+				return true;
+			}
 		}
 		return false;
 	}
 
 	public void Release(int phase, int activePower, int reactivePower){
-		((ElectricPhase)electricPhases [phase]).AddActivePower (-activePower);
-		((ElectricPhase)electricPhases [phase]).AddReactivePower (-reactivePower);
+		((ElectricPhase)electricPhases [phase-1]).AddActivePower (-activePower);
+		((ElectricPhase)electricPhases [phase-1]).AddReactivePower (-reactivePower);
 	}
 }

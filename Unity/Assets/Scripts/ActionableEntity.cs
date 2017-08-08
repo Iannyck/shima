@@ -10,7 +10,7 @@ public class ActionableEntity : MonoBehaviour {
 	private bool action = false;
 
 	public void subscribe(ISensorObserver iSensorObserver) {
-		observer += new EventHandler (iSensorObserver.Notify);
+//		observer += new EventHandler (iSensorObserver.Notify);
 	}
 
 	public void ActOn(){ 

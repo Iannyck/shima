@@ -3,6 +3,9 @@ using System.Collections;
 
 public class SmartElectronicMeter : MonoBehaviour {
 
+	[SerializeField]
+	private string smartHomeServerName = "SmartHomeServer";
+
 	public enum NoiseFunctionType : byte {Random, Gaussian}
 
 	public NoiseFunctionType noiseFunctionType;
@@ -70,9 +73,9 @@ public class SmartElectronicMeter : MonoBehaviour {
 	}
 
 	private void InitLogger() {
-		GameObject smartHomeServer = GameObject.Find ("smarthomeserver");
+		GameObject smartHomeServer = GameObject.Find (smartHomeServerName );
 		if(smartHomeServer == null)
-			Debug.Log("SmartHomeServer Not Loaded");
+			Debug.Log("SmartHomeServer named "+smartHomeServerName +" Not Loaded");
 
 		logger = smartHomeServer.GetComponent<ElectricityLogger> ();
 		shServer = smartHomeServer.GetComponent<SmartHomeServer> ();

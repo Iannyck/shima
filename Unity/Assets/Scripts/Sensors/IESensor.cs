@@ -5,7 +5,7 @@ using UnityEngine;
 public class IESensor : MonoBehaviour {
 
 	[SerializeField]
-	private string smartHomeServerObjectName = "smarthomeserver";
+	private string smartHomeServerObjectName = "SmartHomeServer";
 
 	public bool isStarted = false;
 

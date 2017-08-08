@@ -3,6 +3,8 @@ using System.Collections;
 
 public class SmartHomeServer : MonoBehaviour {
 
+	public bool isStarted = false;
+
 	public string url = "http://localhost:8080/data/";
 
 	public float deltaTime = 1f;
@@ -19,10 +21,12 @@ public class SmartHomeServer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		currentTime -= Time.deltaTime;
-		if (currentTime <= 0) {
-			WriteData ();
-			currentTime = deltaTime;
+		if (isStarted) {
+			currentTime -= Time.deltaTime;
+			if (currentTime <= 0) {
+				WriteData ();
+				currentTime = deltaTime;
+			}
 		}
 	}
 

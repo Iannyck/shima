@@ -7,10 +7,7 @@ public class ElectricityConsumption : MonoBehaviour {
 	public bool isStarted = false;
 
 	[SerializeField]
-	private List<int> phases;
-
-	[SerializeField]
-	private string smartElectricMeterObjectName = "smarthomeserver";
+	private string smartElectricMeterObjectName = "SmartElectricPanel";
 
 	private SmartElectricMeter smartElectricMeter;
 
@@ -26,7 +23,7 @@ public class ElectricityConsumption : MonoBehaviour {
 	private void GetSmartElectricMeter() {
 		GameObject smartElectricMeterObject = GameObject.Find (smartElectricMeterObjectName);
 		if(smartElectricMeterObject == null)
-			Debug.Log(smartElectricMeterObjectName+" Not found");
+			Debug.Log("Smart Electric Panel named "+ smartElectricMeterObjectName+" Not found");
 		else
 			smartElectricMeter = smartElectricMeterObject.GetComponent<SmartElectricMeter> ();
 	}

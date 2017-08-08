@@ -27,24 +27,25 @@ public class BinaryPressurePlate : IESensor {
 
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject.tag != "Floor")
-		{
-			Rigidbody rgbd = other.gameObject.GetComponent<Rigidbody>();
-			totalMassPressure += rgbd.mass;
-			if (totalMassPressure >= minimumValue)
-			{
-				SmartHomeServer.InsertBinarySensorData (name, SensorType, true);
+		if (isStarted) {
+			if (other.gameObject.tag != "Floor") {
+				Rigidbody rgbd = other.gameObject.GetComponent<Rigidbody> ();
+				totalMassPressure += rgbd.mass;
+				if (totalMassPressure >= minimumValue) {
+					SmartHomeServer.InsertBinarySensorData (name, SensorType, true);
+				}
 			}
 		}
 	}
 
 	void OnCollisionExit(Collision other)
 	{
-		Rigidbody rgbd = other.gameObject.GetComponent<Rigidbody>();
-		totalMassPressure -= rgbd.mass;
-		if (totalMassPressure == 0f)
-		{
-			SmartHomeServer.InsertBinarySensorData (name, SensorType, false);
+		if (isStarted) {
+			Rigidbody rgbd = other.gameObject.GetComponent<Rigidbody> ();
+			totalMassPressure -= rgbd.mass;
+			if (totalMassPressure == 0f) {
+				SmartHomeServer.InsertBinarySensorData (name, SensorType, false);
+			}
 		}
 	}
 

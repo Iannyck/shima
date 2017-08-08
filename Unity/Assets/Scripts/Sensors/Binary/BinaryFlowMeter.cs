@@ -11,10 +11,6 @@ public class BinaryFlowMeter : IESensor, ISensorObserver {
 	protected override void IESensorInit ()
 	{
 		base.IESensorInit ();
-		ActionableEntity actionableEntity = GetComponent<ActionableEntity> ();
-		if (actionableEntity != null) {
-			actionableEntity.subscribe (this);
-		}
 	}
 
 	protected override void IESensorUpdate ()
@@ -27,7 +23,7 @@ public class BinaryFlowMeter : IESensor, ISensorObserver {
 		base.IESensorStop ();
 	}
 
-	void ISensorObserver.Notify (object sender, EventArgs e) {
+	void ISensorObserver.Notify () {
 		state = !state;
 		SmartHomeServer.InsertBinarySensorData (name, SensorType, state);
 	}

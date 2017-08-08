@@ -20,6 +20,7 @@ public class InfraredSensor : IESensor {
 	{
 		base.IESensorUpdate ();
 		if (isDetectionEnable) {
+			Raycasting ();
 		} else {
 			cooldown -= Time.deltaTime;
 			if (cooldown <= 0f) {
@@ -38,7 +39,7 @@ public class InfraredSensor : IESensor {
 	{
 		RaycastHit hit;
 		Physics.Raycast(transform.position, transform.up, out hit, range);
-		//		Debug.DrawRay (transform.position, transform.up * range, Color.red);
+		Debug.DrawRay (transform.position, transform.up * range, Color.red);
 		if (hit.collider != null) {
 			if (hit.collider.tag == "Player") {
 				float distance = hit.distance;
