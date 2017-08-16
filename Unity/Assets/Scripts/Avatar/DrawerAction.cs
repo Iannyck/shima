@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DrawerAction : EntityBehaviour {
 
-	public override void EBUpdate ()
+	public override BTState EBUpdate ()
 	{
+		return BTState.STOP;
 	}
 }

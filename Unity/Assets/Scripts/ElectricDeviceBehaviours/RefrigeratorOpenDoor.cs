@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class RefrigeratorOpenDoor : EntityBehaviour {
 
-	public override void EBUpdate ()
+	[SerializeField]
+	private EDPhase coolingPhase;
+
+	public override BTState EBUpdate ()
 	{
-		Refrigerator refrigerator = GetComponent<Refrigerator> ();
-		refrigerator.Act ();
-		IsStarted = false;
+		if (coolingPhase.State == BTState.RUNNING)
+			coolingPhase.Interrupt ();
+		return BTState.SUCCEEDED;
 	}
 }

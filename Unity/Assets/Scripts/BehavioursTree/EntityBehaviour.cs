@@ -4,33 +4,49 @@ using UnityEngine;
 
 public abstract class EntityBehaviour : MonoBehaviour {
 
+	[SerializeField]
+	private string ebname = "noname";
 
-	private bool isStarted;
+	[SerializeField]
+	private bool autoStart = false;
 
-	public bool IsStarted {
+	public enum BTState
+	{
+		STOP,
+		RUNNING,
+		SUCCEEDED,
+		FAILED
+	};
+
+	[SerializeField]
+	private BTState state = BTState.STOP;
+
+	public BTState State {
 		get {
-			return this.isStarted;
+			return this.state;
 		}
 		set {
-			isStarted = value;
+			state = value;
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
-		isStarted = false;
+		if (autoStart)
+			EBStart ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isStarted) {
-			EBUpdate ();
+		if (state == BTState.RUNNING) {
+			state = EBUpdate ();
 		}
 	}
 
-	public void EBStart() {
-		isStarted = true;
+	public virtual void EBStart() {
+		Debug.Log (ebname+" Started");
+		state = BTState.RUNNING;
 	}
 
-	public abstract void EBUpdate();
+	public abstract BTState EBUpdate();
 }

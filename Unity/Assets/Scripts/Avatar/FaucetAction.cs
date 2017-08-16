@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FaucetAction : EntityBehaviour {
 
-	public override void EBUpdate ()
+	public override BTState EBUpdate ()
 	{
+		return BTState.STOP;
 	}
 
 }

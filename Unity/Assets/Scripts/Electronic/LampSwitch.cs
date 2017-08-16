@@ -21,19 +21,19 @@ public class LampSwitch : EntityBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		IsStarted = false;
+		State = BTState.STOP;
 		isInit = false;
 		electricity = GetComponent<ElectricityConsumption> ();
 		foreach(Light light in lights) {
 			if (light.gameObject.activeInHierarchy)
-				IsStarted = true;
+				State = BTState.RUNNING;
 		}
 	}
 
-	public override void EBUpdate ()
+	public override BTState EBUpdate ()
 	{
 		if (!isInit) {
-			Init ();
+			return Init ();
 		} else {
 			foreach (Light light in lights) {
 				light.gameObject.SetActive (!light.gameObject.activeInHierarchy);
@@ -42,16 +42,16 @@ public class LampSwitch : EntityBehaviour {
 				else
 					electricity.Release (phase1, consump, consumpR);
 			}
-			IsStarted = false;
+			return BTState.SUCCEEDED;
 		}
 	}
 
-	private void Init() {
+	private BTState Init() {
 		foreach(Light light in lights) {
 			if (light.gameObject.activeInHierarchy)
 				electricity.Consume (phase1, consump, consumpR);
 		}
-		IsStarted = false;
+		return BTState.SUCCEEDED;
 		isInit = true;
 	}
 
