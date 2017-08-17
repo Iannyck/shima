@@ -25,7 +25,7 @@ public class Activable : MonoBehaviour {
 	}
 
 	public void Activate() {
-		Debug.Log ("Activated");
+//		Debug.Log ("Activated");
 		behavior.EBStart ();
 		if (iESensor != null) {
 			((ISensorObserver)iESensor).Notify ();

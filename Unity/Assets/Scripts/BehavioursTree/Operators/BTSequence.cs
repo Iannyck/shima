@@ -10,7 +10,7 @@ public class BTSequence : EntityBehaviour {
 	private int current;
 
 	public override void EBStart() {
-		Debug.Log ("Start sequence");
+		Debug.Log ("Start " + Ebname + " sequence");
 		current = 0;
 		children [current].EBStart ();
 		State = BTState.RUNNING;
@@ -24,11 +24,11 @@ public class BTSequence : EntityBehaviour {
 				current++;
 				children [current].EBStart ();
 			} else {
-				Debug.Log ("End sequence Succeeded");
+				Debug.Log ("End " + Ebname + " sequence [Succeeded]");
 				return BTState.SUCCEEDED;
 			}
 		} else if (children [current].State == BTState.FAILED) {
-			Debug.Log ("End sequence Failed");
+			Debug.Log ("End " + Ebname + " sequence [Failed]");
 			return BTState.FAILED;
 		}
 		return BTState.RUNNING;

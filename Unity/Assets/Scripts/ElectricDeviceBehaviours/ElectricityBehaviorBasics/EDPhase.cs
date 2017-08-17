@@ -54,7 +54,7 @@ public class EDPhase : EntityBehaviour {
 			Increase ();
 			step++;
 			timeLeft = time;
-			Debug.Log (step + ":" +timeLeft);
+//			Debug.Log (step + ":" +timeLeft);
 		}
 		else if(step == 1) {
 			timeLeft -= Time.deltaTime;
@@ -69,16 +69,22 @@ public class EDPhase : EntityBehaviour {
 		else if(step == 2) {
 			Decrease ();
 			step = 0;
-			Debug.Log (step + "end");
+//			Debug.Log (step + " end");
 			return BTState.SUCCEEDED;
 		}
 		return BTState.RUNNING;
 	}
 
 	public void Interrupt() {
-		interrupted = true;
+		interrupted = !interrupted;
+//		Debug.Log ("============ Interrup =============== " + interrupted);
 	}
 
+	public bool Interrupted {
+		get {
+			return this.interrupted;
+		}
+	}
 
 	private void Noise() {
 		int scale = 10;

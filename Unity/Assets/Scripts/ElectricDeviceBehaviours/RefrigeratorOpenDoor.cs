@@ -9,8 +9,8 @@ public class RefrigeratorOpenDoor : EntityBehaviour {
 
 	public override BTState EBUpdate ()
 	{
-		if (coolingPhase.State == BTState.RUNNING)
-			coolingPhase.Interrupt ();
+		coolingPhase.Interrupt ();
+		Debug.Log ("===================== Door opened ===================== " + coolingPhase.Interrupted);
 		return BTState.SUCCEEDED;
 	}
 }

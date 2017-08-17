@@ -30,6 +30,18 @@ public abstract class EntityBehaviour : MonoBehaviour {
 		}
 	}
 
+	public string Ebname {
+		get {
+			return this.ebname;
+		}
+	}
+
+	public bool AutoStart {
+		get {
+			return this.autoStart;
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		if (autoStart)
