@@ -29,6 +29,8 @@ public class BMenuManager : MonoBehaviour {
     public RectTransform contentWindow;
     public RectTransform saveWindow;
 
+    public InputField pathField;
+
     #endregion
 
     #region MonoBehavior
@@ -46,6 +48,7 @@ public class BMenuManager : MonoBehaviour {
         BBuildManager bBuildManager = GetComponent<BBuildManager>();
         //float x = contentWindow.anchoredPosition.x;
         //float y = contentWindow.anchoredPosition.y;
+
         int x = -1000; // -920
         int y = 640; // 640
         foreach (GameObject g in furnitures)
@@ -60,6 +63,60 @@ public class BMenuManager : MonoBehaviour {
                 y -= 726;
             }
         }
+
+        Debug.Log(Application.dataPath);
+
+        string path = Application.dataPath + "/Extra/Saves";
+        int pathLegth = path.Length;
+
+        pathField.text = path;
+
+        string[] saves = Directory.GetFiles(path, "*shima");
+        n = saves.Length;
+   
+        bottom = n / 7;
+        saveWindow.offsetMax = new Vector2(saveWindow.offsetMax.x, bottom);
+        GameObject saveButton;
+
+        x = -974;
+        y = 2219;
+
+        //Trouver pourquoi on doit faire un tel ajustement??
+        x += 1240;
+        y -= 2659;
+
+        foreach (string input in saves)
+        {
+            saveButton = Instantiate(Resources.Load("UI/FurnitureButton")) as GameObject;
+            bAddFurniture = saveButton.GetComponent<BAddFurniture>();
+
+            Debug.Log(input);
+            string output = input.Substring(input.IndexOf('\\') + 1);
+
+            int index = output.IndexOf('.');
+            string sub;
+            if (index >= 0)
+            {
+                sub = output.Substring(0, index);
+            }
+
+            else
+            {
+                sub = "An Error Occur";
+            }
+
+            Debug.Log(sub);
+
+            bAddFurniture.Init(bBuildManager, sub, new Vector3(x, y, 0), saveScrollView.transform);
+
+            x += 600;
+            if (x >= 800)
+            {
+                x = -974;
+                y -= 900;
+            }
+        }
+
         ShowBuildMenu(false);
         ShowRoomMenu(false);
         ShowSensorMenu(false);

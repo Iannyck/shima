@@ -64,8 +64,9 @@ public class AddFurniture : Commande {
                 scale = obj.transform.localScale;
 
             newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
-            newObject.transform.SetParent(furnituresFolder);
             newObject.transform.localScale = scale;
+            newObject.transform.SetParent(furnituresFolder);
+            
         }
 
         else
@@ -81,8 +82,8 @@ public class AddFurniture : Commande {
                     scale = obj.transform.localScale;
 
                 newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
-                newObject.transform.SetParent(sensorsFolder);
                 newObject.transform.localScale = scale;
+                newObject.transform.SetParent(sensorsFolder);
             }
 
             else
@@ -98,10 +99,29 @@ public class AddFurniture : Commande {
                         scale = obj.transform.localScale;
 
                     newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
-                    newObject.transform.SetParent(wallsFolder);
-                    newObject.transform.localScale = scale;        
+                    newObject.transform.localScale = scale; 
+                    newObject.transform.SetParent(wallsFolder);               
                 }
-            }
+
+            else
+            {
+
+              obj = Resources.Load("Lights/" + id) as GameObject;
+
+                    if (obj != null)
+                    {
+                        if (rotation == default(Quaternion))
+                            rotation = obj.transform.rotation;
+
+                        if (scale == default(Vector3))
+                            scale = obj.transform.localScale;
+
+                        newObject = GameObject.Instantiate(obj, position, rotation) as GameObject;
+                        newObject.transform.localScale = scale;
+                        newObject.transform.SetParent(wallsFolder);
+                    }
+             }
+           }
         }
 
         if (newObject != null)
