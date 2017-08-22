@@ -8,6 +8,7 @@ public class BBuildManager : MonoBehaviour
     #region Parametres
 
     private EditManager editManager;
+    public BMenuManager menuManager;
 
     #region  Listes
 

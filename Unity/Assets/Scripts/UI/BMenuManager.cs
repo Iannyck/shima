@@ -30,6 +30,9 @@ public class BMenuManager : MonoBehaviour {
     public RectTransform saveWindow;
 
     public InputField pathField;
+    
+    private BBuildManager bBuildManager;
+    private Camera cam;
 
     #endregion
 
@@ -37,6 +40,7 @@ public class BMenuManager : MonoBehaviour {
 
     void Start()
     {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         //LoadSaveFolder();
 
         Object[] furnitures = Resources.LoadAll("Furniture");
@@ -45,77 +49,32 @@ public class BMenuManager : MonoBehaviour {
         contentWindow.offsetMax = new Vector2(contentWindow.offsetMax.x, bottom);
         GameObject furnitureButton;
         BAddFurniture bAddFurniture;
-        BBuildManager bBuildManager = GetComponent<BBuildManager>();
+        bBuildManager = GetComponent<BBuildManager>();
         //float x = contentWindow.anchoredPosition.x;
         //float y = contentWindow.anchoredPosition.y;
 
         int x = -1000; // -920
         int y = 640; // 640
+
+        // Trouver pourquoi un tel ajustement est necessaire
+        x += 1260;
+        y -= 1105;
+
         foreach (GameObject g in furnitures)
         {
             furnitureButton = Instantiate(Resources.Load("UI/FurnitureButton")) as GameObject;
             bAddFurniture = furnitureButton.GetComponent<BAddFurniture>();
             bAddFurniture.Init(bBuildManager, g.name, new Vector3(x, y, 0), furnitureScrollView.transform);
             x += 496;
-            if (x >= 1300)
+            if (x >= 2560)
             { // 840
-                x = -1000;
+                x = -1037+1260+37;
                 y -= 726;
             }
         }
 
-        Debug.Log(Application.dataPath);
-
-        string path = Application.dataPath + "/Extra/Saves";
-        int pathLegth = path.Length;
-
-        pathField.text = path;
-
-        string[] saves = Directory.GetFiles(path, "*shima");
-        n = saves.Length;
-   
-        bottom = n / 7;
-        saveWindow.offsetMax = new Vector2(saveWindow.offsetMax.x, bottom);
-        GameObject saveButton;
-
-        x = -974;
-        y = 2219;
-
-        //Trouver pourquoi on doit faire un tel ajustement??
-        x += 1240;
-        y -= 2659;
-
-        foreach (string input in saves)
-        {
-            saveButton = Instantiate(Resources.Load("UI/FurnitureButton")) as GameObject;
-            bAddFurniture = saveButton.GetComponent<BAddFurniture>();
-
-            Debug.Log(input);
-            string output = input.Substring(input.IndexOf('\\') + 1);
-
-            int index = output.IndexOf('.');
-            string sub;
-            if (index >= 0)
-            {
-                sub = output.Substring(0, index);
-            }
-
-            else
-            {
-                sub = "An Error Occur";
-            }
-
-            Debug.Log(sub);
-
-            bAddFurniture.Init(bBuildManager, sub, new Vector3(x, y, 0), saveScrollView.transform);
-
-            x += 600;
-            if (x >= 800)
-            {
-                x = -974;
-                y -= 900;
-            }
-        }
+        LoadSaveFolder();
+        
 
         ShowBuildMenu(false);
         ShowRoomMenu(false);
@@ -264,7 +223,7 @@ public class BMenuManager : MonoBehaviour {
 
         writer.Close();
     }
-    public void LoadFurniture()
+    public void LoadSaveFile(string savefileName)
     {
         // 1) Effacer tous les objets actuellement present dans la scene
         // 2) Lire 1 ligne, convertir en GameObject
@@ -272,7 +231,7 @@ public class BMenuManager : MonoBehaviour {
 
         this.GetComponentInParent<BBuildManager>().RemoveAllFurniture();
 
-        StreamReader reader = new StreamReader(loadName);
+        StreamReader reader = new StreamReader(savefileName);
         string line = reader.ReadLine();
 
         while (line != null)
@@ -282,38 +241,68 @@ public class BMenuManager : MonoBehaviour {
         }
 
         reader.Close();
+        Transform firstObject = bBuildManager.getFurnitureList()[0].getGameObject().transform;
+        cam.transform.localPosition = new Vector3(firstObject.position.x, cam.transform.position.y, firstObject.position.z);
         return;
     }
 
     private void LoadSaveFolder()
     {
-        // string[] filePaths = Directory.GetFiles(Application.dataPath + "/", ".shima");
-        // Debug.Log(filePaths.Length);
+        Debug.Log(Application.dataPath);
 
-        DirectoryInfo directory = new DirectoryInfo(@"Assets\Resources\Saves");
-        FileInfo[] info = directory.GetFiles("*.shima");
-        Debug.Log(info.Length);
-        Debug.Log(info[0].Name);
+        string path = Application.dataPath + "/Extra/Saves";
+        int pathLegth = path.Length;
 
-        float bottom = info.Length / 7;
+        pathField.text = path;
+
+        string[] saves = Directory.GetFiles(path, "*shima");
+        int n = saves.Length;
+
+        int bottom = n / 7;
         saveWindow.offsetMax = new Vector2(saveWindow.offsetMax.x, bottom);
-        GameObject furnitureButton;
-        BAddFurniture bAddFurniture;
-        BBuildManager bBuildManager = GetComponent<BBuildManager>();
+        GameObject saveButton;
 
-        int x = -1000; // -920
-        int y = 640; // 640
+        int x = -842;
+        int y = 2140;
 
-        for (int i=0;i<info.Length;i++)
+        //Trouver pourquoi on doit faire un tel ajustement??
+        x += 1240;
+        y -= 2659;
+
+        // Coordonnes de depart
+        // x = 398
+        // y = -519
+
+        foreach (string input in saves)
         {
-            furnitureButton = Instantiate(Resources.Load("UI/FurnitureButton")) as GameObject;
-            bAddFurniture = furnitureButton.GetComponent<BAddFurniture>();
-            bAddFurniture.Init(bBuildManager, info[i].Name, new Vector3(x, y, 0), saveScrollView.transform);
-            x += 496;
-           if (x >= 1300)
-            { // 840
-                x = -1000;
-                y -= 726;
+            saveButton = Instantiate(Resources.Load("UI/SaveButton")) as GameObject;
+            BAddSave bAddSave; 
+            bAddSave = saveButton.GetComponent<BAddSave>();
+
+            Debug.Log(input);
+            string output = input.Substring(input.IndexOf('\\') + 1);
+
+            int index = output.IndexOf('.');
+            string sub;
+            if (index >= 0)
+            {
+                sub = output.Substring(0, index);
+            }
+
+            else
+            {
+                sub = "An Error Occur";
+            }
+
+            Debug.Log(sub);
+
+            bAddSave.Init(bBuildManager, path, sub, new Vector3(x, y, 0), saveScrollView.transform);
+
+            x += 842;
+            if (x >= 2085)
+            {
+                x = 398;
+                y -= 942;
             }
         }
     }

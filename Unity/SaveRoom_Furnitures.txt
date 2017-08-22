@@ -1,4 +1,1 @@
-{"type":"Terrain","width":1.0,"thickness":1.0,"entityName":"Terrain(Clone)","position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0}}
-{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":7.072570323944092,"y":0.0,"z":-19.052631378173829},"rotation":{"x":0.7852622270584106,"y":-0.10967209190130234,"z":-0.14553974568843842,"w":-0.5917376279830933}}
-{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":-21.217708587646486,"y":0.0,"z":15.444186210632325},"rotation":{"x":-0.10385654121637345,"y":0.11258306354284287,"z":-0.011832956224679947,"w":-0.9881290197372437}}
-{"type":"Sofa","width":1.0,"thickness":1.0,"entityName":"Sofa(Clone)","position":{"x":18.908296585083009,"y":0.0,"z":15.877190589904786},"rotation":{"x":0.27412739396095278,"y":-0.02881196141242981,"z":0.9559957981109619,"w":-0.10047925263643265}}
+{"type":"Terrain","width":0.0,"thickness":1.0,"entityName":"Terrain(Clone)","position":{"x":0.0,"y":0.0,"z":0.0},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"scale":{"x":50.0,"y":1.0,"z":50.0}}
