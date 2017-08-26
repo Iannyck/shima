@@ -11,7 +11,7 @@ public class AvatarControl : MonoBehaviour {
 	}
 
 	[SerializeField] private float m_moveSpeed = 2;
-	[SerializeField] private float m_turnSpeed = 200;
+	[SerializeField] private float m_turnSpeed = 100; //200
 
 	[SerializeField] private Animator m_animator;
 	[SerializeField] private Rigidbody m_rigidBody;
