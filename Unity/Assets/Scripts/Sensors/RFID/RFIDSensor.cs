@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RFIDSensor : IESensor {
 
-	public float thresold = -71f; // -71 DB
+	public float thresoldMax = -71f; // -71 DB
+	public float thresoldMin = -20f;
 
 	public GameObject nextRFIDAntena;
 	public float activationTime = 0.25f;
@@ -12,6 +13,12 @@ public class RFIDSensor : IESensor {
 
 	private GameObject detectionZone;
 	public bool isEnable = true;
+
+	[SerializeField]
+	private int noiseMax = 3;
+
+	[SerializeField]
+	private int noiseMin = 3;
 
 
 
@@ -45,19 +52,18 @@ public class RFIDSensor : IESensor {
 
 	public void Trigger(GameObject collider) {
 		float rssi = RSSI (collider);
-		if (rssi >= thresold)
+		if (rssi <= thresoldMin && rssi >= thresoldMax)
 			SmartHomeServer.InsertRFIDData(name, rssi, collider.name);
 	}
 
 	private float RSSI(GameObject collider) {
 		float distance = Vector3.Distance(this.transform.position, collider.transform.position);
 		float angle = Vector3.Angle(this.transform.position, collider.transform.position) + SimpleNoiseGenerationFunction(-5,5);
-		float angleLose = 1 - Mathf.Cos (angle);
+		float angleLose = 1 + Mathf.Cos (angle);
 		float ambiantNoise = AmbiantNoise();
 		float obstacleLose = ObstacleNoise(collider);
 
-		float rssi = ((-9.1333f * Mathf.Log(distance)) - 10.726f) * angleLose + SimpleNoiseGenerationFunction(0,3);
-
+		float rssi = ((-9.1333f * Mathf.Log(distance)) - 10.726f) * angleLose + SimpleNoiseGenerationFunction(0,noiseMax);
 
 		return rssi;
 	}
