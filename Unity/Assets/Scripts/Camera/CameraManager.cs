@@ -2,9 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Camera manager. This script manages all cameras in the scene.
+/// </summary>
 public class CameraManager : MonoBehaviour {
 
+	/// <summary>
+	/// The list of cameras in the scene.
+	/// </summary>
 	[SerializeField] private List<GameObject> cameras;
+
+	/// <summary>
+	/// The current camera.
+	/// </summary>
 	[SerializeField] private GameObject current_camera;
 
 	// Use this for initialization
@@ -23,6 +33,10 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Switchs the camera.
+	/// </summary>
+	/// <param name="number">Position of the camera in the list.</param>
 	private void SwitchCamera(int number) {
 		current_camera.SetActive (false);
 		current_camera = cameras [number];

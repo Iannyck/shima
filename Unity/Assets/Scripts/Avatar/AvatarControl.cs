@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Avatar control.
+/// Old script to control avatar.
+/// </summary>
 public class AvatarControl : MonoBehaviour {
 
 	private enum ControlMode
@@ -38,6 +42,7 @@ public class AvatarControl : MonoBehaviour {
 
 	private List<Collider> m_collisions = new List<Collider>();
 
+	
 	private void OnCollisionEnter(Collision collision)
 	{
 		ContactPoint[] contactPoints = collision.contacts;
@@ -112,7 +117,7 @@ public class AvatarControl : MonoBehaviour {
 
 		m_wasGrounded = m_isGrounded;
 	}
-
+		
 	private void TankUpdate()
 	{
 		float v = Input.GetAxis("Vertical");
