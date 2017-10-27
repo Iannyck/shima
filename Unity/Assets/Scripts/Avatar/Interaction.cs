@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Interaction.
+/// </summary>
 public class Interaction : MonoBehaviour
 {
 
 	[SerializeField]
-	private float range = 1000f;
+	private float rayCastInteractionRange = 1000f;
 
 	private bool isEnable;
 
@@ -22,6 +25,10 @@ public class Interaction : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Enable the specified value.
+	/// </summary>
+	/// <param name="value">If set to <c>true</c> value.</param>
 	public void Enable (bool value)
 	{
 		isEnable = value;
@@ -44,7 +51,7 @@ public class Interaction : MonoBehaviour
 	{
 		RaycastHit hit = new RaycastHit ();
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		if (Physics.Raycast (ray, out hit, range)) {
+		if (Physics.Raycast (ray, out hit, rayCastInteractionRange)) {
 			GameObject obj = hit.transform.gameObject;
 			if ((obj.gameObject.layer == LayerMask.NameToLayer ("UI")) && (currentObj != obj)) {
 				ApplyShader (obj, "Outlined/Silhouetted Diffuse");
@@ -61,10 +68,12 @@ public class Interaction : MonoBehaviour
 			if (Input.GetButtonDown ("Fire1")) {
 				if(itemPicked != null){
 //					itemPicked.transform.SetParent(null);
+					((Rigidbody)itemPicked.GetComponent<Rigidbody> ()).isKinematic = false;
 					itemPicked = null;
 				}
 				else if (currentObj.tag == "PickUp") {
 					itemPicked = currentObj;
+					((Rigidbody)itemPicked.GetComponent<Rigidbody> ()).isKinematic = true;
 					screenPoint = Camera.main.WorldToScreenPoint (itemPicked.transform.position);
 					offset = itemPicked.transform.position - Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 //					itemPicked.transform.SetParent(transform.parent);

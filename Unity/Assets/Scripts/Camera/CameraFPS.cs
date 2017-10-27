@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Camera FPS. This script manage the camera in the first person view.
+/// </summary>
 public class CameraFPS : MonoBehaviour {
+
+	[SerializeField]
+	private SkinnedMeshRenderer skinnedMeshRenderer;
 
 	public float cameraSensitivity = 90;
 	public float climbSpeed = 4;
@@ -19,6 +25,7 @@ public class CameraFPS : MonoBehaviour {
 	void Start () {
 		Screen.lockCursor = false;
 		initRotation = transform.rotation;
+		skinnedMeshRenderer.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -36,4 +43,13 @@ public class CameraFPS : MonoBehaviour {
 		}
 
 	}
+
+	void OnEnable() {
+		skinnedMeshRenderer.enabled = false;
+	}
+
+	void OnDisable() {
+		skinnedMeshRenderer.enabled = true;
+	}
+
 }
