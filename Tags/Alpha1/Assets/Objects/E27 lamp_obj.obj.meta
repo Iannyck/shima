@@ -1,0 +1,118 @@
+fileFormatVersion: 2
+guid: 6e530fb28f261435aaf876f3c0af4ebf
+timeCreated: 1463065381
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: E27_lamp_base
+    100004: E27_lamp_bulb
+    100006: E27_lamp_bulb_cap
+    100008: E27_lamp_cable
+    100010: E27_lamp_contact_wire
+    100012: E27_lamp_filament
+    100014: E27_lamp_glass_mount
+    100016: E27_lamp_logo
+    100018: E27_lamp_top_base
+    400000: //RootNode
+    400002: E27_lamp_base
+    400004: E27_lamp_bulb
+    400006: E27_lamp_bulb_cap
+    400008: E27_lamp_cable
+    400010: E27_lamp_contact_wire
+    400012: E27_lamp_filament
+    400014: E27_lamp_glass_mount
+    400016: E27_lamp_logo
+    400018: E27_lamp_top_base
+    2300000: E27_lamp_base
+    2300002: E27_lamp_bulb
+    2300004: E27_lamp_bulb_cap
+    2300006: E27_lamp_cable
+    2300008: E27_lamp_contact_wire
+    2300010: E27_lamp_filament
+    2300012: E27_lamp_glass_mount
+    2300014: E27_lamp_logo
+    2300016: E27_lamp_top_base
+    3300000: E27_lamp_base
+    3300002: E27_lamp_bulb
+    3300004: E27_lamp_bulb_cap
+    3300006: E27_lamp_cable
+    3300008: E27_lamp_contact_wire
+    3300010: E27_lamp_filament
+    3300012: E27_lamp_glass_mount
+    3300014: E27_lamp_logo
+    3300016: E27_lamp_top_base
+    4300000: E27_lamp_base
+    4300002: E27_lamp_bulb
+    4300004: E27_lamp_bulb_cap
+    4300006: E27_lamp_cable
+    4300008: E27_lamp_contact_wire
+    4300010: E27_lamp_filament
+    4300012: E27_lamp_glass_mount
+    4300014: E27_lamp_logo
+    4300016: E27_lamp_top_base
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

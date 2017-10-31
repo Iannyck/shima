@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: 8c1bd123862c44e88b931df3a1d8824c
+timeCreated: 1463065409
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Line_One_lamp_base
+    100004: Line_One_lamp_brass_rod
+    100006: Line_One_lamp_bulb
+    100008: Line_One_lamp_bulb_cap
+    100010: Line_One_lamp_cable
+    100012: Line_One_lamp_contact_wire
+    100014: Line_One_lamp_filament
+    100016: Line_One_lamp_glass_mount
+    100018: Line_One_lamp_lamp_shade_exterior
+    100020: Line_One_lamp_lamp_shade_interior
+    100022: Line_One_lamp_socket
+    100024: Line_One_lamp_switch
+    100026: Line_One_lamp_tensioned_cable
+    400000: //RootNode
+    400002: Line_One_lamp_base
+    400004: Line_One_lamp_brass_rod
+    400006: Line_One_lamp_bulb
+    400008: Line_One_lamp_bulb_cap
+    400010: Line_One_lamp_cable
+    400012: Line_One_lamp_contact_wire
+    400014: Line_One_lamp_filament
+    400016: Line_One_lamp_glass_mount
+    400018: Line_One_lamp_lamp_shade_exterior
+    400020: Line_One_lamp_lamp_shade_interior
+    400022: Line_One_lamp_socket
+    400024: Line_One_lamp_switch
+    400026: Line_One_lamp_tensioned_cable
+    2300000: Line_One_lamp_base
+    2300002: Line_One_lamp_brass_rod
+    2300004: Line_One_lamp_bulb
+    2300006: Line_One_lamp_bulb_cap
+    2300008: Line_One_lamp_cable
+    2300010: Line_One_lamp_contact_wire
+    2300012: Line_One_lamp_filament
+    2300014: Line_One_lamp_glass_mount
+    2300016: Line_One_lamp_lamp_shade_exterior
+    2300018: Line_One_lamp_lamp_shade_interior
+    2300020: Line_One_lamp_socket
+    2300022: Line_One_lamp_switch
+    2300024: Line_One_lamp_tensioned_cable
+    3300000: Line_One_lamp_base
+    3300002: Line_One_lamp_brass_rod
+    3300004: Line_One_lamp_bulb
+    3300006: Line_One_lamp_bulb_cap
+    3300008: Line_One_lamp_cable
+    3300010: Line_One_lamp_contact_wire
+    3300012: Line_One_lamp_filament
+    3300014: Line_One_lamp_glass_mount
+    3300016: Line_One_lamp_lamp_shade_exterior
+    3300018: Line_One_lamp_lamp_shade_interior
+    3300020: Line_One_lamp_socket
+    3300022: Line_One_lamp_switch
+    3300024: Line_One_lamp_tensioned_cable
+    4300000: Line_One_lamp_base
+    4300002: Line_One_lamp_brass_rod
+    4300004: Line_One_lamp_bulb
+    4300006: Line_One_lamp_bulb_cap
+    4300008: Line_One_lamp_cable
+    4300010: Line_One_lamp_contact_wire
+    4300012: Line_One_lamp_filament
+    4300014: Line_One_lamp_glass_mount
+    4300016: Line_One_lamp_lamp_shade_exterior
+    4300018: Line_One_lamp_lamp_shade_interior
+    4300020: Line_One_lamp_socket
+    4300022: Line_One_lamp_switch
+    4300024: Line_One_lamp_tensioned_cable
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
