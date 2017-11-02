@@ -1,0 +1,1 @@
+- User manual v1: First version of user manual. Basics to set up environment, sensors, actuators and defines behavior tree.
