@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 56f1b722039e74950ab56581b9bd47b1
+timeCreated: 1497754809
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arbei2
+    100002: Armaturen
+    100004: Boole
+    100006: Boole1
+    100008: Einba
+    100010: Einba1
+    100012: Einbausp_l
+    100014: Front2
+    100016: Front6
+    100018: Griff3
+    100020: Griffe
+    100022: Korpu
+    100024: obj01
+    100026: obj02
+    100028: obj03
+    100030: R_ckp10
+    100032: R_ckp5
+    100034: Ref_E6
+    100036: Ref_E9
+    100038: //RootNode
+    100040: Socke4
+    100042: Socke9
+    100044: Unter
+    100046: Unter7
+    400000: Arbei2
+    400002: Armaturen
+    400004: Boole
+    400006: Boole1
+    400008: Einba
+    400010: Einba1
+    400012: Einbausp_l
+    400014: Front2
+    400016: Front6
+    400018: Griff3
+    400020: Griffe
+    400022: Korpu
+    400024: obj01
+    400026: obj02
+    400028: obj03
+    400030: R_ckp10
+    400032: R_ckp5
+    400034: Ref_E6
+    400036: Ref_E9
+    400038: //RootNode
+    400040: Socke4
+    400042: Socke9
+    400044: Unter
+    400046: Unter7
+    2300000: Arbei2
+    2300002: Armaturen
+    2300004: Boole
+    2300006: Boole1
+    2300008: Einba
+    2300010: Einba1
+    2300012: Einbausp_l
+    2300014: Front2
+    2300016: Front6
+    2300018: Griff3
+    2300020: Griffe
+    2300022: Korpu
+    2300024: obj01
+    2300026: obj02
+    2300028: obj03
+    2300030: R_ckp10
+    2300032: R_ckp5
+    2300034: Ref_E6
+    2300036: Ref_E9
+    2300038: Socke4
+    2300040: Socke9
+    2300042: Unter
+    2300044: Unter7
+    3300000: Arbei2
+    3300002: Armaturen
+    3300004: Boole
+    3300006: Boole1
+    3300008: Einba
+    3300010: Einba1
+    3300012: Einbausp_l
+    3300014: Front2
+    3300016: Front6
+    3300018: Griff3
+    3300020: Griffe
+    3300022: Korpu
+    3300024: obj01
+    3300026: obj02
+    3300028: obj03
+    3300030: R_ckp10
+    3300032: R_ckp5
+    3300034: Ref_E6
+    3300036: Ref_E9
+    3300038: Socke4
+    3300040: Socke9
+    3300042: Unter
+    3300044: Unter7
+    4300000: Einbausp_l
+    4300002: Unter
+    4300004: Socke4
+    4300006: R_ckp5
+    4300008: Front2
+    4300010: Boole
+    4300012: Boole1
+    4300014: Griff3
+    4300016: Ref_E6
+    4300018: Unter7
+    4300020: Socke9
+    4300022: R_ckp10
+    4300024: Front6
+    4300026: Korpu
+    4300028: Arbei2
+    4300030: Griffe
+    4300032: Ref_E9
+    4300034: Einba
+    4300036: Einba1
+    4300038: Armaturen
+    4300040: obj01
+    4300042: obj02
+    4300044: obj03
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

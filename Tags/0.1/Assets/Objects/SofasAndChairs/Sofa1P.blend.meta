@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: 019e4dd0dbbc9ae4da5d94d5c6a271e4
+timeCreated: 1494527463
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ___DUMMY_Group01
+    100002: Camera01
+    100004: Cuscino52_
+    100006: Cuscino90_
+    100008: CuscinoLUn
+    100010: Mesh43
+    100012: Mesh44
+    100014: Mesh45
+    100016: Mesh46
+    100018: Mesh47
+    100020: Mesh48
+    100022: Piedini042
+    100024: Piedini043
+    100026: PiedinoVe0
+    100028: PiedinoVe1
+    100030: PiedinoVe2
+    100032: PiedinoVer
+    100034: SchienaleN
+    100036: Seduta021
+    100038: //RootNode
+    400000: ___DUMMY_Group01
+    400002: Camera01
+    400004: Cuscino52_
+    400006: Cuscino90_
+    400008: CuscinoLUn
+    400010: Mesh43
+    400012: Mesh44
+    400014: Mesh45
+    400016: Mesh46
+    400018: Mesh47
+    400020: Mesh48
+    400022: Piedini042
+    400024: Piedini043
+    400026: PiedinoVe0
+    400028: PiedinoVe1
+    400030: PiedinoVe2
+    400032: PiedinoVer
+    400034: SchienaleN
+    400036: Seduta021
+    400038: //RootNode
+    2300000: Camera01
+    2300002: Cuscino52_
+    2300004: Cuscino90_
+    2300006: CuscinoLUn
+    2300008: Mesh43
+    2300010: Mesh44
+    2300012: Mesh45
+    2300014: Mesh46
+    2300016: Mesh47
+    2300018: Mesh48
+    2300020: Piedini042
+    2300022: Piedini043
+    2300024: PiedinoVe0
+    2300026: PiedinoVe1
+    2300028: PiedinoVe2
+    2300030: PiedinoVer
+    2300032: SchienaleN
+    2300034: Seduta021
+    3300000: Camera01
+    3300002: Cuscino52_
+    3300004: Cuscino90_
+    3300006: CuscinoLUn
+    3300008: Mesh43
+    3300010: Mesh44
+    3300012: Mesh45
+    3300014: Mesh46
+    3300016: Mesh47
+    3300018: Mesh48
+    3300020: Piedini042
+    3300022: Piedini043
+    3300024: PiedinoVe0
+    3300026: PiedinoVe1
+    3300028: PiedinoVe2
+    3300030: PiedinoVer
+    3300032: SchienaleN
+    3300034: Seduta021
+    4300000: Seduta021
+    4300002: Mesh43
+    4300004: Mesh47
+    4300006: CuscinoLUn
+    4300008: PiedinoVe1
+    4300010: Piedini043
+    4300012: PiedinoVe0
+    4300014: PiedinoVe2
+    4300016: Cuscino52_
+    4300018: Piedini042
+    4300020: SchienaleN
+    4300022: Mesh48
+    4300024: Cuscino90_
+    4300026: Mesh46
+    4300028: Mesh45
+    4300030: Mesh44
+    4300032: PiedinoVer
+    4300034: Camera01
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
