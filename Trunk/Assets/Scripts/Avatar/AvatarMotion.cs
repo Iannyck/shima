@@ -10,7 +10,7 @@ public class AvatarMotion : MonoBehaviour {
 	/// <summary>
 	/// The move speed of the avatar.
 	/// </summary>
-	[SerializeField] private float m_moveSpeed = 2;
+	[SerializeField] private float m_moveSpeed = 0.7f;
 
 	/// <summary>
 	/// The turn speed of the avatar.
@@ -76,6 +76,13 @@ public class AvatarMotion : MonoBehaviour {
 	void Start () {
 		m_animator = GetComponent<Animator> ();
 		m_rigidBody = GetComponent<Rigidbody> ();
+	}
+
+	// Update is called once per frame
+	void Update () {
+		m_animator.SetBool("Grounded", m_isGrounded);
+
+		m_wasGrounded = m_isGrounded;
 	}
 
 	/// <summary>
@@ -219,5 +226,15 @@ public class AvatarMotion : MonoBehaviour {
 	public void PickUp()
 	{
 		m_animator.SetTrigger ("Pickup");
+	}
+
+	public void Activate()
+	{
+		m_animator.SetTrigger ("Pickup");
+	}
+
+	public void Poke()
+	{
+		m_animator.SetTrigger ("Wave");
 	}
 }

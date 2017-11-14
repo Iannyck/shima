@@ -37,7 +37,6 @@ public class AvatarControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 
 	private List<Collider> m_collisions = new List<Collider>();
@@ -99,7 +98,8 @@ public class AvatarControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		m_animator.SetBool("Grounded", m_isGrounded);
-
+		if (Input.GetKey (KeyCode.N))
+			PickUp ();
 		switch(m_controlMode)
 		{
 		case ControlMode.Direct:
@@ -180,6 +180,16 @@ public class AvatarControl : MonoBehaviour {
 	public void PickUp()
 	{
 		m_animator.SetTrigger ("Pickup");
+	}
+
+	public void Activate()
+	{
+		m_animator.SetTrigger ("Pickup");
+	}
+
+	public void Poke()
+	{
+		m_animator.SetTrigger ("Wave");
 	}
 
 }

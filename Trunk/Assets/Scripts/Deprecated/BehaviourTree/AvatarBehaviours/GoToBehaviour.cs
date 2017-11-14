@@ -44,7 +44,7 @@ public class GoToBehaviour : AbstractBehaviour {
 	/// <summary>
 	/// Astar algorithms.
 	/// </summary>
-	private PathFinding aStar;
+//	private PathFinding aStar;
 
 	/// <summary>
 	/// The object detection script. It is used to detect doors.
@@ -170,33 +170,33 @@ public class GoToBehaviour : AbstractBehaviour {
 	/// </summary>
 	public override void Init (){
 //		Debug.Log ("Init "+ BName);
-		if (smartHomeServer != null) {
-			SensorsGUI gui = smartHomeServer.GetComponent<SensorsGUI> ();
-			gui.SetDebugText (8, BName);
-		}
-		objectDetection = GetComponent<DynamicObjectDetection> ();
-		if (aStarGameObject == null) {
-			aStarGameObject = GameObject.Find ("AStar");
-			if (aStarGameObject != null) {
-				aStar = aStarGameObject.GetComponent<PathFinding> ();
-				previousNodes = new HashSet<Node> ();
-			}
-		} else if (aStar == null) {
-			aStar = aStarGameObject.GetComponent<PathFinding> ();
-			previousNodes = new HashSet<Node> ();
-		}
-		if (animator == null) {
-			animator = GetComponent<Animator> ();
-			speedFloat = Animator.StringToHash ("Speed");
-			hFloat = Animator.StringToHash ("H");
-			vFloat = Animator.StringToHash ("V");
-
-			groundedBool = Animator.StringToHash ("Grounded");
-		}
-		if(animator != null && aStar != null)
-			isInit = true;
-		currentWaitingDelay = waitingDelay;
-		wait = false;
+//		if (smartHomeServer != null) {
+//			SensorsGUI gui = smartHomeServer.GetComponent<SensorsGUI> ();
+//			gui.SetDebugText (8, BName);
+//		}
+//		objectDetection = GetComponent<DynamicObjectDetection> ();
+//		if (aStarGameObject == null) {
+//			aStarGameObject = GameObject.Find ("AStar");
+//			if (aStarGameObject != null) {
+//				aStar = aStarGameObject.GetComponent<PathFinding> ();
+//				previousNodes = new HashSet<Node> ();
+//			}
+//		} else if (aStar == null) {
+//			aStar = aStarGameObject.GetComponent<PathFinding> ();
+//			previousNodes = new HashSet<Node> ();
+//		}
+//		if (animator == null) {
+//			animator = GetComponent<Animator> ();
+//			speedFloat = Animator.StringToHash ("Speed");
+//			hFloat = Animator.StringToHash ("H");
+//			vFloat = Animator.StringToHash ("V");
+//
+//			groundedBool = Animator.StringToHash ("Grounded");
+//		}
+//		if(animator != null && aStar != null)
+//			isInit = true;
+//		currentWaitingDelay = waitingDelay;
+//		wait = false;
 	}
 
 	public override State Execute ()
@@ -256,27 +256,27 @@ public class GoToBehaviour : AbstractBehaviour {
 	}
 
 	private void GetPath() {
-		if (aStar == null) {
-			Init ();
-		} else {
-			StoreNode(aStar.GetCurrentNode (transform.position));
-			currentNodeTimeSpent = maximumTimeSpentByNode;
-			MindMap mindMap = GetComponent<MindMap> ();
-			targetRoomPoint = mindMap.GetRoomPoint (roomToGo);
-			if (targetRoomPoint != null) {
-				path = aStar.FindPath (transform.position, targetRoomPoint.transform.position);
-				if (path != null) {
-					isFinalTargetRoomPoint = true;
-					aStar.SetPath (path);
-//					Debug.Log ("Path OK");
-				}
-				else {
-					Debug.Log ("Cannot move");
-				}
-			} else {
-				Debug.Log ("The room for " + roomToGo +"does not exist");
-			}
-		}
+//		if (aStar == null) {
+//			Init ();
+//		} else {
+//			StoreNode(aStar.GetCurrentNode (transform.position));
+//			currentNodeTimeSpent = maximumTimeSpentByNode;
+//			MindMap mindMap = GetComponent<MindMap> ();
+//			targetRoomPoint = mindMap.GetRoomPoint (roomToGo);
+//			if (targetRoomPoint != null) {
+//				path = aStar.FindPath (transform.position, targetRoomPoint.transform.position);
+//				if (path != null) {
+//					isFinalTargetRoomPoint = true;
+//					aStar.SetPath (path);
+////					Debug.Log ("Path OK");
+//				}
+//				else {
+//					Debug.Log ("Cannot move");
+//				}
+//			} else {
+//				Debug.Log ("The room for " + roomToGo +"does not exist");
+//			}
+//		}
 	}
 
 	/// <summary>
@@ -310,44 +310,44 @@ public class GoToBehaviour : AbstractBehaviour {
 	}
 
 	void GetHV() {
-		Vector3 nextStep;
-		if (path [0] != null) {
-			if (aStar.IsOnThisNode (transform.position, path [0])) {
-				StoreNode(path[0]);
-				path.RemoveAt (0);
-				currentNodeTimeSpent = maximumTimeSpentByNode;
-				if (path.Count > 0) {
-					nextStep = path [0].position;
-					horizontal = nextStep.x - transform.position.x;
-					vertical = nextStep.z - transform.position.z;
-				} else {
-					horizontal = 0;
-					vertical = 0;
-				}
-			} else {
-				if(aStar.IsOnThisNode(transform.position, previousNode))
-					currentNodeTimeSpent -= Time.deltaTime;
-				if (IsAvatarBeBlocked ()) {
-					OpeningClosingDoor openingClosingDoorScript = doorNextToAvatar();
-					if (openingClosingDoorScript == null) {
-						Node newNode = aStar.GetReplacementNode (previousNode, path [0]);
-						currentNodeTimeSpent = maximumTimeSpentByNode;
-						path [0] = newNode;
-						aStar.SetPath (path);
-					} else {
-						openingClosingDoorScript.PlayAnim ();
-						wait = true;
-						currentNodeTimeSpent = maximumTimeSpentByNode;
-					}
-				}
-				nextStep = path [0].position;
-
-				horizontal = nextStep.x - transform.position.x;
-				vertical = nextStep.z - transform.position.z;
-			}
-			isRunning = false;
-			isMoving = Mathf.Abs (horizontal) > 0.1 || Mathf.Abs (vertical) > 0.1;
-		}
+//		Vector3 nextStep;
+//		if (path [0] != null) {
+//			if (aStar.IsOnThisNode (transform.position, path [0])) {
+//				StoreNode(path[0]);
+//				path.RemoveAt (0);
+//				currentNodeTimeSpent = maximumTimeSpentByNode;
+//				if (path.Count > 0) {
+//					nextStep = path [0].position;
+//					horizontal = nextStep.x - transform.position.x;
+//					vertical = nextStep.z - transform.position.z;
+//				} else {
+//					horizontal = 0;
+//					vertical = 0;
+//				}
+//			} else {
+//				if(aStar.IsOnThisNode(transform.position, previousNode))
+//					currentNodeTimeSpent -= Time.deltaTime;
+//				if (IsAvatarBeBlocked ()) {
+//					OpeningClosingDoor openingClosingDoorScript = doorNextToAvatar();
+//					if (openingClosingDoorScript == null) {
+//						Node newNode = aStar.GetReplacementNode (previousNode, path [0]);
+//						currentNodeTimeSpent = maximumTimeSpentByNode;
+//						path [0] = newNode;
+//						aStar.SetPath (path);
+//					} else {
+//						openingClosingDoorScript.PlayAnim ();
+//						wait = true;
+//						currentNodeTimeSpent = maximumTimeSpentByNode;
+//					}
+//				}
+//				nextStep = path [0].position;
+//
+//				horizontal = nextStep.x - transform.position.x;
+//				vertical = nextStep.z - transform.position.z;
+//			}
+//			isRunning = false;
+//			isMoving = Mathf.Abs (horizontal) > 0.1 || Mathf.Abs (vertical) > 0.1;
+//		}
 	}
 
 	/// <summary>
@@ -388,11 +388,11 @@ public class GoToBehaviour : AbstractBehaviour {
 	/// <param name="vertical">Vertical.</param>
 	void Rotating(float horizontal, float vertical)
 	{
-		if((isMoving) )
-		{
-			Vector3 direction = path [0].position - transform.position;
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation (direction), turnSmoothing * Time.deltaTime);
-		}
+//		if((isMoving) )
+//		{
+//			Vector3 direction = path [0].position - transform.position;
+//			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation (direction), turnSmoothing * Time.deltaTime);
+//		}
 	}	
 
 	/// <summary>

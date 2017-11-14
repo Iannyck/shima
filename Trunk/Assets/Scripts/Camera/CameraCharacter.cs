@@ -6,8 +6,8 @@ public class CameraCharacter : MonoBehaviour {
 
 	private Transform m_currentTarget;
 	[SerializeField] private float m_distance = 2f;
-	[SerializeField] private float m_height = 1;
-	[SerializeField] private float m_lookAtAroundAngle = 180;
+	[SerializeField] private float m_height = 30;
+	[SerializeField] private float m_lookAtAroundAngle = 0;
 
 	[SerializeField] private List<Transform> m_targets;
 	private int m_currentIndex;
@@ -47,6 +47,7 @@ public class CameraCharacter : MonoBehaviour {
 
 		Vector3 position = m_currentTarget.position;
 		position -= currentRotation * Vector3.forward * m_distance;
+		position -= Vector3.forward * m_distance;
 		position.y = targetHeight;
 
 		transform.position = position;
