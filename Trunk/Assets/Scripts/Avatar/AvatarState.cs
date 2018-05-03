@@ -69,14 +69,17 @@ public class AvatarState : MonoBehaviour {
 	}
 
 	public void PickUp(GameObject item) {
-		item.transform.SetParent (this.transform.parent);
+//		Debug.Log ("My parent "+hand.transform.parent.name);
+		item.transform.SetParent (hand.transform.parent);
 		item.transform.position = hand.transform.position;
+		((Rigidbody)item.GetComponent<Rigidbody> ()).isKinematic = true;
 		itemInHand = item;
 	}
 
 	public void releaseAt(Vector3 position) {
 		itemInHand.transform.SetParent (null);
 		itemInHand.transform.position = position;
+		((Rigidbody)itemInHand.GetComponent<Rigidbody> ()).isKinematic = false;
 		itemInHand = null;
 	}
 }

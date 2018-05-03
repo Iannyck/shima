@@ -56,7 +56,7 @@ public abstract class EntityBehaviour : MonoBehaviour {
 	}
 
 	public virtual void EBStart() {
-		Debug.Log (ebname+" Started");
+//		Debug.Log (ebname+" Started");
 		state = BTState.RUNNING;
 	}
 

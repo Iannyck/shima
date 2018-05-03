@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ContactSensor : IESensor, ISensorObserver {
 
-	public bool state = true;
+	public int state = 1;
 	public float delay = 1f;
 	public string SensorType = "ContactSensor";
 	private float currentTime;
@@ -29,7 +29,11 @@ public class ContactSensor : IESensor, ISensorObserver {
 
 	void ISensorObserver.Notify () {
 		if (currentTime <= 0) {
-			state = !state;
+			//state = !state;
+			if (state == 1)
+				state = 0;
+			else
+				state = 1;
 			currentTime = delay;
 			SmartHomeServer.InsertBinarySensorData (name, SensorType, state);
 		}

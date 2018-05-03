@@ -44,7 +44,7 @@ public class SmartHomeServer : MonoBehaviour {
 		database.InsertElectricityData (timestamp, phaseId, activePower, reactivePower);
 	}
 
-	public void InsertBinarySensorData(string id, string type, bool value) {
+	public void InsertBinarySensorData(string id, string type, int value) {
 		string timestamp = System.DateTime.UtcNow.ToLongTimeString() + ":"+ System.DateTime.UtcNow.Millisecond;
 		database.InsertBinarySensorData(timestamp, id, type, value);
 	}

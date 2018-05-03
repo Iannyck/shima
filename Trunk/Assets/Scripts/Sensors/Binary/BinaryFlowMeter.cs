@@ -6,7 +6,7 @@ using UnityEngine;
 public class BinaryFlowMeter : IESensor, ISensorObserver {
 
 	public string SensorType = "BinaryFlowMeter";
-	public bool state = true;
+	public int state = 1;
 
 	protected override void IESensorInit ()
 	{
@@ -24,7 +24,11 @@ public class BinaryFlowMeter : IESensor, ISensorObserver {
 	}
 
 	void ISensorObserver.Notify () {
-		state = !state;
+		//state = !state;
+		if (state == 1)
+			state = 0;
+		else
+			state = 1;
 		SmartHomeServer.InsertBinarySensorData (name, SensorType, state);
 	}
 

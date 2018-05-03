@@ -122,7 +122,7 @@ public class AvatarControl : MonoBehaviour {
 	{
 		float v = Input.GetAxis("Vertical");
 		float h = Input.GetAxis("Horizontal");
-
+		Debug.Log ("H:"+h+" V:"+v);
 		bool walk = Input.GetKey(KeyCode.LeftShift);
 
 		if (v < 0) {

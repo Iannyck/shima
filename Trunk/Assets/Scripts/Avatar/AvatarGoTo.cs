@@ -167,7 +167,7 @@ public class AvatarGoTo : Pathfinding {
 					vertical = 0;
 					mustMove = false;
 					avatarMotion.DirectUpdate (vertical, horizontal);
-					Debug.Log ("end ");
+//					Debug.Log ("end ");
 				} else {
 					GetPath ();
 				}
@@ -179,7 +179,7 @@ public class AvatarGoTo : Pathfinding {
 					else {
 						GetHV ();
 //						animator.SetFloat (hFloat, vFloat);
-						Debug.Log ("Moi move "+horizontal+" , "+vertical);
+//						Debug.Log ("Moi move "+horizontal+" , "+vertical);
 						avatarMotion.DirectUpdate (vertical, horizontal);
 					}
 				} else {
@@ -229,9 +229,9 @@ public class AvatarGoTo : Pathfinding {
 			if (Path != null && Path.Count == 0) {
 				isFinalTargetRoomPoint = true;
 			}
-			else {
-				Debug.Log ("Cannot move");
-			}
+//			else {
+//				Debug.Log ("Cannot move");
+//			}
 		} else {
 			Debug.Log ("The room " + roomToGo +" does not exist");
 		}
@@ -241,7 +241,7 @@ public class AvatarGoTo : Pathfinding {
 	/// Determines whether the target room is reached.
 	/// </summary>
 	/// <returns><c>true</c> if the target room is reached otherwise, <c>false</c>.</returns>
-	private bool IsTargetRoomReached() {
+	public bool IsTargetRoomReached() {
 		if (Path != null && Path.Count == 0)
 			return true;
 		return false;
@@ -270,29 +270,29 @@ public class AvatarGoTo : Pathfinding {
 	void GetHV() {
 		Vector3 nextStep;
 		if (Path [0] != null) {
-			Debug.Log ("GetHV");
-			if (Vector3.Distance(transform.position, Path[0]) < 0.2F) {
+//			Debug.Log ("GetHV");
+			if (Vector3.Distance(transform.position, Path[0]) < 0.1F) {
 				Path.RemoveAt (0);
 				currentNodeTimeSpent = maximumTimeSpentByNode;
 				if (Path.Count > 0) {
-					Debug.Log ("GetHV > 0");
+//					Debug.Log ("GetHV > 0");
 					nextStep = Path [0];
 					horizontal = nextStep.x - transform.position.x;
 					vertical = nextStep.z - transform.position.z;
 				} else {
-					Debug.Log ("GetHV else");
+//					Debug.Log ("GetHV else");
 					horizontal = 0;
 					vertical = 0;
 				}
 			} else {
-				Debug.Log ("GetHV HV");
+//				Debug.Log ("GetHV HV");
 //				if(Vector3.Distance(transform.position, previousNode) < 0.2F)
 //					currentNodeTimeSpent -= Time.deltaTime;
-				if (IsAvatarBeBlocked ()) {
+//				if (IsAvatarBeBlocked ()) {
 //					Node newNode = aStar.GetReplacementNode (previousNode, path [0]);
 //					currentNodeTimeSpent = maximumTimeSpentByNode;
 //					Path [0] = newNode;
-				}
+//				}
 				nextStep = Path [0];
 
 				horizontal = nextStep.x - transform.position.x;

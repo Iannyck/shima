@@ -37,7 +37,7 @@ public class PIRMotion : IESensor {
 					if (detectedEntity != null) {
 						if (canDetect && CheckMove (hitColliders [i])) {
 							canDetect = false;
-							SmartHomeServer.InsertBinarySensorData (name, SensorType, true);
+							SmartHomeServer.InsertBinarySensorData (name, SensorType, 1);
 						} else {
 						}
 					}

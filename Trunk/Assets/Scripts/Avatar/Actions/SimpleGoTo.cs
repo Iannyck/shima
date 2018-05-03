@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleGoTo : MonoBehaviour {
+public class SimpleGoTo : SimpleBTAction {
 
-	// Use this for initialization
-	void Start () {
-		
+	private string posToGo;
+
+	public SimpleGoTo (string posToGo) : base (0)
+	{
+		this.posToGo = posToGo;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public string PosToGo {
+		get {
+			return this.posToGo;
+		}
 	}
+
+
+
 }

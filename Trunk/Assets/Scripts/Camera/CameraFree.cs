@@ -13,7 +13,7 @@ public class CameraFree : MonoBehaviour {
 	private float rotationX = 0.0f;
 	private float rotationY = 0.0f;
 
-	private bool isEnable = false;
+	private bool isEnable = true;
 
 	private Quaternion initRotation;
 	private Vector3 initPosition;
@@ -27,10 +27,10 @@ public class CameraFree : MonoBehaviour {
 
 	void Update ()
 	{
-		if (Input.GetMouseButtonDown(2))
-			isEnable = true;
-		if (Input.GetMouseButtonUp(2))
-			isEnable = false;
+//		if (Input.GetMouseButtonDown(2))
+//			isEnable = true;
+//		if (Input.GetMouseButtonUp(2))
+//			isEnable = false;
 		if (isEnable) {
 			rotationX += Input.GetAxis ("Mouse X") * cameraSensitivity * Time.deltaTime;
 			rotationY += Input.GetAxis ("Mouse Y") * cameraSensitivity * Time.deltaTime;

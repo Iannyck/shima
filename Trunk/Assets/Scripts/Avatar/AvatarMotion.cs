@@ -157,6 +157,24 @@ public class AvatarMotion : MonoBehaviour {
 		if (m_collisions.Count == 0) { m_isGrounded = false; }
 	}
 
+	private Vector2 AxisFilter (float verticalAxis, float horizontalAxis) {
+		Vector2 vector = new Vector2 ();
+		if (verticalAxis < -1)
+			vector.y = -1;
+		else if (verticalAxis > 1)
+			vector.y = 1;
+		else
+			vector.y = verticalAxis;
+		
+		if (horizontalAxis < -1)
+			vector.x = -1;
+		else if (horizontalAxis > 1)
+			vector.x = 1;
+		else
+			vector.x = horizontalAxis;
+		return vector;
+	}
+
 	/// <summary>
 	/// To control avatar like a tank. He rotates on himself.
 	/// </summary>
@@ -165,17 +183,25 @@ public class AvatarMotion : MonoBehaviour {
 	public void TankUpdate(float verticalAxis, float horizontalAxis)
 	{
 		bool walk = Input.GetKey(KeyCode.LeftShift);
+		Vector2 axis = AxisFilter (verticalAxis, horizontalAxis);
 
 		if (verticalAxis < 0) {
-			if (walk) { verticalAxis *= m_backwardsWalkScale; }
-			else { verticalAxis *= m_backwardRunScale; }
+			if (walk) { 
+//				verticalAxis *= m_backwardsWalkScale; 
+				axis.y *= m_backwardsWalkScale;
+			}
+			else { 
+				//verticalAxis *= m_backwardRunScale; 
+				axis.y *= m_backwardRunScale; ;
+			}
 		} else if(walk)
 		{
-			verticalAxis *= m_walkScale;
+//			verticalAxis *= m_walkScale;
+			axis.y *= m_walkScale;
 		}
 
-		m_currentV = Mathf.Lerp(m_currentV, verticalAxis, Time.deltaTime * m_interpolation);
-		m_currentH = Mathf.Lerp(m_currentH, horizontalAxis, Time.deltaTime * m_interpolation);
+		m_currentV = Mathf.Lerp(m_currentV, axis.y, Time.deltaTime * m_interpolation);
+		m_currentH = Mathf.Lerp(m_currentH, axis.x, Time.deltaTime * m_interpolation);
 
 		transform.position += transform.forward * m_currentV * m_moveSpeed * Time.deltaTime;
 		transform.Rotate(0, m_currentH * m_turnSpeed * Time.deltaTime, 0);
@@ -192,15 +218,17 @@ public class AvatarMotion : MonoBehaviour {
 	public void DirectUpdate(float verticalAxis, float horizontalAxis)
 	{
 		Transform camera = Camera.main.transform;
-
+		Vector2 axis = AxisFilter (verticalAxis, horizontalAxis);
 		if (Input.GetKey(KeyCode.LeftShift))
 		{
-			verticalAxis *= m_walkScale;
-			horizontalAxis *= m_walkScale;
+//			verticalAxis *= m_walkScale;
+//			horizontalAxis *= m_walkScale;
+			axis.y *= m_walkScale;
+			axis.x *= m_walkScale;
 		}
 
-		m_currentV = Mathf.Lerp(m_currentV, verticalAxis, Time.deltaTime * m_interpolation);
-		m_currentH = Mathf.Lerp(m_currentH, horizontalAxis, Time.deltaTime * m_interpolation);
+		m_currentV = Mathf.Lerp(m_currentV, axis.y, Time.deltaTime * m_interpolation);
+		m_currentH = Mathf.Lerp(m_currentH, axis.x, Time.deltaTime * m_interpolation);
 
 		Vector3 direction = camera.forward * m_currentV + camera.right * m_currentH;
 

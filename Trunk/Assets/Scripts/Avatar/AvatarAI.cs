@@ -5,14 +5,6 @@ using UnityEngine;
 public class AvatarAI : MonoBehaviour {
 
 
-	private enum Action
-	{
-		GoTo,
-		PickUpRelease,
-		OpenClose,
-
-	};
-
 	// Use this for initialization
 	void Start () {
 		

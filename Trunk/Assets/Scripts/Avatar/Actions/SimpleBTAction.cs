@@ -4,19 +4,48 @@ using UnityEngine;
 
 public class SimpleBTAction {
 
-	private BTState state;
+	protected BTState state;
 
 	public enum BTState
 	{
-		STOP,
-		RUNNING,
 		SUCCEEDED,
-		FAILED
+		FAILED,
+		UNKNOWN,
+		RUNNING
 	};
 
-	public SimpleBTAction ()
+	private int forgetErrorRate;
+
+	protected ArrayList subsActList;
+
+	protected ArrayList requireActionDoneList;
+
+	public SimpleBTAction (int forgetErrorRate)
 	{
-		this.state = BTState.STOP;
+		this.forgetErrorRate = forgetErrorRate;
+		this.state = BTState.UNKNOWN;
+		requireActionDoneList = new ArrayList ();
+		subsActList = new ArrayList ();
+//		state = BTState.STOP;
+	}
+	
+
+//	public BTState State {
+//		get {
+//			return this.state;
+//		}
+//	}
+
+	public int ForgetErrorRate {
+		get {
+			return this.forgetErrorRate;
+		}
+	}
+
+	public ArrayList SubsActList {
+		get {
+			return this.subsActList;
+		}
 	}
 
 	public BTState State {
@@ -24,5 +53,22 @@ public class SimpleBTAction {
 			return this.state;
 		}
 	}
-		
+
+	public ArrayList RequireActionDoneList {
+		get {
+			return this.requireActionDoneList;
+		}
+	}
+
+	public void Start() {
+		state = BTState.RUNNING;
+	}
+
+	public void Succeeded() {
+		state = BTState.SUCCEEDED;
+	}
+
+	public void Failed() {
+		state = BTState.FAILED;
+	}
 }

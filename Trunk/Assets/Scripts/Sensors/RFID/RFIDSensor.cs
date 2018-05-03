@@ -85,6 +85,7 @@ public class RFIDSensor : IESensor {
 		Transform sensorPosition = GetComponent<Transform>();
 		RaycastHit hitInfo;
 
+		// To draw raycast
 		Debug.DrawLine(sensorPosition.position, collider.transform.position, Color.red, 10f);
 
 		Physics.Linecast(sensorPosition.position, collider.transform.position, out hitInfo);

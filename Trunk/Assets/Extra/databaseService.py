@@ -101,7 +101,7 @@ cursor.execute("create table if not exists RFID (timestamp character(255), anten
 connection.commit()
 cursor.execute("create table if not exists TagRFIDName (timestamp character(255), tagId character(255), tagName character(255))")
 connection.commit()
-cursor.execute("create table if not exists BinarySensor (timestamp character(255), sensorId character(255), type character(255), value boolean)")
+cursor.execute("create table if not exists BinarySensor (timestamp character(255), sensorId character(255), type character(255), value integer)")
 connection.commit()
 cursor.execute("create table if not exists Ultrasound (timestamp character(255), sensorId character(255), value integer)")
 connection.commit()

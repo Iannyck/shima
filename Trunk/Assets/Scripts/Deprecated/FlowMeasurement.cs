@@ -24,13 +24,13 @@ public class FlowMeasurement : UsableDevice {
 	{
 		if (audio != null)
 			AudioSource.PlayClipAtPoint (audio,transform.position);
-		shServer.InsertBinarySensorData (name, "FlowMeasurement", true);
+		shServer.InsertBinarySensorData (name, "FlowMeasurement", 1);
 		return State.Opening;
 	}
 
 	protected override State OnClose ()
 	{
-		shServer.InsertBinarySensorData (name, "FlowMeasurement", false);
+		shServer.InsertBinarySensorData (name, "FlowMeasurement", 0);
 		return State.Closing;
 	}
 

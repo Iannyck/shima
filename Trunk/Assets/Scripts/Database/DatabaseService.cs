@@ -44,7 +44,7 @@ public class DatabaseService {
 		electricityDataCounter++;
 	}
 
-	public void InsertBinarySensorData(string timestamp, string id, string type, bool value) {
+	public void InsertBinarySensorData(string timestamp, string id, string type, int value) {
 		binarySensorWWWForm.AddField ("timestamp"+binarySensorDataCounter,""+timestamp);
 		binarySensorWWWForm.AddField ("id"+binarySensorDataCounter,""+id);
 		binarySensorWWWForm.AddField ("type"+binarySensorDataCounter,""+type);
